@@ -2,7 +2,6 @@ import os
 import fcntl
 import time
 
-<<<<<<< pm2008.py
 def pm2008():
     I2C_SLAVE = 0x703
     PM2008 = 0x28
@@ -18,6 +17,6 @@ def pm2008():
     pm2_5 = 256*int(data[9])+int(data[10])
     pm10 = 256*int(data[11])+int(data[12])
 
+    print(f"pm2.5: {pm2_5}, pm10: {pm10}")
 
-    return {'pm2_5':pm2_5,'pm10':pm10}    
-
+    return (pm2_5,pm10)
