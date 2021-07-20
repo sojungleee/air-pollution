@@ -6,7 +6,7 @@ db = 'mydb', charset='utf8')
 cur = db.cursor()
 
 # select
-cur.execute("SELECT * FROM sensordata")
+cur.execute("SELECT * FROM air_quality_sensor")
 
 # print
 rows = cur.fetchall()

@@ -7,7 +7,7 @@ def insert_raspbdb_air_quality(id: int, co: float, pm2_5:int, pm10: int) :
     cur = db.cursor()
 
     # insert
-    sql = "UPDATE sensordata SET co=%s, pm2_5=%s, pm_10=%s WHERE id=%s"
+    sql = "UPDATE air_quality_sensor SET co=%s, pm2_5=%s, pm_10=%s WHERE id=%s"
     val = (co, pm2_5, pm10, id)
     cur.execute(sql, val)
 
