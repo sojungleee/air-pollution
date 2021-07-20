@@ -6,7 +6,7 @@ def insert_rds_air_quality(id: int, co: float, pm2_5: int, pm10: int):
     cur = db.cursor()
 
     #insert
-    sql = "INSERT INTO sensordata VALUES (%s, %s, %s,%s)"
+    sql = "INSERT INTO air_quality_sensor VALUES (%s, %s, %s,%s)"
     val = (id, co, pm2_5, pm10)
     cur.execute(sql,val)
 

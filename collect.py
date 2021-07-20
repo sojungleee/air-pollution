@@ -2,6 +2,7 @@ import pm2008
 import time
 import threading
 from collections import defaultdict
+from database import insert_raspdb
 
 def collect_air_quality(data: defaultdict):
     pm2_5, pm10 = pm2008.pm2008()
@@ -18,6 +19,8 @@ def collect_air_quality(data: defaultdict):
 
 if __name__ == "__main__":
     data = defaultdict()
+    # id = 1
+    ######### id 설정 필요 
     # t = threading.Thread(target = collect, args=(data,))
     # t.start()
 
@@ -28,3 +31,4 @@ if __name__ == "__main__":
     #collect_gps(gps_data)
     #insert_raspdb.indsert_gps~~~
     ######### 여기까지 1초에 한번씩 시행
+    
