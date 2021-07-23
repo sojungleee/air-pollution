@@ -2,11 +2,8 @@
 
 ## DB Table
 
-라즈베리파이 기기 구분 필요
+![table_schema](https://user-images.githubusercontent.com/67352902/126446236-baf5a9b9-920f-481d-9f2a-955ab6db5ca1.png)
 
-- 기기 정보 (<u>기기ID</u>, 통신상태, 마지막 갱신 시각)
-- GPS 정보 (<u>기기ID</u>, 위도, 경도, 고도, 품질)
-- 대기 센서 정보 (<u>기기ID</u>, CO, 미세먼지 ... )
 
 ## Prototype
 - 카카오 오븐을 이용한 프로토 타입 제작 : [🔗](https://ovenapp.io/view/LGhBB9GDisMnOU3D5bXHVU273RrKQfjD/)
