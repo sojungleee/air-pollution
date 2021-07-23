@@ -1,4 +1,5 @@
 import pm2008
+import mq7
 import time
 import threading
 from collections import defaultdict
