@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const Navigation = (props) => {
     return (
-        null
+        <div>
+            navigation page test
+        </div>
     );
 }
 
