@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const Ranking = (props) => {
     return (
-        null
+        <div>
+            ranking page test
+        </div>
     );
 }
 

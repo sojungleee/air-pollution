@@ -2,13 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { NaverMap } from 'react-naver-maps';
 import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
-
+import { CgMenu } from "react-icons/cg";
 
 const Dust_map = (props) => {
     return (
         <MainContainer>
             <TopBar>
-               <h3>내 주변 공기 현황</h3>
+                <h2>내 주변 공기 현황</h2>
+                <CgMenu // 우측 메뉴바
+                    // 추가: onClick 이벤트 걸어서 메뉴바 만들 것.
+                    style={{
+                        width: '30px', height: '30px', float: 'right', padding: '10px 30px 0px 0px'
+                    }}
+                >
+                </CgMenu>
             </TopBar>
             
             <MapContainer>
@@ -52,16 +59,21 @@ const MainContainer = styled.div`
 `;
 
 // 모든 Js 공용
+// 의문: TopBar를 변수로 아예 선언해서 넘겨 줄 수 있나...?
 const TopBar = styled.div`
     width: 100%;
+    height: 50px;
     padding: 5px;
     background-color: #46BD7B;
     color: white;
 
-    & h3 {
+    & h2 {
         text-align: left;
-        padding: 0px 0px 0px 50px;
-        margin: 10px 0px;
+        width: 200px;
+        padding: 10px 0px 0px 30px;
+        margin: 0px;
+        display: inline-block;
+        float: left;
     }
 `;
 
@@ -83,6 +95,9 @@ const DescriptionContainer = styled.div`
 
 const Description = styled.div`
     background-color: #B4B4FF;
+    width: 80%;
+    margin: auto;
+    text-align: left;
 `;
 
 export default Dust_map;
