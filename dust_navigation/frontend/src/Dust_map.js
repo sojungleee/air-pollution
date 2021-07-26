@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NaverMap } from 'react-naver-maps';
-import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
-
+import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
 const Dust_map = (props) => {
     return (
@@ -22,6 +20,12 @@ const Dust_map = (props) => {
                         style={{ width: '100%', height: '100%' }}
                         center={{ lat: 37.497175, lng: 127.027926 }}
                     >
+                        <Marker
+                            key={1}
+                            position={{ lat: 37.551229, lng: 126.988205 }}
+                            animation={2}
+                            onClick={() => {alert('여기는 N서울타워입니다.');}}
+                        />
                     </NaverMap>
                 </RenderAfterNavermapsLoaded>
             </MapContainer>
