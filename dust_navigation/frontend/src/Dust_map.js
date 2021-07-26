@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import styled from 'styled-components';
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 import { CgMenu } from "react-icons/cg";
@@ -40,12 +41,12 @@ const Dust_map = (props) => {
 
             <DescriptionContainer>
                 <h1>A의 현재 대기 상황</h1>
-                <Description> {/*이렇게 말고 다르게 적을까 싶기도 함*/}
-                    - 측정 주소:{/*아마 여기에 props 받아오기...?*/}<br/>
-                    - 측정 시각:<br/>
-                    - 미세먼지 농도:<br/>
-                    - CO(일산화탄소) 농도:<br/>
-                    - 평가:
+                <Description>
+                    <p>- 측정 주소:{/*아마 여기에 props 받아오기...?*/}</p>
+                    <p>- 측정 시각:</p>
+                    <p>- 미세먼지 농도:</p>
+                    <p>- CO(일산화탄소) 농도:</p>
+                    <p>- 평가:</p>
                 </Description>
             </DescriptionContainer>
         </MainContainer>
@@ -61,6 +62,11 @@ const MainContainer = styled.div`
     height: 100%;
     background-color: #fef5d4;
     border-radius: 30px;
+    font-family: "nanum";
+
+    @media screen and (max-width: 500px) {
+        flex-direction: column;
+    }
 `;
 
 // 모든 Js 공용
@@ -89,6 +95,12 @@ const MapContainer = styled.div`
     width: 70%;
     height: 500px;
     float: left;
+
+    @media screen and (max-width: 500px) {
+        flex-direction: column;
+        float: none;
+        width: 100%;
+    }
 `;
 
 const DescriptionContainer = styled.div`
@@ -96,13 +108,25 @@ const DescriptionContainer = styled.div`
     width: 30%;
     height: 500px;
     float: right;
+
+    @media screen and (max-width: 500px) {
+        flex-direction: column;
+        float: none;
+        width: 100%;
+    }
 `;
 
 const Description = styled.div`
-    background-color: #B4B4FF;
     width: 80%;
+    padding: 10px;
     margin: auto;
     text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+
+    @media screen and (max-width: 500px) {
+        font-size: 18px;
+    }
 `;
 
 export default Dust_map;
