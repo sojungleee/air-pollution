@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import { Route } from 'react-router-dom';
+import axios from 'axios';
 
 // import js files
 import Dust_map from './Dust_map';
@@ -7,28 +9,33 @@ import Ranking from './Ranking';
 import Navigation from './Navigation';
 
 // class component
-class App extends React.Component{
-    constructor(props){
-        super(props);
+function App() {
+    // 요청받은 정보를 담아줄 변수 선언
+    const [ testStr, setTestStr ] = useState('');
 
-        // 조건부 랜더링.. 후에 추가
-        // *추가해야 하는 것: 메뉴 클릭시 메뉴바 나오도록 이벤트 및 css 설정
-        this.state = {
-            page: "dust_map", // 수정: 메뉴를 누르면 페이지가 바뀌도록 조정?
-        };
+    // 변수 초기화
+    function callback(str) {
+        setTestStr(str);
     }
 
-    render () {
-        return (
-            <div className="App">  
-                {this.state.page === "dust_map" && (<Dust_map name={this.state.name}/>)}
-                {this.state.page === "ranking" && (<Ranking name={this.state.name}/>)}
-                {this.state.page === "navigation" && (<Navigation name={this.state.name}/>)}
-            </div>
-        );
-    }
+    // 첫 번째 렌더링을 마친 후 실행
+    useEffect(() => {
+        console.log('useEffect() 실행');
+        axios({
+            url: '/', // 이것이 필요한가에 대한 의문...
+            method: 'GET'
+        }).then((res) => {
+            callback(res.data);
+        })
+    }, []);
+
+    return (
+        <div className="App">  
+            <Route path="/" exact={true} component={Dust_map}/>
+            <Route path="/ranking" component={Ranking}/>
+            <Route path="/navigation" component={Navigation}/>
+        </div>
+    );
 }
-
-    
 
 export default App;
