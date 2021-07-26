@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
+
 
 // import js files
 import Dust_map from './Dust_map';
 import Ranking from './Ranking';
 import Navigation from './Navigation';
 
-// class component
-function App() {
+function App(props) {
     // 요청받은 정보를 담아줄 변수 선언
     const [ testStr, setTestStr ] = useState('');
 

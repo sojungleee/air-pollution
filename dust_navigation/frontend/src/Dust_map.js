@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NaverMap } from 'react-naver-maps';
+import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
+
 
 const Dust_map = (props) => {
     return (
@@ -9,7 +12,18 @@ const Dust_map = (props) => {
             </TopBar>
             
             <MapContainer>
-                지도 들어갈 곳
+                <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
+                    ncpClientId={'f740jc2cw6'} // 자신의 네이버 계정에서 발급받은 Client ID
+                    error={<p>Maps Load Error</p>}
+                    loading={<p>Maps Loading...</p>}
+                >
+                    <NaverMap
+                        id="react-naver-maps-introduction"
+                        style={{ width: '100%', height: '100%' }}
+                        center={{ lat: 37.497175, lng: 127.027926 }}
+                    >
+                    </NaverMap>
+                </RenderAfterNavermapsLoaded>
             </MapContainer>
 
             <DescriptionContainer>
