@@ -8,4 +8,5 @@ public class AirQualitySensorRequestDto {
     private float co;
     private int pm10;
     private int pm25;
+    private int index;
 }
