@@ -1,5 +1,7 @@
 import pm2008
+import gps
 import mq7
+import find_id
 import time
 import threading
 from collections import defaultdict
@@ -18,10 +20,20 @@ def collect_air_quality(data: defaultdict):
 
     print(data)
 
+#def gps(gps_data: defaultdict):
+    #lat, lon = gps()
+    #gps_data["lat"] = lat
+    #gps_data["lon"] = lon
+
+
 if __name__ == "__main__":
     data = defaultdict()
-    # id = 1
-    ######### id 설정 필요 
+    gps_data = defaultdict()
+    # id 설정 
+    id = find_id.get_serial()
+    #network_conditon =  
+    #insert_raspdb.insert_device(id,network_condition)
+
     # t = threading.Thread(target = collect, args=(data,))
     # t.start()
 
@@ -30,6 +42,6 @@ if __name__ == "__main__":
     #insert_raspdb.insert_raspdb_air_quality(id, data["co"], data["pm2_5"], data["pm10"])
     
     #collect_gps(gps_data)
-    #insert_raspdb.indsert_gps~~~
+    #insert_raspdb.insert_gps(id,gps_data["lat"],gps_data["lon"])
     ######### 여기까지 1초에 한번씩 시행
     
