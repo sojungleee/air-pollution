@@ -43,7 +43,4 @@ public class AirQualitySensor extends Timestamped{
         this.pm25 = airQualitySensorRequestDto.getPm25();
     }
 
-    //-------------------연관관계 매핑-------------------//
-    @OneToOne()
-    private Device device;
 }

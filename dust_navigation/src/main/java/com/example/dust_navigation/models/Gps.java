@@ -32,8 +32,5 @@ public class Gps {
         this.longitude = longitude;
     }
 
-    //-------------------연관관계 매핑-------------------//
-    @OneToOne()
-    private Device device;
 
 }
