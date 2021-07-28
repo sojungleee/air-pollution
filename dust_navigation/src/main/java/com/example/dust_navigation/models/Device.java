@@ -29,11 +29,8 @@ public class Device {
     }
 
     //-------------------연관관계 매핑-------------------//
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "device_id")
     private Gps gps;
 
-    @OneToOne
-    @JoinColumn(name = "device_id")
-    private Device device;
 }
