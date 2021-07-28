@@ -45,6 +45,6 @@ public class AirQualitySensor extends Timestamped{
 
     //-------------------연관관계 매핑-------------------//
     @OneToOne(mappedBy = "gps")
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "device_id")
     private Device device;
 }

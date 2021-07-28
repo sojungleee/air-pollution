@@ -14,7 +14,7 @@ public class Device {
 
     @Id
     @Column
-    private Long id;
+    private Long device_id;
 
     @Column(nullable = false)
     private int network_condition;
@@ -23,15 +23,17 @@ public class Device {
     private Timestamp last_updated_time;
 
     public Device(Long id, int network_condition, Timestamp last_updated_time) {
-        this.id = id;
+        this.device_id = id;
         this.network_condition = network_condition;
         this.last_updated_time = last_updated_time;
     }
 
     //-------------------연관관계 매핑-------------------//
     @OneToOne
+    @JoinColumn(name = "device_id")
     private Gps gps;
 
     @OneToOne
+    @JoinColumn(name = "device_id")
     private Device device;
 }
