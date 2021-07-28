@@ -49,7 +49,4 @@ public class AirQualitySensor extends Timestamped{
         this.index = airQualitySensorRequestDto.getIndex();
     }
 
-    //-------------------연관관계 매핑-------------------//
-    @OneToOne()
-    private Device device;
 }
