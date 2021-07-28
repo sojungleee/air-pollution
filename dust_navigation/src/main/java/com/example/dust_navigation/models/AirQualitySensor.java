@@ -51,6 +51,5 @@ public class AirQualitySensor extends Timestamped{
 
     //-------------------연관관계 매핑-------------------//
     @OneToOne()
-    @JoinColumn(name = "device_id")
     private Device device;
 }
