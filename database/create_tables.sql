@@ -15,5 +15,6 @@ CREATE TABLE air_quality_sensor (
     co DECIMAL(4,2),
     pm10 INT,
     pm25 INT,
+    air_index INT,
     FOREIGN KEY (device_id) REFERENCES device (id)
 );

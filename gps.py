@@ -51,6 +51,7 @@ try:
             GPS_Info()                                          #get time, latitude, longitude
  
             print("latitude in degrees:", lat_in_degrees," longitude in degree: ", long_in_degrees, '\n')
+            return (lat_in_degrees,long_in_degrees)
             #map_link = 'http://maps.google.com/?q=' + lat_in_degrees + ',' + long_in_degrees    #create link to plot location on Google map
             #print("<<<<<<<<press ctrl+c to plot location on google maps>>>>>>\n")               #press ctrl+c to plot on map and exit 
             #print("------------------------------------------------------------\n")
