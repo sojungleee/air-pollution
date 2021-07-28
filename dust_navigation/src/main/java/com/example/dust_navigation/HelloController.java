@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @GetMapping("/home")
     public String getHome(){
-        return "Raspberry Cookies!!";
+        return "Spring Controller에서 보낸 message입니다.";
     }
 }

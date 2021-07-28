@@ -24,23 +24,29 @@ public class AirQualitySensor extends Timestamped{
     @Column(nullable = false)
     private int pm25;
 
-    public AirQualitySensor(Long device_id, float co, int pm10, int pm25){
+    @Column(nullable = false)
+    private int index;
+
+    public AirQualitySensor(Long device_id, float co, int pm10, int pm25, int index){
         this.device_id = device_id;
         this.co = co;
         this.pm10 = pm10;
         this.pm25 = pm25;
+        this.index = index;
     }
     public AirQualitySensor(AirQualitySensorRequestDto airQualitySensorRequestDto){
         this.device_id = airQualitySensorRequestDto.getDevice_id();
         this.co = airQualitySensorRequestDto.getCo();
         this.pm10 = airQualitySensorRequestDto.getPm10();
         this.pm25 = airQualitySensorRequestDto.getPm25();
+        this.index = airQualitySensorRequestDto.getIndex();
     }
     public void update (AirQualitySensorRequestDto airQualitySensorRequestDto){
         this.device_id = airQualitySensorRequestDto.getDevice_id();
         this.co = airQualitySensorRequestDto.getCo();
         this.pm10 = airQualitySensorRequestDto.getPm10();
         this.pm25 = airQualitySensorRequestDto.getPm25();
+        this.index = airQualitySensorRequestDto.getIndex();
     }
 
     //-------------------연관관계 매핑-------------------//
