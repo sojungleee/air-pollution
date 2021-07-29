@@ -33,28 +33,39 @@ def convert_to_degrees(raw_value):
     return position
     
 
+def getGps():
+    #'''
+    gpgga_info = "$GPGGA,"
+    ser = serial.Serial ("/dev/serial0")              #Open port with baud rate
+    GPGGA_buffer = 0
+    NMEA_buff = 0
+    lat_in_degrees = 0
+    long_in_degrees = 0
+    
+    received_data = (str)(ser.readline())                   #read NMEA string received
+    GPGGA_data_available = received_data.find(gpgga_info)   #check for NMEA GPGGA string                 
+    if (GPGGA_data_available>0):
+        GPGGA_buffer = received_data.split("$GPGGA,",1)[1]  #store data coming after "$GPGGA," string 
+        NMEA_buff = (GPGGA_buffer.split(','))               #store comma separated data in buffer
+        GPS_Info()                                          #get time, latitude, longitude
+   #''' 
+   # lat_in_degrees = 1
+   # long_in_degrees = 2
+    print("latitude in degrees:", lat_in_degrees," longitude in degree: ", long_in_degrees, '\n')
+        
+    #return (lat_in_degrees,long_in_degrees)
 
-gpgga_info = "$GPGGA,"
-ser = serial.Serial ("/dev/serial0")              #Open port with baud rate
-GPGGA_buffer = 0
-NMEA_buff = 0
-lat_in_degrees = 0
-long_in_degrees = 0
-
-try:
-    while True:
-        received_data = (str)(ser.readline())                   #read NMEA string received
-        GPGGA_data_available = received_data.find(gpgga_info)   #check for NMEA GPGGA string                 
-        if (GPGGA_data_available>0):
-            GPGGA_buffer = received_data.split("$GPGGA,",1)[1]  #store data coming after "$GPGGA," string 
-            NMEA_buff = (GPGGA_buffer.split(','))               #store comma separated data in buffer
-            GPS_Info()                                          #get time, latitude, longitude
- 
-            print("latitude in degrees:", lat_in_degrees," longitude in degree: ", long_in_degrees, '\n')
-            return (lat_in_degrees,long_in_degrees)
+if __name__=="__main__":
+    #'''
+    try:
+        while True:
+            getGps()
+    except KeyboardInterrupt:
+        webbrowser.open(map_link)
+    #'''    
             #map_link = 'http://maps.google.com/?q=' + lat_in_degrees + ',' + long_in_degrees    #create link to plot location on Google map
             #print("<<<<<<<<press ctrl+c to plot location on google maps>>>>>>\n")               #press ctrl+c to plot on map and exit 
             #print("------------------------------------------------------------\n")
                         
-except KeyboardInterrupt:
-    webbrowser.open(map_link)        #open current position information in google map
+#except KeyboardInterrupt:
+    #webbrowser.open(map_link)        #open current position information in google map
