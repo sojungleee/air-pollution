@@ -14,7 +14,7 @@ public class AirQualitySensorService {
     private final AirQualitySensorRepository airQualitySensorRepository;
 
     @Transactional
-    public Long update(Long id, AirQualitySensorRequestDto airQualitySensorRequestDto) {
+    public String update(String id, AirQualitySensorRequestDto airQualitySensorRequestDto) {
         AirQualitySensor airQualitySensor = airQualitySensorRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다")
         );
