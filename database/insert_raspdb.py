@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_raspdb_air_quality(id: int, co: float, pm2_5: int, pm10: int,air_index: int) :
+def insert_raspdb_air_quality(id: str, co: float, pm2_5: int, pm10: int,air_index: int) :
     # connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'mydb', charset='utf8')
@@ -15,7 +15,7 @@ def insert_raspdb_air_quality(id: int, co: float, pm2_5: int, pm10: int,air_inde
 
     print(cur.rowcount, "air_quality record inserted")
 
-def insert_raspdb_gps(id: int, latitude: int, longtitude: int):
+def insert_raspdb_gps(id: str, latitude: int, longtitude: int):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'mydb', charset='utf8')
@@ -31,14 +31,14 @@ def insert_raspdb_gps(id: int, latitude: int, longtitude: int):
 
     print(cur.rowcount, "gps record inserted")
 
-def insert_raspdb_device(id: int, network_condition: int):
+def insert_raspdb_device(id: str, network_condition: bool):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'mydb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO device VALUES (%s, %s)"
+    sql = "INSERT INTO device(id,network_condition) VALUES (%s, %s)"
 
     val = (id, network_condition)
     cur.execute(sql, val)

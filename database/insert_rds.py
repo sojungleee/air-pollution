@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_rds_air_quality(id: int, co: float, pm2_5: int, pm10: int, air_index: int):
+def insert_rds_air_quality(id: str, co: float, pm2_5: int, pm10: int, air_index: int):
     #connect to database
     db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='mydb',charset='utf8')
     cur = db.cursor()
@@ -14,7 +14,7 @@ def insert_rds_air_quality(id: int, co: float, pm2_5: int, pm10: int, air_index:
 
     print(cur.rowcount, "air_quality record inserted")
 
-def insert_rds_gps(id: int, latitude: int, longtitude: int):
+def insert_rds_gps(id: str, latitude: int, longtitude: int):
     #connect to database
     db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='mydb',charset='utf8')
     cur = db.cursor()
@@ -28,7 +28,7 @@ def insert_rds_gps(id: int, latitude: int, longtitude: int):
 
     print(cur.rowcount, "gps record inserted")
 
-def insert_rds_device(id: int, network_condition: int):
+def insert_rds_device(id: str, network_condition: bool):
     #connect to database
     db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='mydb',charset='utf8')
     cur = db.cursor()
