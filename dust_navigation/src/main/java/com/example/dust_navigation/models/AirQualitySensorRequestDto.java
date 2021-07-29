@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public class AirQualitySensorRequestDto {
-    private Long device_id;
+    private String device_id;
     private float co;
     private int pm10;
     private int pm25;
-    private int index;
+    private int air_index;
 }
