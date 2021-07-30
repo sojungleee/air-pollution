@@ -22,7 +22,7 @@ public class Controller {
     }
 
     @PutMapping("api/sensors/{id}")
-    public Long updateMemo(@PathVariable Long id, @RequestBody AirQualitySensorRequestDto requestDto){
+    public String updateMemo(@PathVariable String id, @RequestBody AirQualitySensorRequestDto requestDto){
         airQualitySensorService.update(id, requestDto);
         return id;
     }

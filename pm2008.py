@@ -17,6 +17,5 @@ def pm2008():
     pm2_5 = 256*int(data[9])+int(data[10])
     pm10 = 256*int(data[11])+int(data[12])
 
-    print(f"pm2.5: {pm2_5}, pm10: {pm10}")
 
     return (pm2_5,pm10)
