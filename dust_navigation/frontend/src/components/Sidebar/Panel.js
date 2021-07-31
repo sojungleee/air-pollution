@@ -7,50 +7,6 @@ import { Data } from "./Data";
 import Sidebar from "./Sidebar";
 import { IconContext } from "react-icons/lib";
 
-const Nav = styled.div`
-  background: #a0d911;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const NavIcon = styled(Link)`
-  margin-right: 20px;
-  font-size: 2rem;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const SidebarNav = styled.nav`
-  background: #a0d911;
-  width: 200px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  right: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
-  transition: 350ms;
-  z-index: 10;
-  span {
-    font-family: "Jua", sans-serif;
-  }
-`;
-
-const Title = styled.div`
-  font-size: x-large;
-  margin-left: 30px;
-  color: white;
-  font-family: "Do Hyeon", sans-serif;
-`;
-
-const SidebarWrap = styled.div`
-  width: 100%;
-`;
-
 const useSlider = () => {
   const [sidebar, setSidebar] = useState(false);
 
@@ -90,5 +46,50 @@ const Panel = () => {
     </>
   );
 };
+
+const Nav = styled.div`
+  background: #a0d911;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const NavIcon = styled(Link)`
+  margin-right: 20px;
+  font-size: 2rem;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SidebarNav = styled.nav`
+  background: #a0d911;
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
+  transition: 350ms;
+  z-index: 10;
+  span {
+    font-family: "nanum";
+  }
+`;
+
+const Title = styled.div`
+  font-size: x-large;
+  margin-left: 30px;
+  color: white;
+  font-family: "nanum";
+  font-weight: bold;
+`;
+
+const SidebarWrap = styled.div`
+  width: 100%;
+`;
 
 export default Panel;

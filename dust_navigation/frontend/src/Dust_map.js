@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import styled from 'styled-components';
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
-import { CgMenu } from "react-icons/cg";
 
 const Dust_map = (props) => {
     return (
