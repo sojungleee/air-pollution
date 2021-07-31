@@ -3,7 +3,6 @@ import './App.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
-import { IoIosMenu } from "react-icons/io";
 import Panel from "./components/Sidebar/Panel";
 
 // import js files

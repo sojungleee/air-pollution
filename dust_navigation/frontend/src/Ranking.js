@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
-import { CgMenu } from "react-icons/cg";
 
 const Ranking = (props) => {
     return (
        <MainContainer>
-           <TopBar>
+           {/*<TopBar>
                 <h2>내 주변 공기 현황</h2>
                 <CgMenu // 우측 메뉴바
                     // 추가: onClick 이벤트 걸어서 메뉴바 만들 것.
@@ -15,7 +14,7 @@ const Ranking = (props) => {
                     }}
                 >
                 </CgMenu>
-            </TopBar>
+            </TopBar>*/}
 
             <RankingBar>
                 <Alphabet>
