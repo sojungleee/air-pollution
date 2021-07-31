@@ -33,7 +33,8 @@ function App(props) {
     }, []);
 
     return (
-        <div className="App">  
+        <div className="App"> 
+            <Panel />
             <Route path="/" exact={true} component={Dust_map}/>
             <Route path="/ranking" component={Ranking}/>
             <Route path="/navigation" component={Navigation}/>  
