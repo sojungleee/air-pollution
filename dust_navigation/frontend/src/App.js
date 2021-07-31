@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 import { IoIosMenu } from "react-icons/io";
-
+import Panel from "./components/Sidebar/Panel";
 
 // import js files
 import Dust_map from './Dust_map';
 import Ranking from './Ranking';
 import Navigation from './Navigation';
+import { CgSidebar } from 'react-icons/cg';
 
 function App(props) {
     // 요청받은 정보를 담아줄 변수 선언
@@ -33,10 +34,9 @@ function App(props) {
 
     return (
         <div className="App">  
-
             <Route path="/" exact={true} component={Dust_map}/>
             <Route path="/ranking" component={Ranking}/>
-            <Route path="/navigation" component={Navigation}/>
+            <Route path="/navigation" component={Navigation}/>  
         </div>
     );
 }

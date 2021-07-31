@@ -7,7 +7,7 @@ import { CgMenu } from "react-icons/cg";
 const Dust_map = (props) => {
     return (
         <MainContainer>
-            <TopBar>
+            {/* <TopBar>
                 <h2>내 주변 공기 현황</h2>
                 <CgMenu // 우측 메뉴바
                     // 추가: onClick 이벤트 걸어서 메뉴바 만들 것.
@@ -16,7 +16,7 @@ const Dust_map = (props) => {
                     }}
                 >
                 </CgMenu>
-            </TopBar>
+            </TopBar> */}
             
             <MapContainer>
                 <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
