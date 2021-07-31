@@ -15,15 +15,6 @@ const Nav = styled.div`
   align-items: center;
 `;
 
-const NavTitle = styled.div`
-  margin-left: 20px;
-  font-size: 1.5rem;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const NavIcon = styled(Link)`
   margin-right: 20px;
   font-size: 2rem;
@@ -51,7 +42,7 @@ const SidebarNav = styled.nav`
 
 const Title = styled.div`
   font-size: x-large;
-  margin-right: 30px;
+  margin-left: 30px;
   color: white;
   font-family: "Do Hyeon", sans-serif;
 `;
@@ -78,7 +69,7 @@ const Panel = () => {
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
         <Nav>
-          <NavTitle> 정밀 대기 지도 </NavTitle>
+          <Title> 정밀 대기 지도 </Title>
           <NavIcon to="#" onClick={toggleSidebar}>
             <FaIcons.FaBars />
           </NavIcon>
