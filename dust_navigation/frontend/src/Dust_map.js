@@ -58,8 +58,8 @@ const Dust_map = (props) => {
 
 // 구분 위한 임시 css
 const MainContainer = styled.div`
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 92vh;
     background-color: #fef5d4;
     border-radius: 30px;
     font-family: "nanum";
@@ -71,29 +71,29 @@ const MainContainer = styled.div`
 
 // 모든 Js 공용
 // 의문: TopBar를 변수로 아예 선언해서 넘겨 줄 수 있나...?
-const TopBar = styled.div`
-    width: 100%;
-    height: 50px;
-    padding: 5px;
-    background-color: #46BD7B;
-    color: white;
+// const TopBar = styled.div`
+//     width: 100%;
+//     height: 50px;
+//     padding: 5px;
+//     background-color: #46BD7B;
+//     color: white;
 
-    & h2 {
-        text-align: left;
-        width: 200px;
-        padding: 10px 0px 0px 30px;
-        margin: 0px;
-        display: inline-block;
-        float: left;
-    }
-`;
+//     & h2 {
+//         text-align: left;
+//         width: 200px;
+//         padding: 10px 0px 0px 30px;
+//         margin: 0px;
+//         display: inline-block;
+//         float: left;
+//     }
+// `;
 
 // 아래 두 개 height 수정 필요
 // float width % 말고 position으로 위치 정렬로 수정해 보기
 const MapContainer = styled.div`
     background-color: lightgray; 
     width: 70%;
-    height: 500px;
+    height: 92vh;
     float: left;
 
     @media screen and (max-width: 500px) {
@@ -106,7 +106,7 @@ const MapContainer = styled.div`
 const DescriptionContainer = styled.div`
     background-color: lightblue;
     width: 30%;
-    height: 500px;
+    height: 92vh;
     float: right;
 
     @media screen and (max-width: 500px) {
