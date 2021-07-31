@@ -1,21 +1,12 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
+import Panel from "./components/Sidebar/Panel";
 
 const Ranking = (props) => {
     return (
-       <MainContainer>
-           {/*<TopBar>
-                <h2>내 주변 공기 현황</h2>
-                <CgMenu // 우측 메뉴바
-                    // 추가: onClick 이벤트 걸어서 메뉴바 만들 것.
-                    style={{
-                        width: '30px', height: '30px', float: 'right', padding: '10px 30px 0px 0px'
-                    }}
-                >
-                </CgMenu>
-            </TopBar>*/}
-
+        <MainContainer>
+            <Panel title="랭킹 페이지"/>
             <RankingBar>
                 <Alphabet>
                     <div>A</div>
@@ -33,7 +24,7 @@ const Ranking = (props) => {
                 </DustResult>
             </RankingBar>
 
-       </MainContainer>
+        </MainContainer>
     );
 }
 
@@ -49,25 +40,6 @@ const MainContainer = styled.div`
         flex-direction: column;
     }
 `;
-
-// 모든 Js 공용
-// 의문: TopBar를 변수로 아예 선언해서 넘겨 줄 수 있나...?
-// const TopBar = styled.div`
-//     width: 100vw;
-//     height: 6vh;
-//     padding: 5px;
-//     background-color: #46BD7B;
-//     color: white;
-
-//     & h2 {
-//         text-align: left;
-//         width: 200px;
-//         padding: 10px 0px 0px 30px;
-//         margin: 0px;
-//         display: inline-block;
-//         float: left;
-//     }
-// `;
 
 const RankingBar = styled.div`
     background-color: pink;

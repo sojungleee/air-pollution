@@ -16,7 +16,12 @@ const useSlider = () => {
   };
 };
 
-const Panel = () => {
+/*
+Panel.defaultProps = {
+  title: "정밀 대기 지도"
+}*/
+
+const Panel = (props) => {
   const { sidebarStatus, setSidebar } = useSlider();
 
   const toggleSidebar = () => setSidebar(!sidebarStatus);
@@ -25,7 +30,7 @@ const Panel = () => {
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
         <Nav>
-          <Title> 정밀 대기 지도 </Title>
+          <Title> {props.title} </Title>
           <NavIcon to="#" onClick={toggleSidebar}>
             <FaIcons.FaBars />
           </NavIcon>

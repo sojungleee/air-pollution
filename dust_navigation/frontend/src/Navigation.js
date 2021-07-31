@@ -1,12 +1,14 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
+import Panel from "./components/Sidebar/Panel";
 
 const Navigation = (props) => {
     return (
-        <div>
+        <MainContainer>
+            <Panel title="클린 내비게이션"/>
             navigation page test
-        </div>
+        </MainContainer>
     );
 }
 

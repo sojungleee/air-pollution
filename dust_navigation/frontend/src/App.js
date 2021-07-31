@@ -3,7 +3,6 @@ import './App.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
-import Panel from "./components/Sidebar/Panel";
 
 // import js files
 import Dust_map from './Dust_map';
@@ -33,7 +32,6 @@ function App(props) {
 
     return (
         <div className="App"> 
-            <Panel />
             <Route path="/" exact={true} component={Dust_map}/>
             <Route path="/ranking" component={Ranking}/>
             <Route path="/navigation" component={Navigation}/>  

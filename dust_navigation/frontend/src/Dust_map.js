@@ -2,21 +2,12 @@ import React from 'react';
 import './App.css';
 import styled from 'styled-components';
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
+import Panel from "./components/Sidebar/Panel";
 
 const Dust_map = (props) => {
     return (
         <MainContainer>
-            {/* <TopBar>
-                <h2>내 주변 공기 현황</h2>
-                <CgMenu // 우측 메뉴바
-                    // 추가: onClick 이벤트 걸어서 메뉴바 만들 것.
-                    style={{
-                        width: '30px', height: '30px', float: 'right', padding: '10px 30px 0px 0px'
-                    }}
-                >
-                </CgMenu>
-            </TopBar> */}
-            
+            <Panel title="대기 정밀 지도"/>
             <MapContainer>
                 <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
                     ncpClientId={'f740jc2cw6'} // 자신의 네이버 계정에서 발급받은 Client ID
@@ -54,6 +45,7 @@ const Dust_map = (props) => {
 
 /*SCSS*/
 // 참고!! 배경색상은 구분을 위해 아무렇게나 해둔 임시용입니다. 나중에 상의해서 바꿔요
+// 7/31 소정: 나중에 추가할 것 : 스크롤바
 
 // 구분 위한 임시 css
 const MainContainer = styled.div`
@@ -68,26 +60,6 @@ const MainContainer = styled.div`
     }
 `;
 
-// 모든 Js 공용
-// 의문: TopBar를 변수로 아예 선언해서 넘겨 줄 수 있나...?
-// const TopBar = styled.div`
-//     width: 100%;
-//     height: 50px;
-//     padding: 5px;
-//     background-color: #46BD7B;
-//     color: white;
-
-//     & h2 {
-//         text-align: left;
-//         width: 200px;
-//         padding: 10px 0px 0px 30px;
-//         margin: 0px;
-//         display: inline-block;
-//         float: left;
-//     }
-// `;
-
-// 아래 두 개 height 수정 필요
 // float width % 말고 position으로 위치 정렬로 수정해 보기
 const MapContainer = styled.div`
     background-color: lightgray; 
