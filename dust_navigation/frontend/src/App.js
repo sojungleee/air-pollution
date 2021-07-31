@@ -21,6 +21,8 @@ function App(props) {
         setTestStr(str);
     }
 
+    //B.E : axios로 하면 message 데이터를 못 읽어옵니다. fetch()함수로 수정했더니 잘 됐는데,
+    //      axios로도 message 잘 읽어오는지 한 번만 테스트 해주세요. 안되면 제가 fetch로 수정할게요
     // 첫 번째 렌더링을 마친 후 실행
     useEffect(() => {
         console.log('useEffect() 실행');
