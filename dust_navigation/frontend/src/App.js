@@ -5,9 +5,9 @@ import axios from 'axios';
 import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
 // import js files
-import Dust_map from './Dust_map';
-import Ranking from './Ranking';
-import Navigation from './Navigation';
+import Dust_map from './pages/Dust_map';
+import Ranking from './pages/Ranking';
+import Navigation from './pages/Navigation';
 import { CgSidebar } from 'react-icons/cg';
 
 function App(props) {

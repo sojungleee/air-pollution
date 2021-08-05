@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import styled from 'styled-components';
-import Panel from "./components/Sidebar/Panel";
+import '../../src/App.css';
+import Panel from "../../src/components/Sidebar/Panel";
 
 const Navigation = (props) => {
     return (
@@ -17,7 +17,6 @@ const MainContainer = styled.div`
     width: 100%;
     height: 100%;
     background-color: #fef5d4;
-    border-radius: 30px;
     font-family: "nanum";
 
     @media screen and (max-width: 500px) {
