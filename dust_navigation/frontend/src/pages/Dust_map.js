@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
 import styled from 'styled-components';
+import '../../src/App.css';
+import Panel from "../../src/components/Sidebar/Panel";
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
-import Panel from "./components/Sidebar/Panel";
 
 const Dust_map = (props) => {
     return (
@@ -52,7 +52,6 @@ const MainContainer = styled.div`
     width: 100vw;
     height: 92vh;
     background-color: #fef5d4;
-    border-radius: 30px;
     font-family: "nanum";
 
     @media screen and (max-width: 500px) {

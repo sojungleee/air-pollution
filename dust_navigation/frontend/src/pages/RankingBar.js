@@ -1,59 +1,41 @@
 import React from 'react';
-import './App.css';
 import styled from 'styled-components';
-import Panel from "./components/Sidebar/Panel";
 
-// 8/2 소정 질문: RankingBar.js를 따로 만들어서 Import 해오는게 깔끔할까요? 나중에 Ranking페이지에 이걸 RankingBar를 랜덤으로 불러와야 하니까..
 
-const Ranking = (props) => {
+const RankingBar = (props) => {
     return (
-        <MainContainer>
-            <Panel title="랭킹 페이지"/>
-            <RankingBar>
-                <LocationAlphabet>
-                    <div>A</div>
-                </LocationAlphabet>
+        <Bar>
+            <LocationAlphabet>
+                <div>A</div>
+            </LocationAlphabet>
 
-                <DustInfo>
-                    <div>
-                        <h3>서울특별시 성북구 화랑로13길 60</h3>
-                        <DustList>
-                            <li>일산화탄소: 10</li>
-                            <li>미세먼지: 5</li>
-                            <li>아황산가스: 10</li>
-                            <li>오존: 5</li>
-                        </DustList>
-                    </div>
-                </DustInfo>
-                
-                <DustResult>
-                    <div>매우 쾌적함</div>
-                </DustResult>
-            </RankingBar>
-
-        </MainContainer>
+            <DustInfo>
+                <div>
+                    <h3>서울특별시 성북구 화랑로13길 60</h3>
+                    <DustList>
+                        <li>일산화탄소: 10</li>
+                        <li>미세먼지: 5</li>
+                        <li>아황산가스: 10</li>
+                        <li>오존: 5</li>
+                    </DustList>
+                </div>
+            </DustInfo>
+            
+            <DustResult>
+                <div>매우 쾌적함</div>
+            </DustResult>
+        </Bar>  
     );
 }
 
-// 구분 위한 임시 css
-const MainContainer = styled.div`
-    width: 100vw;
-    height: 92vh;
-    background-color: #fef5d4;
-    border-radius: 30px;
-    font-family: "nanum";
-
-    @media screen and (max-width: 550px) {
-        flex-direction: column;
-    }
-`;
-
-const RankingBar = styled.div`
-    background-color: pink;
+const Bar = styled.div`
+    background-color: #5EC75E;
     margin: auto;
     width: 88vw;
-    height: 14vh;
+    height: 15vh;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     @media screen and (max-width: 800px) {
         width: 90vw;
@@ -188,4 +170,4 @@ const DustResult = styled.div`
     }
 `;
 
-export default Ranking;
+export default RankingBar;
