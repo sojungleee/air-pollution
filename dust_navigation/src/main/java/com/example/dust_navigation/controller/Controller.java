@@ -1,7 +1,6 @@
 package com.example.dust_navigation.controller;
 
 import com.example.dust_navigation.models.*;
-import com.example.dust_navigation.service.AirQualitySensorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,25 +10,22 @@ import java.util.List;
 @RestController
 public class Controller {
     private final AirQualitySensorRepository airQualitySensorRepository;
-    private final DeviceRepository deviceRepository;
     private final GpsRepository gpsRepository;
-    private final AirQualitySensorService airQualitySensorService;
+    private final GeohashRepository geohashReposirtory;
+    private final SensorsRepository sensorsRepository;
 
     // read
+    @GetMapping("/api/geohashs")
+    public List <Geohash> getGeohash() {return geohashReposirtory.findAll(); }
+
     @GetMapping("/api/sensors")
-    public List<AirQualitySensor> getAirQualitySensors() {
-        return airQualitySensorRepository.findAll();
+    public List<Sensors> getSensors() {
+        return sensorsRepository.findAll();
     }
-
-    @PutMapping("api/sensors/{id}")
-    public String updateMemo(@PathVariable String id, @RequestBody AirQualitySensorRequestDto requestDto){
-        airQualitySensorService.update(id, requestDto);
-        return id;
-    }
-
-    @GetMapping("/api/devices")
-    public List<Device> getDevices() { return deviceRepository.findAll(); }
 
     @GetMapping("/api/gps")
     public List<Gps> getGps() { return gpsRepository.findAll(); }
+
+    @GetMapping("/api/airqualitysensors")
+    public List<AirQualitySensor> getAirQualitySensor() {return airQualitySensorRepository.findAll(); }
 }
