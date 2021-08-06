@@ -4,33 +4,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @Getter
-@Table(name="gps",schema = "mydb")
 @Entity
+@Table(name="gps",schema = "raspberry")
 public class Gps {
     @Id
-    @Column(nullable = false)
-    private String device_id;
+    @Column(nullable = false,name="geohash")
+    private String geohash;
+
+    @Column(nullable = true)
+    private Timestamp receive_time;
 
     @Column(nullable = false)
     private int latitude;
 
     @Column(nullable = false)
-    private int longitude;
+    private int longtitude;
 
-    public Gps(GpsRequestDto gpsRequestDto) {
-        this.device_id = gpsRequestDto.getDevice_id();
-        this.latitude = gpsRequestDto.getLatitude();
-        this.longitude = gpsRequestDto.getLongitude();
-    }
-
-    public Gps(String device_id, int latitude, int longitude) {
-        this.device_id = device_id;
+    public Gps(String geohash, Timestamp receive_time, int latitude, int longtitude) {
+        this.geohash = geohash;
+        this.receive_time = receive_time;
         this.latitude = latitude;
-        this.longitude = longitude;
+        this.longtitude = longtitude;
     }
-
 
 }
