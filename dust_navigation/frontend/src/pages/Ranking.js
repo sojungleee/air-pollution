@@ -10,7 +10,7 @@ import 'react-dropdown/style.css';
 // 8/5 RakingBar.js를 따로 생성해서 import 해왔는데 별로면 후에 다시 합치는 걸로...
 
 const options = [
-  'one', 'two', 'three'
+    '일산화탄소', '미세먼지', '아황산가스', '오존'
 ];
 const defaultOption = options[0];
 
@@ -19,11 +19,14 @@ const Ranking = (props) => {
         <MainContainer>
             <Panel title="랭킹 페이지"/>
             <RankingContainer>
-                <Dropdown options={options} value={defaultOption} placeholder="Select an option" />
+                <SubContatiner>
+                    <Dropdown options={options} value={defaultOption} placeholder="선택" />
+                </SubContatiner>
+                
+                {/* 예시로 바를 여러 개 불러와봤음 */}
                 <RankingBar/>
                 <RankingBar/> 
                 <RankingBar/> 
-                {/* 예시로 바를 여러 개 불러와봤음 */}
             </RankingContainer>
         </MainContainer>
     );
@@ -38,6 +41,17 @@ const MainContainer = styled.div`
 
     @media screen and (max-width: 550px) {
         flex-direction: column;
+    }
+`;
+
+const SubContatiner = styled.div`
+    // background-color: #87F5F5;
+    // float: right;
+    width: 150px;
+    height: 40px;
+
+    @media screen and (max-width: 550px) {
+        width: 100px;
     }
 `;
 

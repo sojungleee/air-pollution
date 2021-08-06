@@ -34,8 +34,8 @@ const Bar = styled.div`
     width: 88vw;
     height: 15vh;
     font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 
     @media screen and (max-width: 800px) {
         width: 90vw;
