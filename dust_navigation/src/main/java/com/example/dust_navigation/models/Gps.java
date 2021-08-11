@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @NoArgsConstructor
 @Getter
@@ -12,23 +11,18 @@ import java.sql.Timestamp;
 @Table(name="gps",schema = "raspberry")
 public class Gps {
     @Id
-    @Column(nullable = false,name="geohash")
-    private String geohash;
-
-    @Column(nullable = true)
-    private Timestamp receive_time;
+    @Column(nullable = false,name="gps_id")
+    private int gps_id;
 
     @Column(nullable = false)
     private int latitude;
 
     @Column(nullable = false)
-    private int longtitude;
+    private int longitude;
 
-    public Gps(String geohash, Timestamp receive_time, int latitude, int longtitude) {
-        this.geohash = geohash;
-        this.receive_time = receive_time;
+    public Gps(int gps_id, int latitude, int longitude) {
+        this.gps_id = gps_id;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longitude;
     }
-
 }

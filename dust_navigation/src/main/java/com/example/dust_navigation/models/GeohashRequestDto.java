@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class GeohashRequestDto {
     private String geohash;
-    private String sensor_id;
+    private int sensor_id;
     private String address;
 }
