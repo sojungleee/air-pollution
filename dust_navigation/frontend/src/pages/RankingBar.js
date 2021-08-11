@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+/* 8/11 소정: 구현해야 하는 기능들 -> 
+    1. DustList에 값을 DB로부터 불러오기
+    2. DB로부터 값을 가져온 만큼 Bar가 생성되도록 하기
+    3. 값의 수치에 따라 Bar's backgroundColor 바뀌도록 (if문 ?)
+    4. 그 외 있다면 적어 주세여
+*/
 
 class RankingBar extends Component {
     render() {
@@ -31,7 +37,7 @@ class RankingBar extends Component {
 }
 
 const Bar = styled.div`
-    background-color: #5EC75E;
+    background-color: ${props => props.background};
     margin: auto;
     width: 88vw;
     height: 15vh;
