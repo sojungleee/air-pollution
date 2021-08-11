@@ -1,5 +1,6 @@
 package com.example.dust_navigation;
 
+import ch.hsr.geohash.GeoHash;
 import com.example.dust_navigation.models.Geohash;
 import com.example.dust_navigation.models.GeohashRepository;
 import com.example.dust_navigation.models.Sensors;
@@ -18,18 +19,19 @@ public class DustNavigationApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DustNavigationApplication.class);
+
     }
     @Bean
     public CommandLineRunner demo(GeohashRepository geohashRepository, SensorsRepository sensorsRepository) {
         return (args) -> {
             // save a geohash
-//            List<Sensors> sensorsList = sensorsRepository.findAll();
-//            for (Sensors sensors : sensorsRepository.findAll()) {
-//                String hash = "aaaaaaa"; //계산해야 함
-//                int sensor_id = sensors.getSensor_id();
-//                geohashRepository.save(new Geohash(hash, sensor_id, null));
-//                System.out.println(hash+","+sensor_id);
-//            }
+            List<Sensors> sensorsList = sensorsRepository.findAll();
+            for (Sensors sensors : sensorsRepository.findAll()) {
+                String geohash = GeoHash.geoHashStringWithCharacterPrecision(sensors.getGps().getLatitude(), sensors.getGps().getLongitude(), 7);
+                int sensor_id = sensors.getSensor_id();
+                geohashRepository.save(new Geohash(geohash, sensor_id, null));
+                System.out.println(geohash+","+sensor_id);
+            }
         };
     }
 
