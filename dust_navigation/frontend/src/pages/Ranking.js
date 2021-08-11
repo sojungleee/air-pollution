@@ -56,7 +56,7 @@ class Ranking extends Component {
 // 구분 위한 임시 css
 const MainContainer = styled.div`
     width: 100vw;
-    height: 92vh;
+    height: 100vh;
     background-color: #fef5d4;
     font-family: "nanum";
 

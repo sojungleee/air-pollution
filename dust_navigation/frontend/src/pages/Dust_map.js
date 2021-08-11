@@ -35,9 +35,10 @@ class Dust_map extends Component {
                     <Description>
                         <p>- 측정 주소:{/*아마 여기에 props 받아오기...?*/}</p>
                         <p>- 측정 시각:</p>
-                        <p>- 미세먼지 농도:</p>
-                        <p>- CO(일산화탄소) 농도:</p>
-                        <p>- 평가:</p>
+                        <p class="sensor_pm10">- 미세먼지 농도: {pm10}</p>
+                        <p class="sensor_pm25">- 초미세먼지 농도 : {pm25}</p>
+                        <p class="sensor_co">- 일산화탄소 농도 : {co}</p>
+                        <p class="sensor_index">- 평가 : {air_index}</p>
                     </Description>
                 </DescriptionContainer>
             </MainContainer>
@@ -52,7 +53,7 @@ class Dust_map extends Component {
 // 구분 위한 임시 css
 const MainContainer = styled.div`
     width: 100vw;
-    height: 92vh;
+    height: 100vh;
     background-color: #fef5d4;
     font-family: "nanum";
 
