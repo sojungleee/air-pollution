@@ -1,7 +1,5 @@
 import pymysql
 
-#
-
 def insert_raspdb_device(id: str, network_condition: bool):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
@@ -20,16 +18,16 @@ def insert_raspdb_device(id: str, network_condition: bool):
 
 #
 
-def insert_raspdb_gps(geohash: str, latitude: int, longitude: int):
+def insert_raspdb_gps(gps_id, latitude: int, longitude: int):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO gps(geohash, latitude, longitude) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO gps(gps_id, latitude, longitude) VALUES (%s, %s, %s)"
 
-    val = (geohash, latitude, longitude)
+    val = (gps_id, latitude, longitude)
     cur.execute(sql, val)
 
     db.commit()
@@ -38,7 +36,7 @@ def insert_raspdb_gps(geohash: str, latitude: int, longitude: int):
 
 #
 
-def insert_raspdb_air_quality(air_quality_id: str, device_id: str, co: float, pm10: int, pm2_5: int):
+def insert_raspdb_air_quality(air_quality_id, device_id: str, co: float, pm10: int, pm2_5: int):
     # connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
@@ -55,16 +53,16 @@ def insert_raspdb_air_quality(air_quality_id: str, device_id: str, co: float, pm
 
 #
 
-def insert_raspdb_sensors(sensor_id: str, air_quality_id: str, geohash: str):
+def insert_raspdb_sensors(air_quality_id, gps_id):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO sensors(sensor_id, air_quality_id, geohash) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO sensors(air_quality_id, gps_id) VALUES (%s, %s)"
 
-    val = (sensor_id, air_quality_id, geohash)
+    val = (air_quality_id, gps_id)
     cur.execute(sql, val)
 
     db.commit()
