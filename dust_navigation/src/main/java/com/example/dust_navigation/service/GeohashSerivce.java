@@ -14,12 +14,12 @@ public class GeohashSerivce {
     private final GeohashRepository geohashRepository;
 
     @Transactional
-    public String update(String hash, GeohashRequestDto geohashRequestDto) {
-        Geohash geo = geohashRepository.findById(hash).orElseThrow(
+    public String update(String geohash, GeohashRequestDto geohashRequestDto) {
+        Geohash geo = geohashRepository.findById(geohash).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         geo.update(geohashRequestDto);
-        return geo.getGeoahsh();
+        return geo.getGeohash();
     }
 
 }
