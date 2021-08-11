@@ -9,9 +9,14 @@ import styled from 'styled-components';
 */
 
 class RankingBar extends Component {
+    constructor(props) {
+        super(props);
+        console.log('RankingBar로 넘어온 props:', props);
+    }
+
     render() {
         return (
-            <Bar>
+            <Bar background={this.props.background}>
                 <LocationAlphabet>
                     <div>A</div>
                 </LocationAlphabet>
@@ -37,7 +42,7 @@ class RankingBar extends Component {
 }
 
 const Bar = styled.div`
-    background-color: ${props => props.background};
+    background-color: ${(props) => props.background || "white"};
     margin: auto;
     width: 88vw;
     height: 15vh;

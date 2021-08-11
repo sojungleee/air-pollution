@@ -35,10 +35,10 @@ class Dust_map extends Component {
                     <Description>
                         <p>- 측정 주소:{/*아마 여기에 props 받아오기...?*/}</p>
                         <p>- 측정 시각:</p>
-                        <p class="sensor_pm10">- 미세먼지 농도: {pm10}</p>
+                        {/* <p class="sensor_pm10">- 미세먼지 농도: {pm10}</p> 
                         <p class="sensor_pm25">- 초미세먼지 농도 : {pm25}</p>
                         <p class="sensor_co">- 일산화탄소 농도 : {co}</p>
-                        <p class="sensor_index">- 평가 : {air_index}</p>
+                        <p class="sensor_index">- 평가 : {air_index}</p>*/}
                     </Description>
                 </DescriptionContainer>
             </MainContainer>
