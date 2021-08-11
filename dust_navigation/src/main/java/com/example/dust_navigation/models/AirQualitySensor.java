@@ -8,10 +8,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name="air_quality_sensor",schema = "mydb")
-public class AirQualitySensor{
-
+@Table(name="air_quality_sensor",schema = "raspberry")
+public class AirQualitySensor {
     @Id
+    @Column(nullable = false,name="air_quality_sensor_id")
+    private int air_quality_sensor_id;
+
     @Column(nullable = false)
     private String device_id;
 
@@ -24,29 +26,12 @@ public class AirQualitySensor{
     @Column(nullable = false)
     private int pm25;
 
-    @Column(nullable = false)
-    private int air_index;
-
-    public AirQualitySensor(String device_id, float co, int pm10, int pm25, int air_index){
-        this.device_id = device_id;
+    public AirQualitySensor(int air_quality_sensor_id,String device_id, float co, int pm10, int pm25) {
+        this.air_quality_sensor_id = air_quality_sensor_id;
+        this.device_id =device_id;
         this.co = co;
         this.pm10 = pm10;
-        this.pm25 = pm25;
-        this.air_index = air_index;
-    }
-    public AirQualitySensor(AirQualitySensorRequestDto airQualitySensorRequestDto){
-        this.device_id = airQualitySensorRequestDto.getDevice_id();
-        this.co = airQualitySensorRequestDto.getCo();
-        this.pm10 = airQualitySensorRequestDto.getPm10();
-        this.pm25 = airQualitySensorRequestDto.getPm25();
-        this.air_index = airQualitySensorRequestDto.getAir_index();
-    }
-    public void update (AirQualitySensorRequestDto airQualitySensorRequestDto){
-        this.device_id = airQualitySensorRequestDto.getDevice_id();
-        this.co = airQualitySensorRequestDto.getCo();
-        this.pm10 = airQualitySensorRequestDto.getPm10();
-        this.pm25 = airQualitySensorRequestDto.getPm25();
-        this.air_index = airQualitySensorRequestDto.getAir_index();
+        this.pm25 =pm25;
     }
 
 }

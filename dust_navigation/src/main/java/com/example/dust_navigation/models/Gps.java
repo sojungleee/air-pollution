@@ -7,12 +7,12 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
-@Table(name="gps",schema = "mydb")
 @Entity
+@Table(name="gps",schema = "raspberry")
 public class Gps {
     @Id
-    @Column(nullable = false)
-    private String device_id;
+    @Column(nullable = false,name="gps_id")
+    private int gps_id;
 
     @Column(nullable = false)
     private int latitude;
@@ -20,17 +20,9 @@ public class Gps {
     @Column(nullable = false)
     private int longitude;
 
-    public Gps(GpsRequestDto gpsRequestDto) {
-        this.device_id = gpsRequestDto.getDevice_id();
-        this.latitude = gpsRequestDto.getLatitude();
-        this.longitude = gpsRequestDto.getLongitude();
-    }
-
-    public Gps(String device_id, int latitude, int longitude) {
-        this.device_id = device_id;
+    public Gps(int gps_id, int latitude, int longitude) {
+        this.gps_id = gps_id;
         this.latitude = latitude;
         this.longitude = longitude;
     }
-
-
 }

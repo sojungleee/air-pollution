@@ -1,23 +1,15 @@
 # 실시간 정밀 대기 지도 및 클린 네비게이션
 
-## DB Table
+## 설계
 
-![table_schema](https://user-images.githubusercontent.com/67352902/126446236-baf5a9b9-920f-481d-9f2a-955ab6db5ca1.png)
+### DB Table
+
+![image](/uploads/04531af9e087059f3f435ef3e9e6351a/image.png)
 
 
-## Prototype
+### Prototype
 - 카카오 오븐을 이용한 프로토 타입 제작 : [🔗](https://ovenapp.io/view/LGhBB9GDisMnOU3D5bXHVU273RrKQfjD/)
 
-## Installation
-- git clone
-```
-git clone https://lab.hanium.or.kr/21_HI013/21_hi013.git
-```
-- lcd 드라이버 설치
-```
-cd 21_hi013
-sudo ./install.sh
-```
 
 ## Commit Message Style
 
