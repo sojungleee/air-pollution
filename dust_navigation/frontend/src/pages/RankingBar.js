@@ -1,31 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 
-const RankingBar = (props) => {
-    return (
-        <Bar>
-            <LocationAlphabet>
-                <div>A</div>
-            </LocationAlphabet>
-
-            <DustInfo>
-                <div>
-                    <h3>서울특별시 성북구 화랑로13길 60</h3>
-                    <DustList>
-                        <li>일산화탄소: 10</li>
-                        <li>미세먼지: 5</li>
-                        <li>아황산가스: 10</li>
-                        <li>오존: 5</li>
-                    </DustList>
-                </div>
-            </DustInfo>
-            
-            <DustResult>
-                <div>매우 쾌적함</div>
-            </DustResult>
-        </Bar>  
-    );
+class RankingBar extends Component {
+    render() {
+        return (
+            <Bar>
+                <LocationAlphabet>
+                    <div>A</div>
+                </LocationAlphabet>
+    
+                <DustInfo>
+                    <div>
+                        <h3>서울특별시 성북구 화랑로13길 60</h3>
+                        <DustList>
+                            <li>일산화탄소: 10</li>
+                            <li>미세먼지: 5</li>
+                            <li>아황산가스: 10</li>
+                            <li>오존: 5</li>
+                        </DustList>
+                    </div>
+                </DustInfo>
+                
+                <DustResult>
+                    <div>매우 쾌적함</div>
+                </DustResult>
+            </Bar>  
+        );
+    }
 }
 
 const Bar = styled.div`
