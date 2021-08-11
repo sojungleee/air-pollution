@@ -2,6 +2,7 @@
   "dependencies": {
     "react-burger-menu": "^3.0.6",
     "react-icons": "^4.2.0",
-    "react-naver-maps": "^0.0.13"
+    "react-naver-maps": "^0.0.13",
+    "react-select": "^4.3.1"
   }
 }
