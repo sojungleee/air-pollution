@@ -27,7 +27,7 @@ public class DustNavigationApplication {
             // save a geohash
             List<Sensors> sensorsList = sensorsRepository.findAll();
             for (Sensors sensors : sensorsRepository.findAll()) {
-                String geohash = GeoHash.geoHashStringWithCharacterPrecision(sensors.getGps().getLatitude(), sensors.getGps().getLongitude(), 7);
+                String geohash = GeoHash.geoHashStringWithCharacterPrecision(sensors.getGps().getLongitude(),sensors.getGps().getLatitude(), 7);
                 int sensor_id = sensors.getSensor_id();
                 geohashRepository.save(new Geohash(geohash, sensor_id, null));
                 System.out.println(geohash+","+sensor_id);

@@ -15,12 +15,12 @@ public class Gps {
     private int gps_id;
 
     @Column(nullable = false)
-    private int latitude;
+    private double latitude;
 
     @Column(nullable = false)
-    private int longitude;
+    private double longitude;
 
-    public Gps(int gps_id, int latitude, int longitude) {
+    public Gps(int gps_id, double latitude, double longitude) {
         this.gps_id = gps_id;
         this.latitude = latitude;
         this.longitude = longitude;
