@@ -12,21 +12,21 @@ import java.sql.Timestamp;
 @Table(name="sensors",schema = "raspberry")
 public class Sensors {
     @Id
-    @Column(nullable = false)
-    private String sensor_id;
+    @Column(nullable = false,name="sensor_id")
+    private int sensor_id;
 
-    @Column(nullable = false,name="geohash")
-    private String geohash;
+    @Column(nullable = false,name="gps_id")
+    private int gps_id;
 
     @Column(nullable = true)
     private Timestamp receive_time;
 
     @Column(nullable = false,name="air_quality_sensor_id")
-    private String air_quality_sensor_id;
+    private int air_quality_sensor_id;
 
-    public Sensors(String sensor_id, String geohash, Timestamp receive_time, String air_quality_sensor_id) {
+    public Sensors(int sensor_id, int gps_id, Timestamp receive_time, int air_quality_sensor_id) {
         this.sensor_id = sensor_id;
-        this.geohash = geohash;
+        this.gps_id = gps_id;
         this.receive_time = receive_time;
         this.air_quality_sensor_id = air_quality_sensor_id;
     }
@@ -39,10 +39,8 @@ public class Sensors {
 
     // Sensors가 Gps 참조
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="geohash",insertable = false,updatable = false)
+    @JoinColumn(name="gps_id",insertable = false,updatable = false)
     private Gps gps;
 
-//    @ManyToOne
-//    @JoinColumn(name="sensor_id",insertable = false,updatable = false)
-//    private Geohash geo;
+
 }
