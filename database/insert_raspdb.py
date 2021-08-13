@@ -71,7 +71,7 @@ def insert_raspdb_sensors(sensor_id: int, air_quality_id: int):
 
 #
 
-def insert_raspdb_geohash(geohash: str, sensor_id: str, address: str):
+def insert_raspdb_geohash(geohash: str, sensor_id: int, address: str):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
@@ -86,3 +86,10 @@ def insert_raspdb_geohash(geohash: str, sensor_id: str, address: str):
     db.commit()
 
     print(cur.rowcount, "geohash record inserted")
+
+# examples
+#insert_raspdb_device("id456", 1)
+#insert_raspdb_gps(127.0612, 37.4238)
+#insert_raspdb_air_quality(2, "id456", 10.0, 10, 25)
+#insert_raspdb_sensors(2, 2)
+#insert_raspdb_geohash("hash2", 2, "seoul")
