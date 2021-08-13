@@ -1,15 +1,15 @@
 import pymysql
 
-def insert_raspdb_device(id: str, network_condition: bool):
+def insert_raspdb_device(device_id: str, network_condition: bool):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO device(id,network_condition) VALUES (%s, %s)"
+    sql = "INSERT INTO device(device_id,network_condition) VALUES (%s, %s)"
 
-    val = (id, network_condition)
+    val = (device_id, network_condition)
     cur.execute(sql, val)
 
     db.commit()
@@ -18,16 +18,16 @@ def insert_raspdb_device(id: str, network_condition: bool):
 
 #
 
-def insert_raspdb_gps(gps_id, latitude: int, longitude: int):
+def insert_raspdb_gps(latitude: float, longitude: float):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO gps(gps_id, latitude, longitude) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO gps(latitude, longitude) VALUES (%s, %s)"
 
-    val = (gps_id, latitude, longitude)
+    val = (latitude, longitude)
     cur.execute(sql, val)
 
     db.commit()
@@ -36,7 +36,7 @@ def insert_raspdb_gps(gps_id, latitude: int, longitude: int):
 
 #
 
-def insert_raspdb_air_quality(air_quality_id, device_id: str, co: float, pm10: int, pm2_5: int):
+def insert_raspdb_air_quality(air_quality_id: int, device_id: str, co: float, pm10: int, pm2_5: int):
     # connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
@@ -53,16 +53,16 @@ def insert_raspdb_air_quality(air_quality_id, device_id: str, co: float, pm10: i
 
 #
 
-def insert_raspdb_sensors(air_quality_id, gps_id):
+def insert_raspdb_sensors(sensor_id: int, air_quality_id: int):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO sensors(air_quality_id, gps_id) VALUES (%s, %s)"
+    sql = "INSERT INTO sensors(sensor_id, air_quality_id) VALUES (%s, %s)"
 
-    val = (air_quality_id, gps_id)
+    val = (sensor_id, air_quality_id)
     cur.execute(sql, val)
 
     db.commit()
