@@ -53,16 +53,16 @@ def insert_raspdb_air_quality(air_quality_id: str, device_id: str, co: float, pm
 
 #
 
-def insert_raspdb_sensors(sensor_id: int, air_quality_id: str, gps_id: str):
+def insert_raspdb_sensors(air_quality_id: str, gps_id: str):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO sensors(sensor_id, air_quality_id, gps_id) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO sensors(air_quality_id, gps_id) VALUES (%s, %s)"
 
-    val = (sensor_id, air_quality_id, gps_id)
+    val = (air_quality_id, gps_id)
     cur.execute(sql, val)
 
     db.commit()

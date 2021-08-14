@@ -20,7 +20,7 @@ CREATE TABLE air_quality_sensor (
     FOREIGN KEY (device_id) REFERENCES device (device_id)
 );
 CREATE TABLE sensors (
-    sensor_id INT,
+    sensor_id INT AUTO_INCREMENT,
     air_quality_id TIMESTAMP,
     gps_id TIMESTAMP,
     recieve_time TIMESTAMP,
