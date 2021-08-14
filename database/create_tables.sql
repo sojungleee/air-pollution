@@ -11,7 +11,7 @@ CREATE TABLE gps (
     PRIMARY KEY (gps_id)
 );
 CREATE TABLE air_quality_sensor (
-    air_quality_id INT,
+    air_quality_id TIMESTAMP,
     device_id char(8),
     co DECIMAL(4,2),
     pm10 INT,
@@ -21,7 +21,7 @@ CREATE TABLE air_quality_sensor (
 );
 CREATE TABLE sensors (
     sensor_id INT,
-    air_quality_id INT,
+    air_quality_id TIMESTAMP,
     gps_id TIMESTAMP,
     recieve_time TIMESTAMP,
     PRIMARY KEY (sensor_id),
