@@ -7,7 +7,7 @@ def GPS_Info():
     global NMEA_buff
     global lat_in_degrees
     global long_in_degrees
-    nmea_time = []
+    nmea_time = []  
     nmea_latitude = []
     nmea_longitude = []
     nmea_time = NMEA_buff[0]                    #extract time from GPGGA string
@@ -33,27 +33,35 @@ def convert_to_degrees(raw_value):
     return position
     
 
-def getGps():
-    #'''
-    gpgga_info = "$GPGGA,"
-    ser = serial.Serial ("/dev/serial0")              #Open port with baud rate
-    GPGGA_buffer = 0
-    NMEA_buff = 0
-    lat_in_degrees = 0
-    long_in_degrees = 0
-    
+gpgga_info = "$GPGGA,"
+ser = serial.Serial ("/dev/serial0")              #Open port with baud rate
+GPGGA_buffer = 0
+NMEA_buff = 0
+lat_in_degrees = 0
+long_in_degrees = 0
+
+def getGps():    
     received_data = (str)(ser.readline())                   #read NMEA string received
+    print("reveived data",received_data)
     GPGGA_data_available = received_data.find(gpgga_info)   #check for NMEA GPGGA string                 
     if (GPGGA_data_available>0):
         GPGGA_buffer = received_data.split("$GPGGA,",1)[1]  #store data coming after "$GPGGA," string 
         NMEA_buff = (GPGGA_buffer.split(','))               #store comma separated data in buffer
-        GPS_Info()                                          #get time, latitude, longitude
-   #''' 
-   # lat_in_degrees = 1
-   # long_in_degrees = 2
-    print("latitude in degrees:", lat_in_degrees," longitude in degree: ", long_in_degrees, '\n')
+        print("NEMA_buff",NMEA_buff)
+        nmea_time = []  
+        nmea_latitude = []
+        nmea_longitude = []
+        nmea_time = NMEA_buff[0]                    #extract time from GPGGA string
+        nmea_latitude = NMEA_buff[1]                #extract latitude from GPGGA string
+        nmea_longitude = NMEA_buff[3]               #extract longitude from GPGGA string
+    
+        print("NMEA Time: ", nmea_time,'\n')
+        print ("NMEA Latitude:", nmea_latitude,"NMEA Longitude:", nmea_longitude,'\n')
+        #GPS_Info()                                          #get time, latitude, longitude
+        #print("latitude in degrees:", lat_in_degrees," longitude in degree: ", long_in_degrees, '\n')
         
-    #return (lat_in_degrees,long_in_degrees)
+        
+        #return (lat_in_degrees,long_in_degrees)
 
 if __name__=="__main__":
     #'''

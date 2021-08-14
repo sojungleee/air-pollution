@@ -1,15 +1,15 @@
 import pymysql
 
-def insert_raspdb_device(device_id: str, network_condition: bool):
+def insert_raspdb_device(device_id: str, network_condition: bool,timestamp: str):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO device(device_id,network_condition) VALUES (%s, %s)"
+    sql = "INSERT INTO device(device_id,network_condition,last_updated_time) VALUES (%s, %s, %s)"
 
-    val = (device_id, network_condition)
+    val = (device_id, network_condition, timestamp)
     cur.execute(sql, val)
 
     db.commit()
@@ -18,16 +18,16 @@ def insert_raspdb_device(device_id: str, network_condition: bool):
 
 #
 
-def insert_raspdb_gps(latitude: float, longitude: float):
+def insert_raspdb_gps(gps_id: str, latitude: float, longitude: float):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO gps(latitude, longitude) VALUES (%s, %s)"
+    sql = "INSERT INTO gps(gps_id, latitude, longitude) VALUES (%s, %s, %s)"
 
-    val = (latitude, longitude)
+    val = (gps_id, latitude, longitude)
     cur.execute(sql, val)
 
     db.commit()
@@ -36,15 +36,15 @@ def insert_raspdb_gps(latitude: float, longitude: float):
 
 #
 
-def insert_raspdb_air_quality(air_quality_id: int, device_id: str, co: float, pm10: int, pm2_5: int):
+def insert_raspdb_air_quality(air_quality_id: str, device_id: str, co: float, pm10: int, pm25: int):
     # connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO air_quality_sensor VALUES (%s, %s, %s, %s, %s)"
-    val = (air_quality_id, device_id, co, pm10, pm2_5)
+    sql = "INSERT INTO air_quality_sensor(air_quality_id,device_id,co,pm10,pm25) VALUES (%s, %s, %s, %s, %s)"
+    val = (air_quality_id, device_id, co, pm10, pm25)
     cur.execute(sql, val)
 
     db.commit()
@@ -53,16 +53,16 @@ def insert_raspdb_air_quality(air_quality_id: int, device_id: str, co: float, pm
 
 #
 
-def insert_raspdb_sensors(sensor_id: int, air_quality_id: int):
+def insert_raspdb_sensors(sensor_id: int, air_quality_id: str, gps_id: str):
     #connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO sensors(sensor_id, air_quality_id) VALUES (%s, %s)"
+    sql = "INSERT INTO sensors(sensor_id, air_quality_id, gps_id) VALUES (%s, %s, %s)"
 
-    val = (sensor_id, air_quality_id)
+    val = (sensor_id, air_quality_id, gps_id)
     cur.execute(sql, val)
 
     db.commit()

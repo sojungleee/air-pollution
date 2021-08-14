@@ -17,11 +17,11 @@ import datetime
 
 # 미세먼지센서, co 센서 
 def collect_air_quality(air_data: defaultdict):
-    pm2_5, pm10 = pm2008.pm2008()
+    pm25, pm10 = pm2008.pm2008()
     # co = co.co()
     co = 4.5
 
-    air_data["pm2_5"] = pm2_5
+    air_data["pm25"] = pm25
     air_data["pm10"] = pm10
     air_data['co'] = co
 
@@ -29,7 +29,9 @@ def collect_air_quality(air_data: defaultdict):
 
 # gps 센서 
 def collect_gps(gps_data: defaultdict):
-    lat, lon = gps.getGps()
+    #lat, lon = gps.getGps()
+    lat = 127.09318
+    lon = 37.61633
     gps_data["lat"] = lat
     gps_data["lon"] = lon
     
@@ -54,20 +56,22 @@ if __name__ == "__main__":
     # 1이면 중복id  존재(기본키는 중복될 수 없다함) 
     if (check_tables.check_device(device_id) == 1): 
         # id가 이미 내부DB 테이블에 있으면 그 데이터를 update 
-        update_raspdb.insert_raspdb_device(device_id,network_condition)
+        update_raspdb.insert_raspdb_device(device_id,network_condition,timestamp)
     else:
         # id가 테이블에 없으면 insert
-        insert_raspdb.insert_raspdb_device(device_id,network_condition)
+        insert_raspdb.insert_raspdb_device(device_id,network_condition,timestamp)
 
     ###### ait_quality_sensor 테이블 ######  
     collect_air_quality(air_data)
     # 라즈베리파이 내부 DB에 삽입 
-    insert_raspdb.insert_raspdb_air_quality(timestamp, air_data["co"], air_data["pm2_5"], air_data["pm10"])
+    insert_raspdb.insert_raspdb_air_quality(timestamp, device_id,air_data["co"], air_data["pm10"],air_data["pm25"])
     
     ###### gps 테이블 ######
     collect_gps(gps_data)
     # 라즈베리파이 내부 DB에 삽입
-    insert_raspdb.insert_raspdb_gps(gps_data["lat"],gps_data["lon"])
+    insert_raspdb.insert_raspdb_gps(timestamp,gps_data["lat"],gps_data["lon"])
 
     ###### sensors 테이블 ######
-    insert_raspdb.insert_raspdb_sensors(timestamp, timestamp)
+    # sensor_id 자동 증가시켜야 함 
+    sensor_id = 1
+    insert_raspdb.insert_raspdb_sensors(sensor_id,timestamp, timestamp)

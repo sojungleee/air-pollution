@@ -28,14 +28,14 @@ def insert_raspdb_gps(id: str, latitude: int, longtitude: int):
 
     print(cur.rowcount, "gps record updatted")
 
-def insert_raspdb_device(id: str, network_condition: bool):
+def insert_raspdb_device(id: str, network_condition: bool, timestamp: str):
     #connect to database
     db = pymysql.connect(host='localhost',user= 'root',password='raspberry',db='mydb',charset='utf8')
     cur = db.cursor()
 
     #insert
-    sql = "UPDATE device SET network_condition=%s WHERE id=%s"
-    val = (network_condition,id)
+    sql = "UPDATE device SET network_condition=%s, last_updated_time=%s WHERE device_id=%s"
+    val = (network_condition,timestamp, id)
     cur.execute(sql,val)
 
     db.commit()
