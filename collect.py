@@ -54,7 +54,7 @@ if __name__ == "__main__":
     ###### device 테이블 ###### 
     # device_id 설정 
     device_id = find_id.get_serial()
-    ###### 네트워크 상태 측정 함수도 추가해야함
+    # 네트워크 상태 측정
     network_condition = checkConnect.checkConnect()
 
     # 1이면 중복id  존재(기본키는 중복될 수 없다함) 
