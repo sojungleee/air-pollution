@@ -9,6 +9,8 @@ from database import insert_raspdb
 from database import check_tables
 from database import update_raspdb
 import datetime
+import pygeohash as pgh
+import checkConnect
 
 # collect~ 함수 : 센서 값을 읽어와 딕셔너리형태로 저장
 # defaultdict이 딕셔너리 역할 
@@ -28,30 +30,28 @@ def collect_air_quality(air_data: defaultdict):
     print(air_data)
 
 # gps 센서 
-def collect_gps(gps_data: defaultdict):
+def collect_gps():
     #lat, lon = gps.getGps()
     lat = 127.09318
     lon = 37.61633
-    gps_data["lat"] = lat
-    gps_data["lon"] = lon
     
-    print(gps_data)
+    return pgh.encode(lat, lon, 7)
     
-
+# 
 if __name__ == "__main__":
     # 센서 값을 저장할 딕셔너리 생성 
     air_data = defaultdict()
-    gps_data = defaultdict()
+    geohash = collect_gps()
 
     now = datetime.datetime.now()
     f = '%Y-%m-%d %H:%M:%S'
-    timestamp = now.strftime(f)
+    timestamp = now.strftime(f) # air_quality_id
     
     ###### device 테이블 ###### 
     # device_id 설정 
     device_id = find_id.get_serial()
     ###### 네트워크 상태 측정 함수도 추가해야함
-    network_condition = True 
+    network_condition = checkConnect.checkConnect()
 
     # 1이면 중복id  존재(기본키는 중복될 수 없다함) 
     if (check_tables.check_device(device_id) == 1): 
@@ -66,12 +66,7 @@ if __name__ == "__main__":
     # 라즈베리파이 내부 DB에 삽입 
     insert_raspdb.insert_raspdb_air_quality(timestamp, device_id,air_data["co"], air_data["pm10"],air_data["pm25"])
     
-    ###### gps 테이블 ######
-    collect_gps(gps_data)
-    # 라즈베리파이 내부 DB에 삽입
-    insert_raspdb.insert_raspdb_gps(timestamp,gps_data["lat"],gps_data["lon"])
+    ###### location 테이블 ######
+    # 라즈베리파이 내부 DB에 삽입 
+    insert_raspdb.insert_raspdb_location(geohash,timestamp)
 
-    ###### sensors 테이블 ######
-    # sensor_id 자동 증가시켜야 함 
-    sensor_id = 1
-    insert_raspdb.insert_raspdb_sensors(sensor_id,timestamp, timestamp)
