@@ -4,7 +4,7 @@
 
 ### DB Table
 
-![image](/uploads/04531af9e087059f3f435ef3e9e6351a/image.png)
+![db_구조](/uploads/e4629fc56ce9d714b8528a417154436f/db_구조.png)
 
 
 ### Prototype
