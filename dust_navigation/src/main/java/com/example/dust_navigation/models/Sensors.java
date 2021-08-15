@@ -11,20 +11,20 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="sensors",schema = "raspberry")
 public class Sensors {
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(nullable = false,name="sensor_id")
     private int sensor_id;
 
     @Column(nullable = false,name="gps_id")
-    private int gps_id;
+    private Timestamp gps_id;
 
     @Column(nullable = true)
     private Timestamp receive_time;
 
     @Column(nullable = false,name="air_quality_sensor_id")
-    private int air_quality_sensor_id;
+    private Timestamp air_quality_sensor_id;
 
-    public Sensors(int sensor_id, int gps_id, Timestamp receive_time, int air_quality_sensor_id) {
+    public Sensors(int sensor_id, Timestamp gps_id, Timestamp receive_time, Timestamp air_quality_sensor_id) {
         this.sensor_id = sensor_id;
         this.gps_id = gps_id;
         this.receive_time = receive_time;
