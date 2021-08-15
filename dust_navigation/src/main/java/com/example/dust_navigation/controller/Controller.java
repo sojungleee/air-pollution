@@ -12,7 +12,7 @@ import java.util.List;
 public class Controller {
     private final AirQualitySensorRepository airQualitySensorRepository;
     private final GpsRepository gpsRepository;
-    private final GeohashRepository geohashReposirtory;
+    private final LocationRepository geohashReposirtory;
     private final SensorsRepository sensorsRepository;
 
     //service
@@ -20,7 +20,7 @@ public class Controller {
 
     // read
     @GetMapping("/api/geohashs")
-    public List <Geohash> getGeohash() {return geohashReposirtory.findAll(); }
+    public List <Location> getGeohash() {return geohashReposirtory.findAll(); }
 
     @GetMapping("/api/sensors")
     public List<Sensors> getSensors() {
@@ -35,14 +35,14 @@ public class Controller {
 
     // add
     @PostMapping("/api/geohashs")
-    public Geohash createGeohash (@RequestBody GeohashRequestDto geohashRequestDto) {
-        Geohash geo = new Geohash(geohashRequestDto);
+    public Location createGeohash (@RequestBody LocationRequestDto locationRequestDto) {
+        Location geo = new Location(locationRequestDto);
         geohashReposirtory.save(geo);
         return geo;
     }
     @PutMapping("/api/geohashs/{hash}")
-    public String updateGeohash (@PathVariable String hash, @RequestBody GeohashRequestDto geohashRequestDto) {
-        geohashSerivce.update(hash,geohashRequestDto);
+    public String updateGeohash (@PathVariable String hash, @RequestBody LocationRequestDto locationRequestDto) {
+        geohashSerivce.update(hash, locationRequestDto);
         return hash;
     }
 }
