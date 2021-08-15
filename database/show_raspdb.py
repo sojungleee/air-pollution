@@ -14,14 +14,6 @@ for x in rows:
     print(x)
 
 # select
-cur.execute("SELECT * FROM gps")
-# print
-print("gps: ")
-rows = cur.fetchall()
-for x in rows:
-    print(x)
-
-# select
 cur.execute("SELECT * FROM air_quality_sensor")
 # print
 print("air_quality_sensor: ")
@@ -29,13 +21,6 @@ rows = cur.fetchall()
 for x in rows:
     print(x)
 
-# select
-cur.execute("SELECT * FROM sensors")
-# print
-print("sensors: ")
-rows = cur.fetchall()
-for x in rows:
-    print(x)
 
 # select
 cur.execute("SELECT * FROM geohash")
