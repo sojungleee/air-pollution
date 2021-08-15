@@ -13,7 +13,7 @@ CREATE TABLE air_quality_sensor (
     PRIMARY KEY (air_quality_id),
     FOREIGN KEY (device_id) REFERENCES device (device_id)
 );
-CREATE TABLE geohash (
+CREATE TABLE location (
     geohash char(7),
     air_quality_id TIMESTAMP,
     recieve_time TIMESTAMP,
