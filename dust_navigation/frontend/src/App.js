@@ -11,16 +11,43 @@ import Navigation from './pages/Navigation';
 import { CgSidebar } from 'react-icons/cg';
 
 class App extends React.Component {
+    state = {
+        dust_map: []
+    };
+
     constructor(props) {
         super(props);
     }
 
+    getDustMap = async() => {
+        const {data: {data: {dust_map}}} = await axios.get("/api/sensors");
+        this.setState({ dust_map });
+    }
+
+    componentDidMount() {
+        this.getDustMap();
+    }
+
     render() {
+        const { dust_map } = this.state;
         return (
             <div className="App"> 
                 <Route path="/" exact={true} component={Dust_map}/>
                 <Route path="/ranking" component={Ranking}/>
                 <Route path="/navigation" component={Navigation}/>  
+
+                <div class="dust_map">
+                    {dust_map.map(dm => (
+                        <Dust_map
+                            key={dm.air_quality_sensor_id}
+                            id={dm.air_quality_sensor_id}
+                            device={dm.device_id}
+                            co={dm.co}
+                            pm10={dm.pm10}
+                            pm25={dm.pm25}
+                        />
+                    ))}
+                </div>
             </div>
         );
     }

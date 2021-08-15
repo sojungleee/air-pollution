@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../src/App.css';
 import Panel from "../../src/components/Sidebar/Panel";
+import PropTypes from "prop-types";
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
-class Dust_map extends Component {
-    render() {
-        return (
+const Dust_map = (props) => {
+    return (
             <MainContainer>
                 <Panel title="대기 정밀 지도"/>
                 <MapContainer>
@@ -33,18 +33,27 @@ class Dust_map extends Component {
                 <DescriptionContainer>
                     <h1>A의 현재 대기 상황</h1>
                     <Description>
-                        <p>- 측정 주소:{/*아마 여기에 props 받아오기...?*/}</p>
-                        <p>- 측정 시각:</p>
-                        {/* <p class="sensor_pm10">- 미세먼지 농도: {pm10}</p> 
-                        <p class="sensor_pm25">- 초미세먼지 농도 : {pm25}</p>
-                        <p class="sensor_co">- 일산화탄소 농도 : {co}</p>
-                        <p class="sensor_index">- 평가 : {air_index}</p>*/}
+                        <div class="sensor">
+                            <p>- 측정 주소:{/*아마 여기에 props 받아오기...?*/}</p>
+                            <p>- 측정 시각:</p>
+                            <p class="sensor_pm10">- 미세먼지 농도: {props.pm10}</p>
+                            <p class="sensor_pm25">- 초미세먼지 농도 : {props.pm25}</p>
+                            <p class="sensor_co">- 일산화탄소 농도 : {props.co}</p>
+                            <p class="sensor_index">- 평가 : {}</p>
+                        </div>
                     </Description>
                 </DescriptionContainer>
             </MainContainer>
         );
-        }
 }
+
+Dust_map.propTypes = {
+    air_quality_sensor_id: PropTypes.number,
+    device_id: PropTypes.string,
+    co: PropTypes.number,
+    pm10: PropTypes.number,
+    pm25: PropTypes.number
+  };
 
 /*SCSS*/
 // 참고!! 배경색상은 구분을 위해 아무렇게나 해둔 임시용입니다. 나중에 상의해서 바꿔요
