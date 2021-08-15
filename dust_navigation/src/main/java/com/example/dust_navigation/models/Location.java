@@ -9,10 +9,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name="location",schema = "raspdb")
+@Table(name = "location", schema = "raspdb")
 public class Location {
     @Id
-    @Column(nullable = false,name="geohash")
+    @Column(nullable = false, name = "geohash")
     private String geohash;
 
     @Column(nullable = false)
@@ -42,4 +42,9 @@ public class Location {
     public void update(LocationRequestDto locationRequestDto) {
         this.geohash = locationRequestDto.getGeohash();
     }
+    // 일대일
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="geohash",insertable = false,updatable = false)
+    private AirQualitySensor airQualitySensor;
+
 }
