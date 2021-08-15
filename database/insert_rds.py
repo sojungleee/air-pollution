@@ -1,36 +1,22 @@
 import pymysql
 
-def insert_rds_air_quality(id: str, co: float, pm2_5: int, pm10: int, air_index: int):
+def insert_rds_air_quality(geohash: str, device_id: str, co: float, pm10: int, pm25: int):
     #connect to database
-    db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='mydb',charset='utf8')
+    db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='raspdb',charset='utf8')
     cur = db.cursor()
 
     #insert
-    sql = "INSERT INTO air_quality_sensor VALUES (%s, %s, %s, %s, %s)"
-    val = (id, co, pm2_5, pm10,air_index)
+    sql = "INSERT INTO air_quality_sensor(geohash,device_id,co,pm10,pm25) VALUES (%s, %s, %s, %s, %s)"
+    val = (geohash, device_id, co, pm10, pm25)
     cur.execute(sql,val)
 
     db.commit()
 
     print(cur.rowcount, "air_quality record inserted")
-
-def insert_rds_gps(id: str, latitude: int, longtitude: int):
+#
+def insert_rds_device(device_id: str, network_condition: bool):
     #connect to database
-    db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='mydb',charset='utf8')
-    cur = db.cursor()
-
-    #insert
-    sql = "INSERT INTO gps VALUES (%s, %s, %s)"
-    val = (id, latitude, longtitude)
-    cur.execute(sql,val)
-
-    db.commit()
-
-    print(cur.rowcount, "gps record inserted")
-
-def insert_rds_device(id: str, network_condition: bool):
-    #connect to database
-    db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='mydb',charset='utf8')
+    db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='raspdb',charset='utf8')
     cur = db.cursor()
 
     #insert
@@ -41,7 +27,21 @@ def insert_rds_device(id: str, network_condition: bool):
     db.commit()
 
     print(cur.rowcount, "device record inserted")
+#
 
+def insert_raspdb_location(geohash: str,  latitude: float, longitude: float):
+    #connect to database
+    db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='raspdb',charset='utf8')
+    cur = db.cursor()
+
+    # insert
+    sql = "INSERT INTO geohash(geohash, latitude, longitude) VALUES (%s, %s, %s)"
+    val = (geohash, latitude, longitude)
+    cur.execute(sql, val)
+
+    db.commit()
+
+    print(cur.rowcount, "location record inserted")
 
 
 

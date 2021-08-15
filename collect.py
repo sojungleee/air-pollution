@@ -9,6 +9,8 @@ from database import insert_raspdb
 from database import check_tables
 from database import update_raspdb
 import datetime
+import pygeohash as pgh
+import checkConnect
 
 # collect~ 함수 : 센서 값을 읽어와 딕셔너리형태로 저장
 # defaultdict이 딕셔너리 역할 
@@ -34,24 +36,26 @@ def collect_gps(gps_data: defaultdict):
     lon = 37.61633
     gps_data["lat"] = lat
     gps_data["lon"] = lon
+    gps_data["geohash"] = pgh.encode(lat, lon, 7)
     
-    print(gps_data)
-    
-
+# 
 if __name__ == "__main__":
     # 센서 값을 저장할 딕셔너리 생성 
     air_data = defaultdict()
     gps_data = defaultdict()
 
+    collect_air_quality(air_data)
+    collect_gps(gps_data)
+
     now = datetime.datetime.now()
     f = '%Y-%m-%d %H:%M:%S'
-    timestamp = now.strftime(f)
+    timestamp = now.strftime(f) 
     
     ###### device 테이블 ###### 
     # device_id 설정 
     device_id = find_id.get_serial()
-    ###### 네트워크 상태 측정 함수도 추가해야함
-    network_condition = True 
+    # 네트워크 상태 측정
+    network_condition = checkConnect.checkConnect()
 
     # 1이면 중복id  존재(기본키는 중복될 수 없다함) 
     if (check_tables.check_device(device_id) == 1): 
@@ -61,17 +65,12 @@ if __name__ == "__main__":
         # id가 테이블에 없으면 insert
         insert_raspdb.insert_raspdb_device(device_id,network_condition,timestamp)
 
-    ###### ait_quality_sensor 테이블 ######  
-    collect_air_quality(air_data)
+    ###### location 테이블 ######
     # 라즈베리파이 내부 DB에 삽입 
-    insert_raspdb.insert_raspdb_air_quality(timestamp, device_id,air_data["co"], air_data["pm10"],air_data["pm25"])
-    
-    ###### gps 테이블 ######
-    collect_gps(gps_data)
-    # 라즈베리파이 내부 DB에 삽입
-    insert_raspdb.insert_raspdb_gps(timestamp,gps_data["lat"],gps_data["lon"])
+    insert_raspdb.insert_raspdb_location(gps_data["geohash"],gps_data["lat"],gps_data["lon"])
 
-    ###### sensors 테이블 ######
-    # sensor_id 자동 증가시켜야 함 
-    sensor_id = 1
-    insert_raspdb.insert_raspdb_sensors(sensor_id,timestamp, timestamp)
+    ###### ait_quality_sensor 테이블 ######  
+    # 라즈베리파이 내부 DB에 삽입 
+    insert_raspdb.insert_raspdb_air_quality(gps_data["geohash"], device_id,air_data["co"], air_data["pm10"],air_data["pm25"])
+    
+

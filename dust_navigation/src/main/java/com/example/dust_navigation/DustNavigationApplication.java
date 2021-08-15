@@ -24,7 +24,7 @@ public class DustNavigationApplication {
     @Bean
     public CommandLineRunner demo(GeohashRepository geohashRepository, SensorsRepository sensorsRepository) {
         return (args) -> {
-            // save a geohash
+            // save a geohas
             List<Sensors> sensorsList = sensorsRepository.findAll();
             for (Sensors sensors : sensorsRepository.findAll()) {
                 String geohash = GeoHash.geoHashStringWithCharacterPrecision(sensors.getGps().getLongitude(),sensors.getGps().getLatitude(), 7);

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @Getter
@@ -12,7 +13,7 @@ import javax.persistence.*;
 public class Gps {
     @Id
     @Column(nullable = false,name="gps_id")
-    private int gps_id;
+    private Timestamp gps_id;
 
     @Column(nullable = false)
     private double latitude;
@@ -20,7 +21,7 @@ public class Gps {
     @Column(nullable = false)
     private double longitude;
 
-    public Gps(int gps_id, double latitude, double longitude) {
+    public Gps(Timestamp gps_id, double latitude, double longitude) {
         this.gps_id = gps_id;
         this.latitude = latitude;
         this.longitude = longitude;
