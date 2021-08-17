@@ -6,14 +6,14 @@ CREATE TABLE device (
 );
 CREATE TABLE location (
     geohash char(7),
-    recieve_time TIMESTAMP,
+    receive_time TIMESTAMP,
     latitude float,
     longitude float,
     PRIMARY KEY (geohash)
 );
 CREATE TABLE air_quality_sensor (
     geohash char(7) ,
-    recieve_time TIMESTAMP,
+    receive_time TIMESTAMP,
     device_id char(8),
     co DECIMAL(4,2),
     pm10 INT,

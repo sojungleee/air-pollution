@@ -20,13 +20,13 @@ def update_raspdb_location(geohash: str, latitude: float, longitude: float, time
     cur = db.cursor()
 
     #insert
-    sql = "UPDATE location SET recieve_time=%s, latitude=%s, longitude=%s WHERE geohash=%s"
+    sql = "UPDATE location SET receive_time=%s, latitude=%s, longitude=%s WHERE geohash=%s"
     val = (timestamp, latitude, longitude, geohash)
     cur.execute(sql,val)
 
     db.commit()
 
-    print(cur.rowcount, "gps record updatted")
+    print(cur.rowcount, "gps record updated")
 
 def update_raspdb_device(id: str, network_condition: bool, timestamp: str):
     #connect to database
@@ -40,7 +40,7 @@ def update_raspdb_device(id: str, network_condition: bool, timestamp: str):
 
     db.commit()
 
-    print(cur.rowcount, "device record updatted")
+    print(cur.rowcount, "device record updated")
 
 
 
