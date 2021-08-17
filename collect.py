@@ -7,7 +7,7 @@ import time
 import threading
 from collections import defaultdict
 from database import insert_raspdb
-from database import check_tables
+from database import check_raspdb_tables
 from database import update_raspdb
 import datetime
 import pygeohash as pgh
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     network_condition = checkConnect.checkConnect()
 
     # 1이면 중복id  존재(기본키는 중복될 수 없다함) 
-    if (check_tables.check_device(device_id) == 1): 
+    if (check_raspdb_tables.check_device(device_id) == 1): 
         # id가 이미 내부DB 테이블에 있으면 그 데이터를 update 
         update_raspdb.update_raspdb_device(device_id,network_condition,timestamp)
     else:
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     #------------------------- location 테이블 -------------------------# 
 
     # 1이면 중복 geohash존재
-    if (check_tables.check_location(gps_data["geohash"]) == 1): 
+    if (check_raspdb_tables.check_location(gps_data["geohash"]) == 1): 
         # geohahs가 이미 내부DB 테이블에 있으면 그 데이터를 update 
         update_raspdb.update_raspdb_location(gps_data["geohash"], gps_data["lat"], gps_data["lon"], timestamp)
     else:

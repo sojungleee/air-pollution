@@ -12,7 +12,7 @@ def update_raspdb_air_quality(id: str, co: float, pm2_5: int, pm10: int, air_ind
 
     db.commit()
 
-    print(cur.rowcount, "air_quality record updated")
+    print(f"raspDB: {cur.rowcount} air_quality record updated")
 
 def update_raspdb_location(geohash: str, latitude: float, longitude: float, timestamp: str):
     #connect to database
@@ -26,7 +26,7 @@ def update_raspdb_location(geohash: str, latitude: float, longitude: float, time
 
     db.commit()
 
-    print(cur.rowcount, "gps record updated")
+    print(f"raspDB: {cur.rowcount} gps record updated")
 
 def update_raspdb_device(id: str, network_condition: bool, timestamp: str):
     #connect to database
@@ -40,7 +40,7 @@ def update_raspdb_device(id: str, network_condition: bool, timestamp: str):
 
     db.commit()
 
-    print(cur.rowcount, "device record updated")
+    print(f"raspDB: {cur.rowcount} device record updated")
 
 
 
