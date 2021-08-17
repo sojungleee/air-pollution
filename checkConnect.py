@@ -4,7 +4,7 @@ ps = subprocess.Popen(['iwconfig'], stdout=subprocess.PIPE, stderr=subprocess.ST
 def checkConnect():
 	try:
 		output = subprocess.check_output(('grep', 'ESSID'), stdin=ps.stdout)
-		print(output)
+		print("wireless networks connected")
 		return 1
 	except subprocess.CalledProcessError:
     		# grep did not match any lines

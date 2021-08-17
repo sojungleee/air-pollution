@@ -14,6 +14,18 @@ def check_device(device_id: str):
     isDuplicate = cur.fetchone()[0]
     return isDuplicate
     
+def check_location(geohash: str):
+    #connect to database
+    db = pymysql.connect(host='localhost', user='root', password='raspberry', 
+    db = 'raspdb', charset='utf8')
+    cur = db.cursor()
 
+    # insert
+    sql = "SELECT EXISTS(SELECT * FROM location WHERE geohash = %s) "
+    val = (geohash)
+    cur.execute(sql, val)
+
+    isDuplicate = cur.fetchone()[0]
+    return isDuplicate
 
 
