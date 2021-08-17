@@ -3,44 +3,77 @@ import styled from 'styled-components';
 import '../../src/App.css';
 import Panel from "../../src/components/Sidebar/Panel";
 import PropTypes from "prop-types";
+import axios from 'axios';
 
-import {Helmet} from "react-helmet";
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
+import Sensor from './Sensor.js';
 
-const Dust_map = (props) => {
-    return (
-            <MainContainer>
-                <Panel title="대기 정밀 지도"/>
-                <MapContainer>
-                    <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
-                        ncpClientId={'f740jc2cw6'} // 자신의 네이버 계정에서 발급받은 Client ID
-                        error={<p>Maps Load Error</p>}
-                        loading={<p>Maps Loading...</p>}
-                    >
-                        <NaverMap
-                            id="react-naver-maps-introduction"
-                            style={{ width: '100%', height: '100%' }}
-                            center={{ lat: 37.497175, lng: 127.027926 }}
+class Dust_map extends React.Component {
+    state = {
+        sensors: []
+    };
+
+    constructor(props) {
+        super(props);
+    }
+
+    getSensor = async() => {
+        const {data: {data: {sensors}}} = await axios.get("/api/sensors");
+        this.setState({ sensors });
+    }
+
+    componentDisensorount() {
+        this.getSensor();
+    }
+
+    render() {
+        const { sensors } = this.state;
+        return (
+                <MainContainer>
+                    <Panel title="대기 정밀 지도"/>
+                    <MapContainer>
+                        <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
+                            ncpClientId={'f740jc2cw6'} // 자신의 네이버 계정에서 발급받은 Client ID
+                            error={<p>Maps Load Error</p>}
+                            loading={<p>Maps Loading...</p>}
                         >
-                            <Marker
-                                key={1}
-                                position={{ lat: 37.551229, lng: 126.988205 }}
-                                animation={2}
-                                onClick={() => {alert('여기는 N서울타워입니다.');}}
-                            />
-                        </NaverMap>
-                    </RenderAfterNavermapsLoaded>
-                </MapContainer>
+                            <NaverMap
+                                id="react-naver-maps-introduction"
+                                style={{ width: '100%', height: '100%' }}
+                                center={{ lat: 37.497175, lng: 127.027926 }}
+                            >
+                                <Marker
+                                    key={1}
+                                    position={{ lat: 37.551229, lng: 126.988205 }}
+                                    animation={2}
+                                    onClick={() => {alert('여기는 N서울타워입니다.');}}
+                                />
+                            </NaverMap>
+                        </RenderAfterNavermapsLoaded>
+                    </MapContainer>
 
-                <DescriptionContainer>
-                    <div class="wow">
-                        {/*<Route path="/" component={Cry}/>*/}
-                    </div>
-                </DescriptionContainer>
-            </MainContainer>
-        );
+                    <DescriptionContainer>
+                        <div class="sensors">
+                            {sensors.map(sensor => (
+                                <Sensor
+                                    key={sensor.geohash}
+                                    id={sensor.geohash}
+                                    device={sensor.device_id}
+                                    co={sensor.co}
+                                    pm10={sensor.pm10}
+                                    pm25={sensor.pm25}
+                                />
+                            ))}
+                        </div>
+                        <div className="App2"> 
+                            <Route path="/" exact={true} component={Sensor}/>
+                        </div>
+                    </DescriptionContainer>
+                </MainContainer>
+            );
+    }
 }
 
 /*SCSS*/
