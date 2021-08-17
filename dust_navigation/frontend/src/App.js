@@ -7,12 +7,13 @@ import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 // import js files
 import Dust_map from './pages/Dust_map';
 import Ranking from './pages/Ranking';
+import Sensor from './pages/Sensor'
 import Navigation from './pages/Navigation';
 import { CgSidebar } from 'react-icons/cg';
 
 class App extends React.Component {
     state = {
-        dust_map: []
+        airQualitySensor: []
     };
 
     constructor(props) {
@@ -29,7 +30,7 @@ class App extends React.Component {
     }
 
     render() {
-        const { dust_map } = this.state;
+        const { airQualitySensor } = this.state;
         return (
             <div className="App"> 
                 <Route path="/" exact={true} component={Dust_map}/>
@@ -37,8 +38,8 @@ class App extends React.Component {
                 <Route path="/navigation" component={Navigation}/>  
 
                 <div class="dust_map">
-                    {dust_map.map(dm => (
-                        <Dust_map
+                    {airQualitySensor.map(dm => (
+                        <Sensor
                             key={dm.air_quality_sensor_id}
                             id={dm.air_quality_sensor_id}
                             device={dm.device_id}

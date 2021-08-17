@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import '../../src/App.css';
 import Panel from "../../src/components/Sidebar/Panel";
 import PropTypes from "prop-types";
+
+import {Helmet} from "react-helmet";
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
+
 
 const Dust_map = (props) => {
     return (
@@ -31,29 +35,13 @@ const Dust_map = (props) => {
                 </MapContainer>
 
                 <DescriptionContainer>
-                    <h1>A의 현재 대기 상황</h1>
-                    <Description>
-                        <div class="sensor">
-                            <p>- 측정 주소:{/*아마 여기에 props 받아오기...?*/}</p>
-                            <p>- 측정 시각:</p>
-                            <p class="sensor_pm10">- 미세먼지 농도: {props.pm10}</p>
-                            <p class="sensor_pm25">- 초미세먼지 농도 : {props.pm25}</p>
-                            <p class="sensor_co">- 일산화탄소 농도 : {props.co}</p>
-                            <p class="sensor_index">- 평가 : {}</p>
-                        </div>
-                    </Description>
+                    <div class="wow">
+                        {/*<Route path="/" component={Cry}/>*/}
+                    </div>
                 </DescriptionContainer>
             </MainContainer>
         );
 }
-
-Dust_map.propTypes = {
-    air_quality_sensor_id: PropTypes.number,
-    device_id: PropTypes.string,
-    co: PropTypes.number,
-    pm10: PropTypes.number,
-    pm25: PropTypes.number
-  };
 
 /*SCSS*/
 // 참고!! 배경색상은 구분을 위해 아무렇게나 해둔 임시용입니다. 나중에 상의해서 바꿔요
@@ -98,17 +86,17 @@ const DescriptionContainer = styled.div`
     }
 `;
 
-const Description = styled.div`
-    width: 80%;
-    padding: 10px;
-    margin: auto;
-    text-align: left;
-    font-size: 20px;
-    font-weight: bold;
+// const Description = styled.div`
+//     width: 80%;
+//     padding: 10px;
+//     margin: auto;
+//     text-align: left;
+//     font-size: 20px;
+//     font-weight: bold;
 
-    @media screen and (max-width: 500px) {
-        font-size: 18px;
-    }
-`;
+//     @media screen and (max-width: 500px) {
+//         font-size: 18px;
+//     }
+// `;
 
 export default Dust_map;
