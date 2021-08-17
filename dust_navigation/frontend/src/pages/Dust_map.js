@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import '../../src/App.css';
 import Panel from "../../src/components/Sidebar/Panel";
 import PropTypes from "prop-types";
-import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
 import {Helmet} from "react-helmet";
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import Cry from 'dust_navigation/frontend/src/pages/cry.js'
+import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
+
 
 const Dust_map = (props) => {
     return (
@@ -36,20 +36,12 @@ const Dust_map = (props) => {
 
                 <DescriptionContainer>
                     <div class="wow">
-                        <Route path="/" component={Cry}/>
+                        {/*<Route path="/" component={Cry}/>*/}
                     </div>
                 </DescriptionContainer>
             </MainContainer>
         );
 }
-
-// Dust_map.propTypes = {
-//     air_quality_sensor_id: PropTypes.string,
-//     device_id: PropTypes.string,
-//     co: PropTypes.number,
-//     pm10: PropTypes.number,
-//     pm25: PropTypes.number
-//   };
 
 /*SCSS*/
 // 참고!! 배경색상은 구분을 위해 아무렇게나 해둔 임시용입니다. 나중에 상의해서 바꿔요

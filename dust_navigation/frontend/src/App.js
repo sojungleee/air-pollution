@@ -4,13 +4,10 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
-import geohash from './pages/geohash.json';
-
-
 // import js files
 import Dust_map from './pages/Dust_map';
 import Ranking from './pages/Ranking';
-import Cry from './pages/cry'
+import Sensor from './pages/Sensor'
 import Navigation from './pages/Navigation';
 import { CgSidebar } from 'react-icons/cg';
 
@@ -24,21 +21,8 @@ class App extends React.Component {
     }
 
     getDustMap = async() => {
-        // const {data: {data: {dust_map}}} = await axios.get("/api/sensors");
-        // this.setState({ dust_map });
-        console.log(geohash[0].geohash);
-        const {data: {sensors: {airQualitySensor}}} = await axios.get(geohash);
-        this.setState({ airQualitySensor });
-
-        // const res = await fetch(geohash);
-        // const data = await res.json();
-        // this.setState({data: {data: {dust_map}}});
-
-    //    const res = await fetch(geohash);
-    //    const bata = await res.json();
-    //    return this.setState(
-    //         {data:bata}
-    //     );
+        const {data: {data: {dust_map}}} = await axios.get("/api/sensors");
+        this.setState({ dust_map });
     }
 
     componentDidMount() {
@@ -55,7 +39,7 @@ class App extends React.Component {
 
                 <div class="dust_map">
                     {airQualitySensor.map(dm => (
-                        <Cry
+                        <Sensor
                             key={dm.air_quality_sensor_id}
                             id={dm.air_quality_sensor_id}
                             device={dm.device_id}
