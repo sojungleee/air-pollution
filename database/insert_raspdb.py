@@ -24,17 +24,22 @@ def insert_raspdb_air_quality(geohash: str, device_id: str, co: float, pm10: int
     db = 'raspdb', charset='utf8')
     cur = db.cursor()
 
-    # 행 수가 5개면 가장 오래된 값 하나 버림
-    sql = "SELECT COUNT(*) FROM air_quality_sensor"
+    # geohash 별로 구분했을 때 행 수가 5 이상인 geohash select
+    sql = "SELECT geohash FROM air_quality_sensor GROUP BY (geohash) HAVING COUNT(*) >= 5"
     cur.execute(sql)
-    row_count = int(cur.fetchone()[0])
 
-    print(row_count)
+    row = cur.fetchall()
 
-    if row_count == 5:
-        sql = "delete from air_quality_sensor order by recieve_time asc limit 1;"
-        cur.execute(sql)
-        print("oldest data deleted from air_quality_seonsor")
+    # 현재 geohash가 결과인 row에 존재하면 오래된 값 삭제
+    if row:
+        if geohash in [r[0] for r in row]:
+            print(f"data over 5 in {geohash} ... try delete")
+            sql = "DELETE FROM air_quality_sensor WHERE geohash = %s AND receive_time in (SELECT min(receive_time) FROM air_quality_sensor GROUP BY (geohash))"
+            val = (geohash)
+            cur.execute(sql,val)
+            print(f"oldest data in {geohash} deleted.")
+        else:
+            print(f"data under 5 in {geohash}")
 
     # insert
     sql = "INSERT INTO air_quality_sensor(geohash,device_id,co,pm10,pm25) VALUES (%s, %s, %s, %s, %s)"
@@ -45,7 +50,6 @@ def insert_raspdb_air_quality(geohash: str, device_id: str, co: float, pm10: int
 
     print(cur.rowcount, "air_quality record inserted")
 
-#
 
 def insert_raspdb_location(geohash: str, latitude: float, longitude: float, timestamp: str):
     #connect to database
@@ -54,13 +58,13 @@ def insert_raspdb_location(geohash: str, latitude: float, longitude: float, time
     cur = db.cursor()
 
     # insert
-    sql = "INSERT INTO location(geohash, recieve_time, latitude, longitude) VALUES (%s, %s, %s, %s)"
+    sql = "INSERT INTO location(geohash, receive_time, latitude, longitude) VALUES (%s, %s, %s, %s)"
     val = (geohash, timestamp, latitude, longitude)
     cur.execute(sql, val)
 
     db.commit()
 
-    print(cur.rowcount, "location record inserted")
+    print(f"raspDB: {cur.rowcount} location record inserted")
 
 # examples
 #insert_raspdb_device("id456", 1)

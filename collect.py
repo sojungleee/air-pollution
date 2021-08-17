@@ -22,7 +22,7 @@ import checkConnect
 def collect_air_quality(air_data: defaultdict):
     pm25, pm10 = pm2008.pm2008()
     # co = co.co()
-    co = 4.0
+    co = 3.0
 
     air_data["pm25"] = pm25
     air_data["pm10"] = pm10
@@ -34,7 +34,7 @@ def collect_air_quality(air_data: defaultdict):
 def collect_gps(gps_data: defaultdict):
     #lat, lon = gps.getGps()
     lat = 127.09318
-    lon = 37.61633
+    lon = 37.81633
     gps_data["lat"] = lat
     gps_data["lon"] = lon
     gps_data["geohash"] = pgh.encode(lat, lon, 7)
