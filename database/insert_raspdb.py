@@ -14,7 +14,7 @@ def insert_raspdb_device(device_id: str, network_condition: bool,timestamp: str)
 
     db.commit()
     
-    print(cur.rowcount, "device row inserted")
+    print(f"raspDB: {cur.rowcount} device row inserted")
 
 #
 
@@ -48,7 +48,7 @@ def insert_raspdb_air_quality(geohash: str, device_id: str, co: float, pm10: int
 
     db.commit()
 
-    print(cur.rowcount, "air_quality record inserted")
+    print(f"raspDB: {cur.rowcount} air_quality record inserted")
 
 
 def insert_raspdb_location(geohash: str, latitude: float, longitude: float, timestamp: str):
