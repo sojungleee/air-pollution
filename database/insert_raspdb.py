@@ -42,8 +42,8 @@ def insert_raspdb_air_quality(geohash: str, device_id: str, co: float, pm10: int
             print(f"data under 5 in {geohash}")
 
     # insert
-    sql = "INSERT INTO air_quality_sensor(geohash,device_id,co,pm10,pm25,receive_time) VALUES (%s, %s, %s, %s, %s, %s)"
-    val = (geohash, device_id, co, pm10, pm25, timestamp)
+    sql = "INSERT INTO air_quality_sensor(geohash,receive_time,device_id,co,pm10,pm25) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (geohash, timestamp, device_id, co, pm10, pm25)
     cur.execute(sql, val)
 
     db.commit()

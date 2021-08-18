@@ -33,8 +33,8 @@ def collect_air_quality(air_data: defaultdict):
 # gps 센서 
 def collect_gps(gps_data: defaultdict):
     #lat, lon = gps.getGps()
-    lat = 127.09318
-    lon = 37.81633
+    lat = 127.04151
+    lon = 37.60292
     gps_data["lat"] = lat
     gps_data["lon"] = lon
     gps_data["geohash"] = pgh.encode(lat, lon, 7)
@@ -80,6 +80,6 @@ if __name__ == "__main__":
 
     #------------------------- air_quality_sensor 테이블 -------------------------#  
     # 라즈베리파이 내부 DB에 삽입 
-    insert_raspdb.insert_raspdb_air_quality(gps_data["geohash"], device_id,air_data["co"], air_data["pm10"],air_data["pm25"])
+    insert_raspdb.insert_raspdb_air_quality(gps_data["geohash"], device_id,air_data["co"], air_data["pm10"],air_data["pm25"],timestamp)
     
 
