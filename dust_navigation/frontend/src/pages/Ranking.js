@@ -27,7 +27,6 @@ class Ranking extends Component {
 
     render() {
         const { selectedOption } = this.state;
-        let barColor = 'red';
 
         return (
             <MainContainer>
@@ -43,10 +42,6 @@ class Ranking extends Component {
                         />
                     </SubContatiner>
                     
-                    {/* 예시로 바를 여러 개 불러와봤음 */}
-                    {/* <RankingBar background={barColor}/> */}
-                    <RankingBar/> 
-                    <RankingBar/> 
                     <RankingBar/> 
                 </RankingContainer>
             </MainContainer>
