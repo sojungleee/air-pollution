@@ -6,8 +6,8 @@ def insert_rds_air_quality(geohash: str, device_id: str, co: float, pm10: int, p
     cur = db.cursor()
 
     #insert
-    sql = "INSERT INTO air_quality_sensor(geohash,device_id,co,pm10,pm25,receive_time) VALUES (%s, %s, %s, %s, %s,, %s)"
-    val = (geohash, device_id, co, pm10, pm25)
+    sql = "INSERT INTO air_quality_sensor(geohash,device_id,co,pm10,pm25,receive_time) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (geohash, device_id, co, pm10, pm25, timestamp)
     cur.execute(sql,val)
 
     db.commit()
