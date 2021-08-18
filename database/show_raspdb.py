@@ -23,9 +23,9 @@ for x in rows:
 
 
 # select
-cur.execute("SELECT * FROM geohash")
+cur.execute("SELECT * FROM location")
 # print
-print("geohash: ")
+print("location: ")
 rows = cur.fetchall()
 for x in rows:
     print(x)
