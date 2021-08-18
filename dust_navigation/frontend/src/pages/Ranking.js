@@ -9,10 +9,10 @@ import Select from 'react-select';
 // 8/5 RakingBar.js를 따로 생성해서 import 해왔는데 별로면 후에 다시 합치는 걸로...
 
 const options = [
-    { value: '일산화탄소', label: '일산화탄소' },
-    { value: '미세먼지', label: '미세먼지' },
-    { value: '아황산가스', label: '아황산가스' },
-    { value: '오존', label: '오존' },
+    { value: 'sensor_pm10', label: '미세먼지' },
+    { value: 'sensor_pm25', label: '초미세먼지' },
+    { value: 'sensor_co', label: '일산화탄소' },
+    { value: 'sensor_o3', label: '오존' },
 ];
 
 class Ranking extends Component {
@@ -36,6 +36,7 @@ class Ranking extends Component {
                     <SubContatiner>
                         <Select
                             value={selectedOption}
+                            defaultvalue={options[0]}
                             onChange={this.handleChange}
                             options={options}
                             placeholder={"대기 정보별"}
@@ -43,8 +44,9 @@ class Ranking extends Component {
                     </SubContatiner>
                     
                     {/* 예시로 바를 여러 개 불러와봤음 */}
-                    <RankingBar background={barColor}/>
-                    <RankingBar background={'yellow'}/> 
+                    {/* <RankingBar background={barColor}/> */}
+                    <RankingBar/> 
+                    <RankingBar/> 
                     <RankingBar/> 
                 </RankingContainer>
             </MainContainer>
