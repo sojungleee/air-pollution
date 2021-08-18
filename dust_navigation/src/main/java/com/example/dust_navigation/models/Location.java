@@ -22,20 +22,20 @@ public class Location {
     private double longitude;
 
     @Column(nullable = false)
-    private Timestamp recieve_time;
+    private Timestamp receive_time;
 
-    public Location(String geohash, double latitude, double longitude, Timestamp recieve_time) {
+    public Location(String geohash, double latitude, double longitude, Timestamp receive_time) {
         this.geohash = geohash;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.recieve_time = recieve_time;
+        this.receive_time = receive_time;
     }
 
     public Location(LocationRequestDto locationRequestDto) {
         this.geohash = locationRequestDto.getGeohash();
         this.latitude = locationRequestDto.getLatitude();
         this.longitude = locationRequestDto.getLongitude();
-        this.recieve_time = locationRequestDto.getRecieve_time();
+        this.receive_time = locationRequestDto.getReceive_time();
     }
 
 

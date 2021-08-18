@@ -22,12 +22,12 @@ public class AirQualitySensor {
     private float co;
 
     @Column(nullable = false)
-    private int pm10;
+    private float pm10;
 
     @Column(nullable = false)
-    private int pm25;
+    private float pm25;
 
-    public AirQualitySensor(String geohash,String device_id, float co, int pm10, int pm25) {
+    public AirQualitySensor(String geohash,String device_id, float co, float pm10, float pm25) {
         this.geohash = geohash;
         this.device_id =device_id;
         this.co = co;

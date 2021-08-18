@@ -9,5 +9,5 @@ public class LocationRequestDto {
     private String geohash;
     private double latitude;
     private double longitude;
-    private Timestamp recieve_time;
+    private Timestamp receive_time;
 }
