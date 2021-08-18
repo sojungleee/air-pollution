@@ -18,7 +18,7 @@ def insert_raspdb_device(device_id: str, network_condition: bool,timestamp: str)
 
 #
 
-def insert_raspdb_air_quality(geohash: str, device_id: str, co: float, pm10: int, pm25: int):
+def insert_raspdb_air_quality(geohash: str, device_id: str, co: float, pm10: int, pm25: int, timestamp: str):
     # connect to database
     db = pymysql.connect(host='localhost', user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
@@ -42,8 +42,8 @@ def insert_raspdb_air_quality(geohash: str, device_id: str, co: float, pm10: int
             print(f"data under 5 in {geohash}")
 
     # insert
-    sql = "INSERT INTO air_quality_sensor(geohash,device_id,co,pm10,pm25) VALUES (%s, %s, %s, %s, %s)"
-    val = (geohash, device_id, co, pm10, pm25)
+    sql = "INSERT INTO air_quality_sensor(geohash,device_id,co,pm10,pm25,receive_time) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (geohash, device_id, co, pm10, pm25, timestamp)
     cur.execute(sql, val)
 
     db.commit()
