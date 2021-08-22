@@ -9,29 +9,30 @@ import styled from 'styled-components';
 */
 
 class RankingBar extends Component {
+    /* 생명주기순서 : constructor(생성자) -> componentWillMount -> render */
     constructor(props) {
         super(props);
         // console.log('RankingBar로 넘어온 props:', props);
         this.state = {
-            list: [
-                { id: 0, address: '서울특별시 성북구 화랑로13길 60', label: 'A', pm10: '100', pm25: '50', co: '30', o3: '10' },
-                { id: 1, address: '서울특별시 성북구 예시1길 10', label: 'B', pm10: '76', pm25: '10', co: '70', o3: '33' },
-                { id: 2, address: '서울특별시 성북구 예시2길 20', label: 'C', pm10: '88', pm25: '22', co: '55', o3: '14' },
-            ],
-        };
+            lists: []
+        }
     }
 
-    render() {        
-        const dusts = [ // 임시
-            { label: 'sensor_pm10', value: 100 },
-            { label: 'sensor_pm25', value: 10 },
-            { label: 'sensor_co', value: 10 },
-            { label: 'sensor_o3', value: 10 },
-        ]; 
+    componentWillMount() {
+        fetch('http://localhost:8080/api/locations')
+            .then(res => res.json())
+            .then(data => this.setState({
+                lists: data
+            }));
+    }
+
+    render() {
+        const { lists } = this.state;
 
         function handleDustValue() {
             console.log("handleDustValue 함수 실행");
-            const value = dusts[0].value; // 값을 가져오기
+            //const value = this.state.list.pm10; // 값을 가져오기
+            const value = 10; //temp
             
             // 미세먼지 기준 test
             const result_pm10 = (
@@ -71,20 +72,20 @@ class RankingBar extends Component {
         const style = handleBarColor(dustResult_value);
         console.log("bar style is: ",style);
     
-        const content = this.state.list.map((list) => (
-            <Bar style={style} key={list.id}>
+        const dustList = lists.map((list) => (
+            <Bar style={style} key={list.geohash} id={list.geohash}>
                 <LocationAlphabet>
                     <div>A</div>
                 </LocationAlphabet>
     
                 <DustInfo>
                     <div>
-                        <h3>{list.address}</h3> {/* 주소 받아와야 함 */}
+                        <h3>{list.geohash}</h3> {/* 주소 받아와야 함 */}
                         <DustList>
-                            <li>미세먼지: {list.pm10}</li>
-                            <li>초미세먼지: {list.pm25}</li>
-                            <li>일산화탄소: {list.co}</li>
-                            <li>오존: {list.o3}</li>
+                            <li>미세먼지: {list.airQualitySensor.pm10}</li>
+                            <li>초미세먼지: {list.airQualitySensor.pm25}</li>
+                            <li>일산화탄소: {list.airQualitySensor.co}</li>
+                            {/*<li>오존: {list.ozone}</li>*/}
                         </DustList>
                     </div>
                 </DustInfo>
@@ -95,7 +96,7 @@ class RankingBar extends Component {
             </Bar> 
         ));
 
-        return <Bar>{content}</Bar>;
+        return <Bar>{dustList}</Bar>;
     }
 }
 

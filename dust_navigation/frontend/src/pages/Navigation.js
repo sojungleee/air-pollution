@@ -12,7 +12,7 @@ const Navigation = () => {
 
     // 오류 덩어리 . . . .. .. .. 
     useEffect(() => {
-        const script = document.createElement("script");
+        /*const script = document.createElement("script");
         script.innerHTML = `       
             var map;
 	        var tData;  
@@ -28,7 +28,7 @@ const Navigation = () => {
        `;
         script.type = "text/javascript";
         script.async = "async";
-        document.head.appendChild(script);
+        document.head.appendChild(script);*/
 
         const fetchResult = async () => {
             try {
