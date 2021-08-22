@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-/* 8/11 소정: 구현해야 하는 기능들 -> 
+/* 8/18 구현해야 하는 기능들 -> 
     1. DustList에 값을 DB로부터 불러오기
     2. DB로부터 값을 가져온 만큼 Bar가 생성되도록 하기
-    3. 값의 수치에 따라 Bar's backgroundColor 바뀌도록 (if문 ?) - finished
-    4. 그 외 있다면 적어 주세여
+    3. 지역 알파벳 선정 기준은 무엇인지?
+    4. RankingBar list 
 */
 
 class RankingBar extends Component {
     constructor(props) {
         super(props);
-        console.log('RankingBar로 넘어온 props:', props);
+        // console.log('RankingBar로 넘어온 props:', props);
+        this.state = {
+            list: [
+                { id: 0, address: '서울특별시 성북구 화랑로13길 60', label: 'A', pm10: '100', pm25: '50', co: '30', o3: '10' },
+                { id: 1, address: '서울특별시 성북구 예시1길 10', label: 'B', pm10: '76', pm25: '10', co: '70', o3: '33' },
+                { id: 2, address: '서울특별시 성북구 예시2길 20', label: 'C', pm10: '88', pm25: '22', co: '55', o3: '14' },
+            ],
+        };
     }
 
     render() {        
@@ -24,7 +31,6 @@ class RankingBar extends Component {
 
         function handleDustValue() {
             console.log("handleDustValue 함수 실행");
-            console.log(dusts[0].value);
             const value = dusts[0].value; // 값을 가져오기
             
             // 미세먼지 기준 test
@@ -46,7 +52,6 @@ class RankingBar extends Component {
 
         function handleBarColor(value) {
             // dustResult 수치 구한 것을 기반으로 색을 정한다
-            // 색은 나중에 16진수 색상 코드표로 정하는 걸로. 일단 임시임
             let color = "white"; // default color
             console.log("the value is: ", value);
 
@@ -66,30 +71,31 @@ class RankingBar extends Component {
         const style = handleBarColor(dustResult_value);
         console.log("bar style is: ",style);
     
-        return (
-            <Bar style={style}>
+        const content = this.state.list.map((list) => (
+            <Bar style={style} key={list.id}>
                 <LocationAlphabet>
                     <div>A</div>
                 </LocationAlphabet>
     
                 <DustInfo>
                     <div>
-                        <h3>서울특별시 성북구 화랑로13길 60</h3> {/* 주소 받아와야 함 */}
+                        <h3>{list.address}</h3> {/* 주소 받아와야 함 */}
                         <DustList>
-                            <li>미세먼지: {dusts[0].value}</li>
-                            <li>초미세먼지: {dusts[1].value}</li>
-                            <li>일산화탄소: {dusts[2].value}</li>
-                            <li>오존: {dusts[3].value}</li>
+                            <li>미세먼지: {list.pm10}</li>
+                            <li>초미세먼지: {list.pm25}</li>
+                            <li>일산화탄소: {list.co}</li>
+                            <li>오존: {list.o3}</li>
                         </DustList>
                     </div>
                 </DustInfo>
                 
                 <DustResult>
-                    {/* <div>매우 쾌적함</div> */}
                     <div>{dustResult_value}</div>
                 </DustResult>
-            </Bar>  
-        );
+            </Bar> 
+        ));
+
+        return <Bar>{content}</Bar>;
     }
 }
 
