@@ -71,10 +71,10 @@ const Navigation = () => {
             }
             setLoading(false);
         };
-      
+
         fetchResult();
     }, []);
-    
+
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!result) return null;
@@ -97,14 +97,14 @@ const Navigation = () => {
                         center={{ lat: 37.497175, lng: 127.027926 }}
                     >
 
-            
+
                     </NaverMap>
                 </RenderAfterNavermapsLoaded>
 
             </MapContainer>
         </MainContainer>
     );
-   
+
 }
 
 // 구분 위한 임시 css
