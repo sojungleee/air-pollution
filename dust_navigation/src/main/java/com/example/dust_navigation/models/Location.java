@@ -1,5 +1,4 @@
 package com.example.dust_navigation.models;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
