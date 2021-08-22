@@ -2,36 +2,32 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../src/App.css';
 import Panel from "../../src/components/Sidebar/Panel";
-import PropTypes from "prop-types";
-import axios from 'axios';
 
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
-import Sensor from './Sensor.js';
-
 class Dust_map extends React.Component {
-    state = {
-        sensors: []
-    };
 
     constructor(props) {
         super(props);
+        this.state = {
+            sensors: []
+        }
     }
 
-    getSensor = async() => {
-        const {data: {data: {sensors}}} = await axios.get("/api/sensors");
-        this.setState({ sensors });
-    }
-
-    componentDisensorount() {
-        this.getSensor();
+    componentWillMount() {
+        fetch('http://localhost:8080/api/locations')
+            .then(res => res.json())
+            .then(data => this.setState({
+                sensors: data
+            }));
     }
 
     render() {
         const { sensors } = this.state;
-        return (
-                <MainContainer>
+
+        const Page = sensors.map((sensor) => (
+            <MainContainer key={sensor.geohash} id={sensor.geohash}>
                     <Panel title="대기 정밀 지도"/>
                     <MapContainer>
                         <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
@@ -55,24 +51,22 @@ class Dust_map extends React.Component {
                     </MapContainer>
 
                     <DescriptionContainer>
-                        <div class="sensors">
-                            {sensors.map(sensor => (
-                                <Sensor
-                                    key={sensor.geohash}
-                                    id={sensor.geohash}
-                                    device={sensor.device_id}
-                                    co={sensor.co}
-                                    pm10={sensor.pm10}
-                                    pm25={sensor.pm25}
-                                />
-                            ))}
-                        </div>
-                        <div className="App2"> 
-                            <Route path="/" exact={true} component={Sensor}/>
+                        <div>
+                            <h1>의 현재 대기 상황</h1>
+                            <Description>
+                                <p>- 측정 주소:{sensor.geohash}</p>
+                                <p>- 측정 시각:{sensor.receive_time}</p>
+                                <p>- 미세먼지 농도: {sensor.airQualitySensor.pm10}</p>
+                                <p>- 초미세먼지 농도 : {sensor.airQualitySensor.pm25}</p>
+                                <p>- 일산화탄소 농도 : {sensor.airQualitySensor.co}</p>
+                                <p>- 평가 : {}</p>              
+                            </Description>
                         </div>
                     </DescriptionContainer>
                 </MainContainer>
-            );
+        ));
+
+        return <MainContainer>{Page}</MainContainer>;
     }
 }
 
@@ -119,17 +113,17 @@ const DescriptionContainer = styled.div`
     }
 `;
 
-// const Description = styled.div`
-//     width: 80%;
-//     padding: 10px;
-//     margin: auto;
-//     text-align: left;
-//     font-size: 20px;
-//     font-weight: bold;
+const Description = styled.div`
+    width: 80%;
+    padding: 10px;
+    margin: auto;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
 
-//     @media screen and (max-width: 500px) {
-//         font-size: 18px;
-//     }
-// `;
+    @media screen and (max-width: 500px) {
+        font-size: 18px;
+    }
+`;
 
 export default Dust_map;

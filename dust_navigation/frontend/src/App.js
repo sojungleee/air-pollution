@@ -7,7 +7,6 @@ import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 // import js files
 import Dust_map from './pages/Dust_map';
 import Ranking from './pages/Ranking';
-import Sensor from './pages/Sensor'
 import Navigation from './pages/Navigation';
 import { CgSidebar } from 'react-icons/cg';
 
