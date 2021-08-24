@@ -16,7 +16,7 @@ class Dust_map extends React.Component {
     }
 
     componentWillMount() {
-        fetch('http://localhost:8080/api/locations')
+        fetch('http://localhost:3000/api/locations')
             .then(res => res.json())
             .then(data => this.setState({
                 sensors: data

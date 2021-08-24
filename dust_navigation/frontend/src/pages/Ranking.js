@@ -5,9 +5,6 @@ import Panel from "../../src/components/Sidebar/Panel";
 import RankingBar from './RankingBar';
 import Select from 'react-select';
 
-// 8/2 소정 질문: RankingBar.js를 따로 만들어서 Import 해오는게 깔끔할까요? 나중에 Ranking페이지에 이걸 RankingBar를 랜덤으로 불러와야 하니까..
-// 8/5 RakingBar.js를 따로 생성해서 import 해왔는데 별로면 후에 다시 합치는 걸로...
-
 const options = [
     { value: 'sensor_pm10', label: '미세먼지' },
     { value: 'sensor_pm25', label: '초미세먼지' },
@@ -41,11 +38,11 @@ class Ranking extends Component {
                             placeholder={"대기 정보별"}
                         />
                     </SubContatiner>
-                    
-                    <RankingBar/> 
+
+                    <RankingBar/>
                 </RankingContainer>
             </MainContainer>
-        );   
+        );
     }
 }
 
@@ -53,7 +50,7 @@ class Ranking extends Component {
 const MainContainer = styled.div`
     width: 100vw;
     height: 100vh;
-    background-color: #fef5d4;
+    // background-color: #fef5d4;
     font-family: "nanum";
 
     @media screen and (max-width: 550px) {
@@ -62,8 +59,6 @@ const MainContainer = styled.div`
 `;
 
 const SubContatiner = styled.div`
-    // background-color: #87F5F5;
-    // float: right;
     width: 150px;
     height: 40px;
 
@@ -73,7 +68,6 @@ const SubContatiner = styled.div`
 `;
 
 const RankingContainer = styled.div`
-    background-color: #FFBBC6;
     width: 90vw;
     margin: auto;
     padding-top: 3vh;
