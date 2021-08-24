@@ -38,11 +38,11 @@ class Ranking extends Component {
                             placeholder={"대기 정보별"}
                         />
                     </SubContatiner>
-                    
-                    <RankingBar/> 
+
+                    <RankingBar/>
                 </RankingContainer>
             </MainContainer>
-        );   
+        );
     }
 }
 

@@ -10,20 +10,20 @@ const Navigation = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // 오류 덩어리 . . . .. .. .. 
+    // 오류 덩어리 . . . .. .. ..
     useEffect(() => {
         /*const script = document.createElement("script");
-        script.innerHTML = `       
+        script.innerHTML = `
             var map;
-	        var tData;  
+	        var tData;
             function initTmap() {
                 tData = new Tmap.TData();
                 tData.getAutoCompleteSearch("불광", 5);
-                
+
                 markerLayer = new Tmap.Layer.Markers();
                 map.addLayer(markerLayer);
             }
-        
+
             // initTmap();
        `;
         script.type = "text/javascript";
@@ -104,7 +104,6 @@ const Navigation = () => {
             </MapContainer>
         </MainContainer>
     );
-
 }
 
 // 구분 위한 임시 css
