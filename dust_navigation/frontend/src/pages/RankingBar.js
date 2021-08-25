@@ -110,9 +110,9 @@ class RankingBar extends Component {
                     <div>
                         <h3>{list.geohash}</h3> {/* 주소 받아와야 함 */}
                         <DustList>
-                            <li>미세먼지: {list.airQualitySensor.pm10}</li>
-                            <li>초미세먼지: {list.airQualitySensor.pm25}</li>
-                            <li>일산화탄소: {list.airQualitySensor.co}</li>
+                            <li>미세먼지(PM<sub>10</sub>): {list.airQualitySensor.pm10}㎍/㎥</li>
+                            <li>초미세먼지(PM<sub>2.5</sub>): {list.airQualitySensor.pm25}㎍/㎥</li>
+                            <li>일산화탄소(CO): {list.airQualitySensor.co}ppm</li>
                             {/*<li>오존: {list.ozone}</li>*/}
                         </DustList>
                     </div>

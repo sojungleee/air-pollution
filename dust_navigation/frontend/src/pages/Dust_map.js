@@ -57,9 +57,9 @@ class Dust_map extends React.Component {
                                 <p>- 측정 주소&nbsp;:&nbsp;{sensor.geohash}</p>
                                 <p>- 측정 시각&nbsp;:&nbsp;{(sensor.receive_time||'').split('T')[0]}
                                     &nbsp;{((sensor.receive_time||'').split('T')[1]||'').split('.')[0]}</p>
-                                <p>- 미세먼지 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm10}</p>
-                                <p>- 초미세먼지 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm25}</p>
-                                <p>- 일산화탄소 농도&nbsp;:&nbsp; {sensor.airQualitySensor.co}</p>
+                                <p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm10}㎍/㎥</p>
+                                <p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm25}㎍/㎥</p>
+                                <p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {sensor.airQualitySensor.co}ppm</p>
                             </Description>
                         </div>
                     </DescriptionContainer>
