@@ -16,11 +16,36 @@ class Dust_map extends React.Component {
     }
 
     componentWillMount() {
+        const geohash = this.state;
         fetch('http://localhost:3000/api/locations')
             .then(res => res.json())
             .then(data => this.setState({
-                sensors: data
+                sensors: data,
             }));
+        this.getLocation();
+    }
+
+    getLocation() {
+        let lat, long;
+        let ngeohash = require('ngeohash');
+        let geohash = ""
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+                geohash = ngeohash.encode(lat,long).substring(0,7);
+                alert('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
+            }, function(error) {
+                console.error(error);
+            }, {
+                enableHighAccuracy: false,
+                maximumAge: 0,
+                timeout: Infinity
+            });
+        } else {
+            alert('GPS를 지원하지 않습니다');
+            return;
+        }
     }
 
     render() {
