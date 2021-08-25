@@ -22,8 +22,7 @@ import lcd
 # 미세먼지센서, co 센서 
 def collect_air_quality(air_data: defaultdict):
     pm25, pm10 = pm2008.pm2008()
-    # co = co.co()
-    co = 3.0
+    co = co.co()
 
     air_data["pm25"] = pm25
     air_data["pm10"] = pm10
