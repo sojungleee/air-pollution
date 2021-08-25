@@ -3,18 +3,18 @@
 ## 목차
 
 - [Dust Navigation Open API](#dust-navigation-open-api)
-  * [모든 지역 대기 정보 API](#------------api)
-    + [응답 item](#---item)
+  * [모든 지역 대기 정보 API](#모든-지역-대기-정보-api)
+    + [응답 item](#응답-item)
     + [response 200](#response-200)
-  * [선택 지역 대기 정보 API](#------------api)
-    + [응답 item](#---item-1)
-    + [response 200 / 값이 있을 때](#response-200----------)
-    + [response 200 / 값이 없을 때](#response-200----------)
-  * [모든 대기 정보 API](#---------api)
-    + [응답 item](#---item-2)
+  * [선택 지역 대기 정보 API](#선택-지역-대기-정보-api)
+    + [응답 item](#응답-item-1)
+    + [response 200 / 값이 있을 때](#response-200-/-값이-있을-때)
+    + [response 200 / 값이 없을 때](#response-200-/-값이-없을-때)
+  * [모든 대기 정보 API](#모든-대기-정보-api)
+    + [응답 item](#응답-item-2)
     + [response 200](#response-200-1)
-  * [대기정보 정렬, 필터링 API](#-------------api)
-    + [응답 item](#---item-3)
+  * [대기정보 정렬-필터링 API](#대기정보-정렬-필터링-api)
+    + [응답 item](#응답-item-3)
     + [response 200](#response-200-2)
 
 ## 모든 지역 대기 정보 API
@@ -176,7 +176,7 @@ GET /api/airqualitysensorsall
 ]
 ```
 
-## 대기정보 정렬, 필터링 API
+## 대기정보 정렬-필터링 API
 대기정보를 정렬하고 필터링 함
 
 ```
