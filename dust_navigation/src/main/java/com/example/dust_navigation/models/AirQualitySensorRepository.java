@@ -1,16 +1,18 @@
 package com.example.dust_navigation.models;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface AirQualitySensorRepository extends JpaRepository<AirQualitySensor,String> {
-    List<AirQualitySensor> findAllByOrderByCoAsc();
-    List<AirQualitySensor> findAllByOrderByCoDesc();
 
-    List<AirQualitySensor> findAllByOrderByPm10Asc();
-    List<AirQualitySensor> findAllByOrderByPm10Desc();
+    @Query List<AirQualitySensor> findAllByGeohashStartingWithOrderByCoAsc(String geohash);
+    @Query List<AirQualitySensor> findAllByGeohashStartingWithOrderByCoDesc(String geohash);
 
-    List<AirQualitySensor> findAllByOrderByPm25Asc();
-    List<AirQualitySensor> findAllByOrderByPm25Desc();
+    @Query List<AirQualitySensor> findAllByGeohashStartingWithOrderByPm10Asc(String geohash);
+    @Query List<AirQualitySensor> findAllByGeohashStartingWithOrderByPm10Desc(String geohash);
+
+    @Query List<AirQualitySensor> findAllByGeohashStartingWithOrderByPm25Asc(String geohash);
+    @Query List<AirQualitySensor> findAllByGeohashStartingWithOrderByPm25Desc(String geohash);
 }

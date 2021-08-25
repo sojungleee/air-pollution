@@ -34,26 +34,21 @@ public class Controller {
     }
 
     @GetMapping("/api/airqualitysensors")
-    public List<AirQualitySensor> getAirQualitySensor(@RequestParam String sort, @RequestParam String item, @RequestParam String geohash, @RequestParam(defaultValue = "6") int precision) {
-        List<AirQualitySensor> sortedData = new ArrayList<>();
-        List<AirQualitySensor> result = new ArrayList<>();
+    public List<AirQualitySensor> getAirQualitySensor(@RequestParam String sort, @RequestParam String item, @RequestParam String geohash) {
+
+        String subGeohash = geohash.substring(0, 6);
+        System.out.println(subGeohash);
 
         if (sort.equals("asc")) {
-            if (item.equals("co")) sortedData = airQualitySensorRepository.findAllByOrderByCoAsc();
-            else if (item.equals("pm10")) sortedData = airQualitySensorRepository.findAllByOrderByPm10Asc();
-            else if (item.equals("pm25")) sortedData = airQualitySensorRepository.findAllByOrderByPm25Asc();
+            if (item.equals("co")) return airQualitySensorRepository.findAllByGeohashStartingWithOrderByCoAsc(subGeohash);
+            else if (item.equals("pm10")) return airQualitySensorRepository.findAllByGeohashStartingWithOrderByPm10Asc(subGeohash);
+            else if (item.equals("pm25")) return airQualitySensorRepository.findAllByGeohashStartingWithOrderByPm25Asc(subGeohash);
             else return null;
         } else if (sort.equals("desc")) {
-            if (item.equals("co")) sortedData = airQualitySensorRepository.findAllByOrderByCoDesc();
-            else if (item.equals("pm10")) sortedData = airQualitySensorRepository.findAllByOrderByPm10Desc();
-            else if (item.equals("pm25")) sortedData = airQualitySensorRepository.findAllByOrderByPm25Desc();
+            if (item.equals("co")) return airQualitySensorRepository.findAllByGeohashStartingWithOrderByCoDesc(subGeohash);
+            else if (item.equals("pm10")) return airQualitySensorRepository.findAllByGeohashStartingWithOrderByPm10Desc(subGeohash);
+            else if (item.equals("pm25")) return airQualitySensorRepository.findAllByGeohashStartingWithOrderByPm25Desc(subGeohash);
             else return null;
-        }
-
-        String subGeohashStr = geohash.substring(0, precision);
-        for (AirQualitySensor sensorData : sortedData) {
-            if (sensorData.getGeohash().substring(0, precision).equals(subGeohashStr)) { result.add(sensorData); }
-        }
-        return result;
+        } else return null;
     }
 }
