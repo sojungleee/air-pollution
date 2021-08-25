@@ -34,9 +34,9 @@ public class Controller {
     }
 
     @GetMapping("/api/airqualitysensors")
-    public List<AirQualitySensor> getAirQualitySensor(@RequestParam String sort, @RequestParam String item, @RequestParam String geohash) {
+    public List<AirQualitySensor> getAirQualitySensor(@RequestParam String sort, @RequestParam String item, @RequestParam String geohash, @RequestParam(defaultValue = "6") int precision) {
 
-        String subGeohash = geohash.substring(0, 6);
+        String subGeohash = geohash.substring(0, precision);
         System.out.println(subGeohash);
 
         if (sort.equals("asc")) {
