@@ -1,6 +1,7 @@
 package com.example.dust_navigation.controller;
 
 import com.example.dust_navigation.models.*;
+import com.example.dust_navigation.utils.ReverseGeocoding;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -50,5 +51,12 @@ public class Controller {
             else if (item.equals("pm25")) return airQualitySensorRepository.findAllByGeohashStartingWithOrderByPm25Desc(subGeohash);
             else return null;
         } else return null;
+    }
+
+    private final ReverseGeocoding reverseGeocoding;
+    @GetMapping("/api/locations/search")
+    public AddressDto getAddress(@RequestParam double lat, @RequestParam double lon) {
+        String resultString = reverseGeocoding.search(lat, lon);
+        return reverseGeocoding.fromJSONtoAddress(resultString);
     }
 }
