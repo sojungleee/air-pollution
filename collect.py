@@ -12,6 +12,7 @@ from database import update_raspdb
 import datetime
 import pygeohash as pgh
 import checkConnect
+import lcd
 
 # collect~ 함수 : 센서 값을 읽어와 딕셔너리형태로 저장
 # defaultdict이 딕셔너리 역할 
@@ -49,6 +50,9 @@ if __name__ == "__main__":
 
     collect_air_quality(air_data)
     collect_gps(gps_data)
+
+    #------------------------- lcd print ----------------------------#
+    lcd.print_sensor_data(air_data)
 
     now = datetime.datetime.now()
     f = '%Y-%m-%d %H:%M:%S'
