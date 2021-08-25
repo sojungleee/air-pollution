@@ -54,12 +54,12 @@ class Dust_map extends React.Component {
                         <div>
                             <h1>의 현재 대기 상황</h1>
                             <Description>
-                                <p>- 측정 주소:{sensor.geohash}</p>
-                                <p>- 측정 시각:{sensor.receive_time}</p>
-                                <p>- 미세먼지 농도: {sensor.airQualitySensor.pm10}</p>
-                                <p>- 초미세먼지 농도 : {sensor.airQualitySensor.pm25}</p>
-                                <p>- 일산화탄소 농도 : {sensor.airQualitySensor.co}</p>
-                                <p>- 평가 : {}</p>              
+                                <p>- 측정 주소&nbsp;:&nbsp;{sensor.geohash}</p>
+                                <p>- 측정 시각&nbsp;:&nbsp;{(sensor.receive_time||'').split('T')[0]}
+                                    &nbsp;{((sensor.receive_time||'').split('T')[1]||'').split('.')[0]}</p>
+                                <p>- 미세먼지 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm10}</p>
+                                <p>- 초미세먼지 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm25}</p>
+                                <p>- 일산화탄소 농도&nbsp;:&nbsp; {sensor.airQualitySensor.co}</p>
                             </Description>
                         </div>
                     </DescriptionContainer>
