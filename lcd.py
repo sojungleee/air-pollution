@@ -8,21 +8,24 @@ from time import sleep
 def print_sensor_data(data: dict):
 
     display = drivers.Lcd()
-
+    air_data = {} 
+    air_data["pm10"] = data["pm10"]
+    air_data["pm2.5"] = data["pm25"]
+    air_data["co"] = data["co"]
+    print(air_data)
     try:
-        while True:
-            line_num = 1
-            print("print sensor data...")
+        
+        line_num = 1 
+        print("print sensor data...")
 
-            for key, value in data.items():
-                value = str(value)
-                display.lcd_display_string('{0:<16}'.format(key + ":" + value), line_num)
+        for key,value in air_data.items():
+            value = str(value)
+            display.lcd_display_string('{0:16}'.format(key + ":" + value),line_num)
+            
+            line_num +=1
+            sleep(1.5)
 
-                line_num += 1
-                sleep(1.5)
-
-                if line_num == 3 :
-                    line_num = 1
-
+            if line_num ==3 :
+                line_num = 1
     except KeyboardInterrupt:
         display.lcd_clear()
