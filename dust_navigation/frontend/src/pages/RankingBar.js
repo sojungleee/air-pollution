@@ -21,34 +21,6 @@ class RankingBar extends Component {
             .then(data => this.setState({
                 lists: data
             }));
-
-        // async function geocoding() {
-        //     const data = await axios
-        //         .get('/api/map-reversegeocode/v2/gc', {
-        //             params: {
-        //                 request: 'coordsToaddr',
-        //                 coords: '127.1114893,37.3614463',//'127.043,37.6046',
-        //                 // sourcecrs:
-        //                 orders: 'admcode,legalcode,addr,roadaddr',
-        //                 output: 'json',
-        //             },
-        //             headers: {
-        //                 "X-NCP-APIGW-API-KEY-ID": 'f740jc2cw6',
-        //                 "X-NCP-APIGW-API-KEY": 'fACb4i3tt9EwQZqegVr8IMBClVSoC4MSylFAsVsK',
-        //             },
-        //         })
-        //         .then(res => {
-        //             // TODO: check if response is ok
-        //             console.log("naver api res", res);
-        //             return res.data;
-        //         })
-        //         .then(data => {
-        //             console.log("naver api", data);
-        //         });
-        //
-        //     return data;
-        // }
-        // geocoding();
     }
 
     render() {
