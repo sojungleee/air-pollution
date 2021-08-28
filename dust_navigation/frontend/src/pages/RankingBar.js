@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import * as functions from './functions';
 import axios from "axios";
 
 class RankingBar extends Component {
@@ -11,7 +12,6 @@ class RankingBar extends Component {
             lists: []
         }
     }
-
 
     componentDidMount() {
         fetch('http://localhost:3000/api/locations')
@@ -45,50 +45,9 @@ class RankingBar extends Component {
             })
         ));
 
-        function handleDustValue() {
-            console.log("handleDustValue 함수 실행");
-            // const value = this.state.list.pm10; // 값을 가져오기
-            const value = 10; // api 가져온 값으로 수정
-
-            // 미세먼지 기준 test
-            const result_pm10 = (
-                value >= 0 && value <= 15 ? "최고" :
-                value >= 16 && value <= 30 ? "좋음" :
-                value >= 31 && value <= 40 ? "양호" :
-                value >= 41 && value <= 50 ? "보통" :
-                value >= 51 && value <= 75 ? "나쁨" :
-                value >= 76 && value <= 100 ? "상당히 나쁨" :
-                value >= 101 && value <= 150 ? "매우 나쁨" :
-                value >= 151 ? "최악" : "null"
-            )
-            console.log(result_pm10);
-            return result_pm10;
-        };
-        const dustResult_value = handleDustValue();
-
-        function handleBarColor(value) {
-            // dustResult 수치 구한 것을 기반으로 색을 정한다
-            let color = "white"; // default color
-            console.log("the value is: ", value);
-
-            const result = (
-                value === "최고" ? color = "blue" :
-                value === "좋음" ? color = "lightblue" :
-                value === "양호" ? color = "lightgreen" :
-                value === "보통" ? color = "green" :
-                value === "나쁨" ? color = "yellow" :
-                value === "상당히 나쁨" ? color = "orange" :
-                value === "매우 나쁨" ? color = "red" :
-                value === "최악" ? color = "gray" : "null"
-            )
-            const style = { background: color };
-            return style;
-        };
-        const style = handleBarColor(dustResult_value);
-        console.log("bar style is: ",style);
-
+        // style 구할 때, dustresult 보여줄 때 getBarColor가 각각 두번씩 반복으로 호출되는데 한번에 싹 해결할 방법이 없을까..
         const dustList = lists.map((list) => (
-            <Bar style={style} key={list.geohash} id={list.geohash}>
+            <Bar style={functions.getBarColor(functions.getRating_pm10(list.airQualitySensor.pm10))} key={list.geohash} id={list.geohash}>
                 <LocationAlphabet>
                     <div>A</div>
                 </LocationAlphabet>
@@ -97,6 +56,7 @@ class RankingBar extends Component {
                     <div>
                         <h3>{list.geohash}</h3> {/* 주소 받아와야 함 */}
                         <DustList>
+
                             <li>미세먼지(PM<sub>10</sub>): {list.airQualitySensor.pm10}㎍/㎥</li>
                             <li>초미세먼지(PM<sub>2.5</sub>): {list.airQualitySensor.pm25}㎍/㎥</li>
                             <li>일산화탄소(CO): {list.airQualitySensor.co}ppm</li>
@@ -106,7 +66,8 @@ class RankingBar extends Component {
                 </DustInfo>
 
                 <DustResult>
-                    <div>{dustResult_value}</div>
+                    {/*대표 결과는 pm10*/}
+                    <div>{functions.getRating_pm10(list.airQualitySensor.pm10)}</div>
                 </DustResult>
             </Bar>
         ));
