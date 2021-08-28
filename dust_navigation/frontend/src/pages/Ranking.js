@@ -6,24 +6,26 @@ import RankingBar from './RankingBar';
 import Select from 'react-select';
 
 const options = [
-    { value: 'sensor_pm10', label: '미세먼지' },
-    { value: 'sensor_pm25', label: '초미세먼지' },
-    { value: 'sensor_co', label: '일산화탄소' },
-    { value: 'sensor_o3', label: '오존' },
+    { value: 'pm10', label: '미세먼지' },
+    { value: 'pm25', label: '초미세먼지' },
+    { value: 'co', label: '일산화탄소' },
 ];
 
 class Ranking extends Component {
     state = {
         selectedOption: null,
+        propsValue: 'pm10', // 초기값 미세먼지로
     };
 
     handleChange = selectedOption => {
-        this.setState({ selectedOption });
+        this.setState({ selectedOption, propsValue: selectedOption.value } );
         console.log('Option selected: ', selectedOption);
+        // console.log('state 상태', this.state);
     };
 
     render() {
-        const { selectedOption } = this.state;
+        const { selectedOption, propsValue } = this.state;
+        console.log('<<ranking.js propsValue>>: ',propsValue);
 
         return (
             <MainContainer>
@@ -35,11 +37,11 @@ class Ranking extends Component {
                             defaultvalue={options[0]}
                             onChange={this.handleChange}
                             options={options}
-                            placeholder={"대기 정보별"}
+                            placeholder={"대기 정보 정렬"}
                         />
                     </SubContatiner>
 
-                    <RankingBar/>
+                    <RankingBar value={propsValue}/>
                 </RankingContainer>
             </MainContainer>
         );
@@ -59,7 +61,7 @@ const MainContainer = styled.div`
 `;
 
 const SubContatiner = styled.div`
-    width: 150px;
+    width: 160px;
     height: 40px;
 
     @media screen and (max-width: 550px) {

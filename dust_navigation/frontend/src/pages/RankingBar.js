@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import * as functions from './functions';
-import axios from "axios";
 
 class RankingBar extends Component {
-    /* 생명주기순서 : constructor(생성자) -> componentWillMount -> render */
     constructor(props) {
+        console.log('(constructor) props', props);
         super(props);
-        // console.log('RankingBar로 넘어온 props:', props);
         this.state = {
-            lists: []
+            lists: [],
+            alphabet: 0
         }
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/api/locations')
+        console.log('!!! componentDidMount called. 처음 mount시 한번 불려옴');
+        console.log('(componentDidMount) props', this.props);
+        console.log('(componentDidMount) fetch called/ONLY ONCE');
+        fetch( `http://localhost:3000/api/airqualitysensors?item=${encodeURIComponent('pm10')}&sort=${encodeURIComponent('desc')}&geohash=${encodeURIComponent('uzfxzxv')}&precision=${encodeURIComponent('3')}`,
+            { method: "GET" })
             .then(res => res.json())
             .then(data =>
                 this.setState({
@@ -23,10 +26,27 @@ class RankingBar extends Component {
             );
     }
 
+    componentDidUpdate(prevProps) {
+        console.log('(componentDidUpdate) prevProps', prevProps);
+        if (prevProps.value !== this.props.value) {
+            console.log('(componentDidUpdate) prevProps changed/recall fetch with new props. which is: ', this.props.value);
+            fetch( `http://localhost:3000/api/airqualitysensors?item=${encodeURIComponent(this.props.value)}&sort=${encodeURIComponent('desc')}&geohash=${encodeURIComponent('uzfxzxv')}&precision=${encodeURIComponent('3')}`,
+                { method: "GET" })
+                .then(res => res.json())
+                .then(data =>
+                    this.setState({
+                        lists: data
+                    })
+                );
+        }
+    }
+
     render() {
         const { lists } = this.state;
-        console.log(lists);
+        console.log('(render) GET API lists', lists);
+        console.log('(render) props', this.props);
 
+        /* 주소 구하기 시도하던 것
         const addrs = [
             {lat: "37.604817", lon: "127.042378"},
             {lat: "37.604872", lon: "127.041785"},
@@ -34,20 +54,20 @@ class RankingBar extends Component {
         ];
 
         Promise.all(addrs.map(addr =>
-            fetch(`http://localhost:3000/api/locations/search?lat=${encodeURIComponent(addr.lat)}&lon=${encodeURIComponent(addr.lon)}`, {
-                method: "GET",
-            })
+            fetch(`http://localhost:3000/api/locations/search?lat=${encodeURIComponent(addr.lat)}&lon=${encodeURIComponent(addr.lon)}`,
+                { method: "GET", })
                 .then(data => data.text())
                 .then(text => {
-                    console.log('주소:', text);
+                    // console.log('주소:', text);
                 }).catch(function (error) {
-                console.log('failed',error)
-            })
-        ));
+                    console.log('failed',error)
+                })
+        ));*/
 
         // style 구할 때, dustresult 보여줄 때 getBarColor가 각각 두번씩 반복으로 호출되는데 한번에 싹 해결할 방법이 없을까..
         const dustList = lists.map((list) => (
-            <Bar style={functions.getBarColor(functions.getRating_pm10(list.airQualitySensor.pm10))} key={list.geohash} id={list.geohash}>
+            // 나중에 key & id 설정 수정하기
+            <Bar style={functions.getBarColor(functions.getRating_pm10(list.pm10))} key={list.geohash} id={list.geohash}>
                 <LocationAlphabet>
                     <div>A</div>
                 </LocationAlphabet>
@@ -57,9 +77,9 @@ class RankingBar extends Component {
                         <h3>{list.geohash}</h3> {/* 주소 받아와야 함 */}
                         <DustList>
 
-                            <li>미세먼지(PM<sub>10</sub>): {list.airQualitySensor.pm10}㎍/㎥</li>
-                            <li>초미세먼지(PM<sub>2.5</sub>): {list.airQualitySensor.pm25}㎍/㎥</li>
-                            <li>일산화탄소(CO): {list.airQualitySensor.co}ppm</li>
+                            <li>미세먼지(PM<sub>10</sub>): {list.pm10}㎍/㎥</li>
+                            <li>초미세먼지(PM<sub>2.5</sub>): {list.pm25}㎍/㎥</li>
+                            <li>일산화탄소(CO): {list.co}ppm</li>
                             {/*<li>오존: {list.ozone}</li>*/}
                         </DustList>
                     </div>
@@ -67,7 +87,7 @@ class RankingBar extends Component {
 
                 <DustResult>
                     {/*대표 결과는 pm10*/}
-                    <div>{functions.getRating_pm10(list.airQualitySensor.pm10)}</div>
+                    <div>{functions.getRating_pm10(list.pm10)}</div>
                 </DustResult>
             </Bar>
         ));
