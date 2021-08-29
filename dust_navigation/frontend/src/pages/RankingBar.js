@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import * as functions from './functions';
+import {getRating_pm10} from "./functions";
 
 class RankingBar extends Component {
     constructor(props) {
@@ -8,15 +9,14 @@ class RankingBar extends Component {
         super(props);
         this.state = {
             lists: [],
-            alphabet: 0
+            dustfunction: null
         }
     }
 
     componentDidMount() {
         console.log('!!! componentDidMount called. 처음 mount시 한번 불려옴');
-        console.log('(componentDidMount) props', this.props);
-        console.log('(componentDidMount) fetch called/ONLY ONCE');
-        fetch( `http://localhost:3000/api/airqualitysensors?item=${encodeURIComponent('pm10')}&sort=${encodeURIComponent('desc')}&geohash=${encodeURIComponent('uzfxzxv')}&precision=${encodeURIComponent('3')}`,
+        // console.log('(componentDidMount) props', this.props);
+        fetch( `http://localhost:3000/api/airqualitysensors?item=${encodeURIComponent('pm10')}&sort=${encodeURIComponent('asc')}&geohash=${encodeURIComponent('uzfxzxv')}&precision=${encodeURIComponent('3')}`,
             { method: "GET" })
             .then(res => res.json())
             .then(data =>
@@ -27,10 +27,10 @@ class RankingBar extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log('(componentDidUpdate) prevProps', prevProps);
+        // console.log('(componentDidUpdate) prevProps', prevProps);
         if (prevProps.value !== this.props.value) {
             console.log('(componentDidUpdate) prevProps changed/recall fetch with new props. which is: ', this.props.value);
-            fetch( `http://localhost:3000/api/airqualitysensors?item=${encodeURIComponent(this.props.value)}&sort=${encodeURIComponent('desc')}&geohash=${encodeURIComponent('uzfxzxv')}&precision=${encodeURIComponent('3')}`,
+            fetch( `http://localhost:3000/api/airqualitysensors?item=${encodeURIComponent(this.props.value)}&sort=${encodeURIComponent('asc')}&geohash=${encodeURIComponent('uzfxzxv')}&precision=${encodeURIComponent('3')}`,
                 { method: "GET" })
                 .then(res => res.json())
                 .then(data =>
@@ -38,13 +38,28 @@ class RankingBar extends Component {
                         lists: data
                     })
                 );
+
+            // 이런 느낌으로 다르게 불러야 하는데...
+            if (this.props.value === 'pm10') {
+                console.log('pm10 state change');
+                this.setState(prevState => {
+                    return {
+                        dustfunction: getRating_pm10(this.props.value)
+                    }
+                });
+            }
+            else if (this.props.value === 'pm25')
+                this.setState({dustfunction: functions.getRating_pm25(this.props.value)});
+            else if (this.props.value === 'co')
+                this.setState({dustfunction: functions.getRating_co(this.props.value)});
+            console.log('(componentDidUpdate) dustfunction have changed', this.state.dustfunction);
         }
     }
 
     render() {
-        const { lists } = this.state;
+        const { lists, dustfunction } = this.state;
         console.log('(render) GET API lists', lists);
-        console.log('(render) props', this.props);
+        // console.log('(render) props', this.props);
 
         /* 주소 구하기 시도하던 것
         const addrs = [
@@ -65,12 +80,12 @@ class RankingBar extends Component {
         ));*/
 
         // style 구할 때, dustresult 보여줄 때 getBarColor가 각각 두번씩 반복으로 호출되는데 한번에 싹 해결할 방법이 없을까..
-        const dustList = lists.map((list) => (
-            // 나중에 key & id 설정 수정하기
-            <Bar style={functions.getBarColor(functions.getRating_pm10(list.pm10))} key={list.geohash} id={list.geohash}>
-                <LocationAlphabet>
-                    <div>A</div>
-                </LocationAlphabet>
+        const dustList = lists.map((list, idx) => (
+            // list.this.props.value << 와 같은 구현을 어떻게 하지?
+            <Bar style={functions.getBarColor(functions.getRating_pm10(list.pm10))} key={idx}>
+                <RankingNum>
+                    <div>{idx + 1}</div>
+                </RankingNum>
 
                 <DustInfo>
                     <div>
@@ -109,7 +124,7 @@ const Bar = styled.div`
     }
 `;
 
-const LocationAlphabet = styled.div`
+const RankingNum = styled.div`
     text-align: center;
     display: inline-block;
     float: left;
@@ -151,16 +166,21 @@ const DustInfo = styled.div`
     text-align: left;
     display: inline-block;
     margin: auto;
+    margin-top: 10px;
     height: 14vh;
     width: 60%;
     font-size: 20px;
 
     & div {
-        margin: 0px 0px 0px 10px;
+        margin: 15px 0px 15px 10px;
     }
 
     @media screen and (max-width: 930px) {
         font-size: 15px;
+    }
+    
+    @media screen and (max-width: 700px) {
+        margin-top: 0px;
     }
 
     @media screen and (max-width: 550px) {
