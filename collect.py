@@ -1,6 +1,7 @@
 from pygeohash import geohash
 from pymysql import DATETIME
 import pm2008
+import mq7
 import gps
 import find_id
 import time
@@ -22,7 +23,7 @@ import lcd
 # 미세먼지센서, co 센서 
 def collect_air_quality(air_data: defaultdict):
     pm25, pm10 = pm2008.pm2008()
-    co = co.co()
+    co = mq7.mq7()
 
     air_data["pm25"] = pm25
     air_data["pm10"] = pm10
