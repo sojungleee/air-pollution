@@ -23,8 +23,8 @@ public class ReverseGeocoding {
         HttpStatus httpStatus = responseEntity.getStatusCode();
         int status = httpStatus.value();
         String response = responseEntity.getBody();
-        System.out.println("Response status: " + status);
-        System.out.println(response);
+        //System.out.println("Response status: " + status);
+        //System.out.println(response);
 
         return response;
     }
@@ -35,7 +35,7 @@ public class ReverseGeocoding {
         //"JSONObject[\"addressInfo\"] is not a JSONArray.",
 
         JSONObject addrJson = rjson.getJSONObject("addressInfo");
-        System.out.println("addrJson은: " + addrJson);
+        //System.out.println("addrJson은: " + addrJson);
         AddressDto addrDto = new AddressDto(addrJson);
 
         return addrDto;

@@ -11,7 +11,8 @@ class Dust_map extends React.Component {
         super(props);
         this.state = {
             list: [],
-            sensors: []
+            sensors: [],
+            temp: []
         }
     }
 
@@ -26,6 +27,12 @@ class Dust_map extends React.Component {
             .then(data => this.setState({
                 list: data,
                 sensors: data.airQualitySensor,
+            }));
+
+        fetch(`http://localhost:3000/api/locations/test`)
+            .then(res => res.json())
+            .then(data => this.setState({
+                temp: data
             }));
     }
 
@@ -54,9 +61,10 @@ class Dust_map extends React.Component {
     }
 
     render() {
-        const { list, sensors } = this.state;
+        const { list, sensors, temp } = this.state;
         // console.log(list);
         // console.log(sensors);
+        console.log(temp);
         
         const buttonStyle = {
             borderWidth: 0,
