@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../src/App.css';
 import Panel from "../../src/components/Sidebar/Panel";
-
-import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
 class Dust_map extends React.Component {
@@ -11,18 +9,23 @@ class Dust_map extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            list: [],
             sensors: []
         }
     }
 
-    componentWillMount() {
-        const geohash = this.state;
-        fetch('http://localhost:3000/api/locations')
+    componentDidMount() {
+        console.log('component did mounted');
+        const geo = this.getLocation();
+        const testgeo = 'wydmfyj';
+
+        fetch(`http://localhost:3000/api/locations/${encodeURIComponent(testgeo)}`)
             .then(res => res.json())
+            // .then(data => {console.log(data)});
             .then(data => this.setState({
-                sensors: data,
+                list: data,
+                sensors: data.airQualitySensor,
             }));
-        this.getLocation();
     }
 
     getLocation() {
@@ -34,7 +37,8 @@ class Dust_map extends React.Component {
                 lat = position.coords.latitude;
                 long = position.coords.longitude;
                 geohash = ngeohash.encode(lat,long).substring(0,7);
-                alert('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
+                // alert('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
+                console.log('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
             }, function(error) {
                 console.error(error);
             }, {
@@ -44,60 +48,59 @@ class Dust_map extends React.Component {
             });
         } else {
             alert('GPS를 지원하지 않습니다');
-            return;
+            return geohash;
         }
     }
 
     render() {
-        const { sensors } = this.state;
+        const { list, sensors } = this.state;
+        // console.log(list);
+        // console.log(sensors);
 
-        const Page = sensors.map((sensor) => (
-            <MainContainer key={sensor.geohash} id={sensor.geohash}>
-                    <Panel title="대기 정밀 지도"/>
-                    <MapContainer>
-                        <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
-                            ncpClientId={'f740jc2cw6'} // 자신의 네이버 계정에서 발급받은 Client ID
-                            error={<p>Maps Load Error</p>}
-                            loading={<p>Maps Loading...</p>}
+        return (
+            <MainContainer key={list.geohash} id={list.geohash}>
+                <Panel title="대기 정밀 지도"/>
+                <MapContainer>
+                    <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
+                        ncpClientId={'f740jc2cw6'} // 자신의 네이버 계정에서 발급받은 Client ID
+                        error={<p>Maps Load Error</p>}
+                        loading={<p>Maps Loading...</p>}
+                    >
+                        <NaverMap
+                            id="react-naver-maps-introduction"
+                            style={{ width: '100%', height: '100%' }}
+                            center={{ lat: 37.497175, lng: 127.027926 }}
                         >
-                            <NaverMap
-                                id="react-naver-maps-introduction"
-                                style={{ width: '100%', height: '100%' }}
-                                center={{ lat: 37.497175, lng: 127.027926 }}
-                            >
-                                <Marker
-                                    key={1}
-                                    position={{ lat: 37.551229, lng: 126.988205 }}
-                                    animation={2}
-                                    onClick={() => {alert('여기는 N서울타워입니다.');}}
-                                />
-                            </NaverMap>
-                        </RenderAfterNavermapsLoaded>
-                    </MapContainer>
+                            <Marker
+                                key={1}
+                                position={{ lat: 37.551229, lng: 126.988205 }}
+                                animation={2}
+                                onClick={() => {alert('여기는 N서울타워입니다.');}}
+                            />
+                        </NaverMap>
+                    </RenderAfterNavermapsLoaded>
+                </MapContainer>
 
-                    <DescriptionContainer>
-                        <div>
-                            <h1>의 현재 대기 상황</h1>
-                            <Description>
-                                <p>- 측정 주소&nbsp;:&nbsp;{sensor.geohash}</p>
-                                <p>- 측정 시각&nbsp;:&nbsp;{(sensor.receive_time||'').split('T')[0]}
-                                    &nbsp;{((sensor.receive_time||'').split('T')[1]||'').split('.')[0]}</p>
-                                <p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm10}㎍/㎥</p>
-                                <p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {sensor.airQualitySensor.pm25}㎍/㎥</p>
-                                <p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {sensor.airQualitySensor.co}ppm</p>
-                            </Description>
-                        </div>
-                    </DescriptionContainer>
-                </MainContainer>
-        ));
-
-        return <MainContainer>{Page}</MainContainer>;
+                <DescriptionContainer>
+                    <div>
+                        <h1>의 현재 대기 상황</h1>
+                        <Description>
+                            <p>- 측정 주소&nbsp;:&nbsp;{list.geohash}</p>
+                            <p>- 측정 시각&nbsp;:&nbsp;{(list.receive_time||'').split('T')[0]}
+                                &nbsp;{((list.receive_time||'').split('T')[1]||'').split('.')[0]}</p>
+                            <p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {sensors.pm10}㎍/㎥</p>
+                            <p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {sensors.pm25}㎍/㎥</p>
+                            <p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {sensors.co}ppm</p>
+                        </Description>
+                    </div>
+                </DescriptionContainer>
+            </MainContainer>
+        );
     }
 }
 
 /*SCSS*/
-// 참고!! 배경색상은 구분을 위해 아무렇게나 해둔 임시용입니다. 나중에 상의해서 바꿔요
-// 7/31 소정: 나중에 추가할 것 : 스크롤바
+
 
 // 구분 위한 임시 css
 const MainContainer = styled.div`

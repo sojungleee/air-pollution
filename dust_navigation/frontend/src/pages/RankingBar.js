@@ -9,7 +9,27 @@ class RankingBar extends Component {
         super(props);
         this.state = {
             lists: [],
-            dustfunction: null
+            dustfunction: null,
+            testArr: [
+                {
+                    "idx": 0,
+                    "city_do":"서울특별시",
+                    "gu_gun":"성북구",
+                    "roadName":"장월로1마길"
+                },
+                {
+                    "idx": 1,
+                    "city_do":"서울특별시",
+                    "gu_gun":"성북구",
+                    "roadName":"어쩌고1길"
+                },
+                {
+                    "idx": 2,
+                    "city_do":"서울특별시",
+                    "gu_gun":"성북구",
+                    "roadName":"저쩌고3길"
+                },
+            ]
         }
     }
 
@@ -40,24 +60,24 @@ class RankingBar extends Component {
                 );
 
             // 이런 느낌으로 다르게 불러야 하는데...
-            if (this.props.value === 'pm10') {
-                console.log('pm10 state change');
-                this.setState(prevState => {
-                    return {
-                        dustfunction: getRating_pm10(this.props.value)
-                    }
-                });
-            }
-            else if (this.props.value === 'pm25')
-                this.setState({dustfunction: functions.getRating_pm25(this.props.value)});
-            else if (this.props.value === 'co')
-                this.setState({dustfunction: functions.getRating_co(this.props.value)});
-            console.log('(componentDidUpdate) dustfunction have changed', this.state.dustfunction);
+            // if (this.props.value === 'pm10') {
+            //     console.log('pm10 state change');
+            //     this.setState(prevState => {
+            //         return {
+            //             dustfunction: getRating_pm10(this.props.value)
+            //         }
+            //     });
+            // }
+            // else if (this.props.value === 'pm25')
+            //     this.setState({dustfunction: functions.getRating_pm25(this.props.value)});
+            // else if (this.props.value === 'co')
+            //     this.setState({dustfunction: functions.getRating_co(this.props.value)});
+            // console.log('(componentDidUpdate) dustfunction have changed', this.state.dustfunction);
         }
     }
 
     render() {
-        const { lists, dustfunction } = this.state;
+        const { lists, dustfunction, testArr } = this.state;
         console.log('(render) GET API lists', lists);
         // console.log('(render) props', this.props);
 
@@ -83,6 +103,7 @@ class RankingBar extends Component {
         const dustList = lists.map((list, idx) => (
             // list.this.props.value << 와 같은 구현을 어떻게 하지?
             <Bar style={functions.getBarColor(functions.getRating_pm10(list.pm10))} key={idx}>
+
                 <RankingNum>
                     <div>{idx + 1}</div>
                 </RankingNum>
@@ -90,6 +111,9 @@ class RankingBar extends Component {
                 <DustInfo>
                     <div>
                         <h3>{list.geohash}</h3> {/* 주소 받아와야 함 */}
+                        {/*{testArr.map((arr, id) =>*/}
+                        {/*    <h3>{arr.city_do}</h3>)*/}
+                        {/*}*/}
                         <DustList>
 
                             <li>미세먼지(PM<sub>10</sub>): {list.pm10}㎍/㎥</li>
