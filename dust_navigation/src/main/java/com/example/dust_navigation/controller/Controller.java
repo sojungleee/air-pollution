@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -17,11 +18,24 @@ import java.util.List;
 public class Controller {
     private final AirQualitySensorRepository airQualitySensorRepository;
     private final LocationRepository locationRepository;
+    private final LocationService locationService;
 
     // read
     @GetMapping("/api/locations")
     public List<Location> getLocation() {
         return locationRepository.findAll();
+    }
+
+    @GetMapping("/api/locations/test")
+    public HashMap<String, Location> test() { //리턴 타입을 HashMap<String, Location>으로 하고 String에 도로명 주소를 넣는다면?
+        List<HashMap<String, Location>> resultList = new ArrayList<>(locationService.update());
+        /*
+        HashMap<String, Location> i = resultList.get(0);
+        for (Map.Entry<String, Location> entrySet : i.entrySet()) {
+            System.out.println(entrySet.getKey() + " : " + entrySet.getValue().getGeohash());
+        }*/
+
+        return resultList.get(0);
     }
 
     @GetMapping("/api/locations/{geohash}")
