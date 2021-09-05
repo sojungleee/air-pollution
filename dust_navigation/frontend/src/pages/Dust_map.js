@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import '../../src/App.css';
 import Panel from "../../src/components/Sidebar/Panel";
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
+import { IoReloadCircleOutline } from 'react-icons/io5';
 
 class Dust_map extends React.Component {
 
@@ -56,6 +57,13 @@ class Dust_map extends React.Component {
         const { list, sensors } = this.state;
         // console.log(list);
         // console.log(sensors);
+        
+        const buttonStyle = {
+            borderWidth: 0,
+            alignItems:'center',
+            justifyContent:'center',
+            backgroundColor:'#fff',
+        }
 
         return (
             <MainContainer key={list.geohash} id={list.geohash}>
@@ -77,7 +85,9 @@ class Dust_map extends React.Component {
                                 animation={2}
                                 onClick={() => {alert('여기는 N서울타워입니다.');}}
                             />
+
                         </NaverMap>
+
                     </RenderAfterNavermapsLoaded>
                 </MapContainer>
 
@@ -93,6 +103,9 @@ class Dust_map extends React.Component {
                             <p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {sensors.co}ppm</p>
                         </Description>
                     </div>
+                    <Reload>
+                        <button style={buttonStyle} onClick={this.getLocation}><IoReloadCircleOutline size='60'/></button>
+                    </Reload>
                 </DescriptionContainer>
             </MainContainer>
         );
@@ -106,7 +119,6 @@ class Dust_map extends React.Component {
 const MainContainer = styled.div`
     width: 100vw;
     height: 100vh;
-    background-color: #fef5d4;
     font-family: "nanum";
 
     @media screen and (max-width: 500px) {
@@ -114,9 +126,8 @@ const MainContainer = styled.div`
     }
 `;
 
-// float width % 말고 position으로 위치 정렬로 수정해 보기
 const MapContainer = styled.div`
-    background-color: lightgray; 
+    // background-color: lightgray; 
     width: 70%;
     height: 92vh;
     float: left;
@@ -129,7 +140,6 @@ const MapContainer = styled.div`
 `;
 
 const DescriptionContainer = styled.div`
-    background-color: lightblue;
     width: 30%;
     height: 92vh;
     float: right;
@@ -139,6 +149,13 @@ const DescriptionContainer = styled.div`
         float: none;
         width: 100%;
     }
+`;
+
+const Reload = styled.div`
+    // background-color: lightblue;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
 `;
 
 const Description = styled.div`

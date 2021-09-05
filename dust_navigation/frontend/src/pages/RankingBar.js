@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import * as functions from './functions';
-import {getRating_pm10} from "./functions";
 
 class RankingBar extends Component {
     constructor(props) {
