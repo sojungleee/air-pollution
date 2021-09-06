@@ -27,20 +27,19 @@ public class Controller {
     }
 
     @GetMapping("/api/locations/test")
-    public HashMap<String, Location> test() { //리턴 타입을 HashMap<String, Location>으로 하고 String에 도로명 주소를 넣는다면?
-        List<HashMap<String, Location>> resultList = new ArrayList<>(locationService.update());
-        /*
-        HashMap<String, Location> i = resultList.get(0);
-        for (Map.Entry<String, Location> entrySet : i.entrySet()) {
-            System.out.println(entrySet.getKey() + " : " + entrySet.getValue().getGeohash());
-        }*/
-
+    public HashMap<String, Location> searchLocation() { //리턴 타입을 HashMap<String, Location>으로 하고 String에 도로명 주소
+        List<HashMap<String, Location>> resultList = new ArrayList<>(locationService.getLoadAddr());
         return resultList.get(0);
     }
 
     @GetMapping("/api/locations/{geohash}")
     public Location getLocationByGeohash(@PathVariable String geohash) {
         return locationRepository.findById(geohash).orElse(null);
+    }
+
+    @GetMapping("/api/locations/test/{geohash}")
+    public HashMap<String, Location> searchLocationByGeohash(@PathVariable String geohash) {
+        return locationService.search(geohash);
     }
 
     @GetMapping("/api/airqualitysensorsall")
