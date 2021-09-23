@@ -19,6 +19,9 @@ public class AirQualitySensor {
     private String device_id;
 
     @Column(nullable = false)
+    private float ozone;
+
+    @Column(nullable = false)
     private float co;
 
     @Column(nullable = false)
@@ -27,9 +30,10 @@ public class AirQualitySensor {
     @Column(nullable = false)
     private float pm25;
 
-    public AirQualitySensor(String geohash,String device_id, float co, float pm10, float pm25) {
+    public AirQualitySensor(String geohash,String device_id,float ozone, float co, float pm10, float pm25) {
         this.geohash = geohash;
         this.device_id =device_id;
+        this.ozone = ozone;
         this.co = co;
         this.pm10 = pm10;
         this.pm25 =pm25;
