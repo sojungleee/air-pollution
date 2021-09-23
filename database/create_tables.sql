@@ -15,6 +15,7 @@ CREATE TABLE air_quality_sensor (
     geohash char(7) ,
     receive_time TIMESTAMP,
     device_id char(8),
+    ozone DECIMAL(5,3),
     co DECIMAL(4,2),
     pm10 INT,
     pm25 INT,

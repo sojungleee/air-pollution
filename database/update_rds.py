@@ -1,13 +1,13 @@
 import pymysql
 
-def update_rds_air_quality(geohash: str, device_id:str, co: float, pm2_5: int, pm10: int):
+def update_rds_air_quality(geohash: str, device_id:str, ozone:float, co: float, pm2_5: int, pm10: int):
     #connect to database
     db = pymysql.connect(host='hanium.c1hdrrzsdvm2.ap-northeast-2.rds.amazonaws.com',user= 'admin',password='raspberry',db='raspdb',charset='utf8')
     cur = db.cursor()
 
     #insert
-    sql = "UPDATE air_quality_sensor SET device_id=%s, co=%s, pm25=%s, pm10=%s WHERE geohash=%s"
-    val = (device_id, co, pm2_5, pm10, geohash)
+    sql = "UPDATE air_quality_sensor SET device_id=%s, ozone = %s, co=%s, pm25=%s, pm10=%s WHERE geohash=%s"
+    val = (device_id, ozone, co, pm2_5, pm10, geohash)
     cur.execute(sql,val)
 
     db.commit()

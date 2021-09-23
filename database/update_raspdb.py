@@ -1,13 +1,13 @@
 import pymysql
 
-def update_raspdb_air_quality(id: str, co: float, pm2_5: int, pm10: int, air_index: int):
+def update_raspdb_air_quality(id: str, ozone: float, co: float, pm2_5: int, pm10: int, air_index: int):
     #connect to database
     db = pymysql.connect(host='localhost',user= 'root',password='raspberry',db='raspdb',charset='utf8')
     cur = db.cursor()
 
     #insert
-    sql = "UPDATE air_quality_sensor SET co=%s, pm25=%s, pm10=%s, air_index=%s WHERE device_id=%s"
-    val = (co, pm2_5, pm10,air_index,id)
+    sql = "UPDATE air_quality_sensor SET ozone=%s, co=%s, pm25=%s, pm10=%s, air_index=%s WHERE device_id=%s"
+    val = (ozone, co, pm2_5, pm10,air_index,id)
     cur.execute(sql,val)
 
     db.commit()

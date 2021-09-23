@@ -7,7 +7,7 @@ def get_avg():
     cur = db.cursor()
 
     # insert
-    sql = "SELECT geohash, MAX(receive_time), AVG(co), AVG(pm10), AVG(pm25) FROM air_quality_sensor GROUP BY (geohash)"
+    sql = "SELECT geohash, MAX(receive_time), AVG(ozone), AVG(co), AVG(pm10), AVG(pm25) FROM air_quality_sensor GROUP BY (geohash)"
     cur.execute(sql)
     row = cur.fetchall()
 

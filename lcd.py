@@ -12,6 +12,7 @@ def print_sensor_data(data: dict):
     air_data["pm10"] = data["pm10"]
     air_data["pm2.5"] = data["pm25"]
     air_data["co"] = data["co"]
+    air_data["ozone"] = data["ozone"]
     print(air_data)
     try:
         

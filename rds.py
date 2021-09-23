@@ -42,17 +42,17 @@ def rds_air_quality_sensor():
     db = pymysql.connect(host='localhost',user= 'root',password='raspberry',db='raspdb',charset='utf8')
     cur = db.cursor()
 
-    sql = "SELECT geohash,device_id, AVG(co), AVG(pm10), AVG(pm25) FROM air_quality_sensor GROUP BY (geohash)"
+    sql = "SELECT geohash,device_id, AVG(ozone), AVG(co), AVG(pm10), AVG(pm25) FROM air_quality_sensor GROUP BY (geohash)"
     cur.execute(sql)
     row = cur.fetchall()
     for r in row:
         # 1이면 중복 geohash  존재(기본키는 중복될 수 없다함) 
         if (check_rds_tables.check_air_quality(r[0]) == 1): 
             # geohash가 이미 내부DB 테이블에 있으면 그 데이터를 update 
-            update_rds.update_rds_air_quality(r[0],r[1], r[2], r[3],r[4])
+            update_rds.update_rds_air_quality(r[0],r[1], r[2], r[3],r[4],r[5])
         else:
             # geohash가 테이블에 없으면 insert
-            insert_rds.insert_rds_air_quality(r[0],r[1], r[2], r[3],r[4])
+            insert_rds.insert_rds_air_quality(r[0],r[1], r[2], r[3],r[4],r[5])
 
 if __name__ == "__main__":
     rds_device()
