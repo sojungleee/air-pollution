@@ -1,6 +1,6 @@
 from pygeohash import geohash
 from pymysql import DATETIME
-import ozone
+import ozone as mq131
 import pm2008
 import mq7
 import gps
@@ -23,7 +23,7 @@ import lcd
 
 # 미세먼지센서, co 센서, ozone 센서
 def collect_air_quality(air_data: defaultdict):
-    ozone = ozone.ozone()
+    ozone = mq131.ozone()
     pm25, pm10 = pm2008.pm2008()
     co = mq7.mq7()
     
