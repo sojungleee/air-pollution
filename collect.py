@@ -1,5 +1,6 @@
 from pygeohash import geohash
 from pymysql import DATETIME
+import ozone
 import pm2008
 import mq7
 import gps
@@ -20,11 +21,13 @@ import lcd
 # 딕셔너리에 저장된 센서값들을 라즈베리파이 내부 DB의 테이블로 각자 삽입 
 # collect.py를 10초에 한번씩 실행 -> 리눅스 crontab 스케줄러 이용 
 
-# 미세먼지센서, co 센서 
+# 미세먼지센서, co 센서, ozone 센서
 def collect_air_quality(air_data: defaultdict):
+    ozone = ozone.ozone()
     pm25, pm10 = pm2008.pm2008()
     co = mq7.mq7()
-
+    
+    air_data["ozone"] = ozone
     air_data["pm25"] = pm25
     air_data["pm10"] = pm10
     air_data['co'] = co
@@ -84,6 +87,6 @@ if __name__ == "__main__":
 
     #------------------------- air_quality_sensor 테이블 -------------------------#  
     # 라즈베리파이 내부 DB에 삽입 
-    insert_raspdb.insert_raspdb_air_quality(gps_data["geohash"], device_id,air_data["co"], air_data["pm10"],air_data["pm25"],timestamp)
+    insert_raspdb.insert_raspdb_air_quality(gps_data["geohash"], device_id,air_data["ozone"],air_data["co"], air_data["pm10"],air_data["pm25"],timestamp)
     
 
