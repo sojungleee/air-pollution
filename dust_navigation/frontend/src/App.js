@@ -7,7 +7,8 @@ import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 // import js files
 import Dust_map from './pages/Dust_map';
 import Ranking from './pages/Ranking';
-import Navigation from './pages/Navigation';
+//import Navigation from './pages/Navigation';
+import Distribution from './pages/Distribution'
 import { CgSidebar } from 'react-icons/cg';
 
 class App extends React.Component {
@@ -21,7 +22,8 @@ class App extends React.Component {
             <div className="App"> 
                 <Route path="/" exact={true} component={Dust_map}/>
                 <Route path="/ranking" component={Ranking}/>
-                <Route path="/navigation" component={Navigation}/>  
+                {/*<Route path="/navigation" component={Navigation}/>*/}
+                <Route path="/distribute" component={Distribution}/>
             </div>
         );
     }

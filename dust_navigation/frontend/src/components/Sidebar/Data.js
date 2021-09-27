@@ -17,7 +17,7 @@ export const Data = [
     path: "/ranking",
   },
   {
-    title: "클린 내비게이션",
-    path: "/navigation",
+    title: "API 조회",
+    path: "/distribute",
   }
 ];
