@@ -8,10 +8,13 @@ const Distribution = () => {
     };
     return (
     <div>
+        <h1>Dust Navigation Open API</h1>
+        <br />
         <div>
-            <button onClick={ onClick }>불러오기</button>
+            <button onClick={ onClick }>모든 지역 대기 정보 API 불러오기</button>
         </div>
-        {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} readOnly={true}/>}
+        <br />
+        {data && <textarea rows={20} cols={60} value={JSON.stringify(data, null, 5)} readOnly={true}/>}
     </div>
     );
 };
