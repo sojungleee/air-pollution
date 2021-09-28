@@ -51,3 +51,9 @@
 ```html
 Feat: 추가 get data api 함수 - [이슈키워드] #이슈번호
 ```
+
+## 확장 프로그램
+- 자체 제작 API에 도메인을 부여하지 않아 생기는 오류 해결을 위한 크롬 확장 프로그램 설치 권장. 
+(Error Message : No 'Access-Control-Allow-Origin' header is present on the requested resource.)
+- [🔗](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf)
+- 설치 후 해당 프로그램을 on하고 프로젝트를 실행하면 에러가 해결됩니다.

@@ -9,6 +9,19 @@ const Distribution = () => {
     return (
     <div>
         <h1>Dust Navigation Open API</h1>
+        <p>
+            - geohash : geohash값<br />
+            - latitude : 위도<br />
+            - longitude : 경도<br />
+            - receive_time : 응답 시간 (마지막 측정 시간)<br />
+            - airQualitySensor : 대기정보<br />
+            &nbsp;- geohash : geohash값<br />
+                - device_id : 라즈베리파이 device id<br />
+                - co : 일산화탄소 측정값<br />
+                - pm10 : 미세먼지 측정값<br />
+                - pm25 : 초미세먼지 측정값<br />
+                // 여기 수정할거임
+        </p>
         <br />
         <div>
             <button onClick={ onClick }>모든 지역 대기 정보 API 불러오기</button>
