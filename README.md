@@ -57,3 +57,4 @@ Feat: 추가 get data api 함수 - [이슈키워드] #이슈번호
 (Error Message : No 'Access-Control-Allow-Origin' header is present on the requested resource.)
 - [🔗](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf)
 - 설치 후 해당 프로그램을 on하고 프로젝트를 실행하면 에러가 해결됩니다.
+- Distrubution.js 의 코드를 수정하여 굳이 설치하지 않아도 됩니다. (죄송)

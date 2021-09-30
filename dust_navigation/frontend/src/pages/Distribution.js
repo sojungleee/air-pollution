@@ -4,7 +4,7 @@ import axios from 'axios';
 const Distribution = () => {
     const [data, setData ] = useState(null);
     const onClick = () => {
-        axios.get('http://localhost:8080/api/locations').then(response => { setData(response.data)});
+        axios.get('http://localhost:3000/api/locations').then(response => { setData(response.data)});
     };
     return (
     <div>
