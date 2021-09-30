@@ -11,8 +11,6 @@ class Dust_map extends React.Component {
         super(props);
         this.state = {
             list: [],
-            sensors: [],
-            temp: []
         }
     }
 
@@ -21,18 +19,11 @@ class Dust_map extends React.Component {
         const geo = this.getLocation();
         const testgeo = 'wydmfyj';
 
-        fetch(`http://localhost:3000/api/locations/${encodeURIComponent(testgeo)}`)
+        fetch(`http://localhost:3000/api/locations/test/${encodeURIComponent(testgeo)}`)
             .then(res => res.json())
             // .then(data => {console.log(data)});
             .then(data => this.setState({
                 list: data,
-                sensors: data.airQualitySensor,
-            }));
-
-        fetch(`http://localhost:3000/api/locations/test`)
-            .then(res => res.json())
-            .then(data => this.setState({
-                temp: data
             }));
     }
 
@@ -61,11 +52,28 @@ class Dust_map extends React.Component {
     }
 
     render() {
-        const { list, sensors, temp } = this.state;
-        // console.log(list);
-        // console.log(sensors);
+        const { list } = this.state;
+        console.log(list);
+        const temp = Object.entries(list);
         console.log(temp);
-        
+
+        const graphs = [
+            {
+                graph: {
+                    name: "Praveen Kumar",
+                    age: 27,
+                    space: "YouTube"
+                }
+            },
+        ];
+        console.log(graphs);
+        console.log(graphs.map(item => {
+            return `${item.graph.name}`
+        }));
+
+
+
+
         const buttonStyle = {
             borderWidth: 0,
             alignItems:'center',
@@ -75,7 +83,7 @@ class Dust_map extends React.Component {
 
         return (
             <MainContainer key={list.geohash} id={list.geohash}>
-                <Panel title="대기 정밀 지도"/>
+                <Panel title="정밀 대기 지도"/>
                 <MapContainer>
                     <RenderAfterNavermapsLoaded	   // Render후 Navermap로드
                         ncpClientId={'f740jc2cw6'} // 자신의 네이버 계정에서 발급받은 Client ID
@@ -101,14 +109,14 @@ class Dust_map extends React.Component {
 
                 <DescriptionContainer>
                     <div>
-                        <h1>의 현재 대기 상황</h1>
+                        <h1>현재 대기 상황</h1>
                         <Description>
-                            <p>- 측정 주소&nbsp;:&nbsp;{list.geohash}</p>
+                            <p>- 측정 주소&nbsp;:&nbsp;{Object.keys(list)}</p>
                             <p>- 측정 시각&nbsp;:&nbsp;{(list.receive_time||'').split('T')[0]}
                                 &nbsp;{((list.receive_time||'').split('T')[1]||'').split('.')[0]}</p>
-                            <p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {sensors.pm10}㎍/㎥</p>
-                            <p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {sensors.pm25}㎍/㎥</p>
-                            <p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {sensors.co}ppm</p>
+                            {/*<p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {sensors.pm10}㎍/㎥</p>*/}
+                            {/*<p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {sensors.pm25}㎍/㎥</p>*/}
+                            {/*<p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {sensors.co}ppm</p>*/}
                         </Description>
                     </div>
                     <Reload>
@@ -121,9 +129,6 @@ class Dust_map extends React.Component {
 }
 
 /*SCSS*/
-
-
-// 구분 위한 임시 css
 const MainContainer = styled.div`
     width: 100vw;
     height: 100vh;
