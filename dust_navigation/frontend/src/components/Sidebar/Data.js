@@ -13,8 +13,12 @@ export const Data = [
     // iconOpened: <RiIcons.RiArrowUpSFill />,
   },
   {
-    title: "랭킹 페이지",
+    title: "랭킹 정보",
     path: "/ranking",
+  },
+  {
+    title: "통계 정보",
+    path: "/statistics",
   },
   {
     title: "API 조회",

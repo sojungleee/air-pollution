@@ -54,7 +54,7 @@ class Ranking extends Component {
 
         return (
             <MainContainer>
-                <Panel title="랭킹 페이지"/>
+                <Panel title="랭킹 정보"/>
                 <TopContainer>
                     <DropdownContainer>
                         <Select
