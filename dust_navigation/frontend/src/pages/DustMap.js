@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../src/App.css';
-import Panel from "../../src/components/Sidebar/Panel";
+import Panel from "../components/Sidebar/Panel";
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 import { IoReloadCircleOutline } from 'react-icons/io5';
 
-class Dust_map extends React.Component {
+class Dust_map extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            list: [],
+            list: []
         }
     }
 

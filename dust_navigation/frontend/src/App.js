@@ -1,34 +1,40 @@
+//import React, { Component } from 'react';
 import React from 'react';
 import './App.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import axios from 'axios';
-import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 
 // import js files
-import Dust_map from './pages/Dust_map';
+import Dust_map from './pages/DustMap';
 import Ranking from './pages/Ranking';
 import Statistics from './pages/Statistics';
-//import Navigation from './pages/Navigation';
 import Distribution from './pages/Distribution'
-import { CgSidebar } from 'react-icons/cg';
 
-class App extends React.Component {
+// class App extends Component {
+//     constructor(props) {
+//         super(props);
+//     }
 
-    constructor(props) {
-        super(props);
-    }
+//     render() {
+//         return (
+//             <div className="App"> 
+//                 <Route path="/" exact={true} component={Dust_map}/>
+//                 <Route path="/ranking" component={Ranking}/>
+//                 <Route path="/distribute" component={Distribution}/>
+//                 <Route path="/statistics" component={Statistics}/>
+//             </div>
+//         );
+//     }
+// }
 
-    render() {
-        return (
-            <div className="App"> 
-                <Route path="/" exact={true} component={Dust_map}/>
-                <Route path="/ranking" component={Ranking}/>
-                {/*<Route path="/navigation" component={Navigation}/>*/}
-                <Route path="/distribute" component={Distribution}/>
-                <Route path="/statistics" component={Statistics}/>
-            </div>
-        );
-    }
-}
+const App = () => {
+    return (
+        <div className="App"> 
+            <Route path="/" exact={true} component={Dust_map}/>
+            <Route path="/ranking" component={Ranking}/>
+            <Route path="/statistics" component={Statistics}/>
+            <Route path="/distribute" component={Distribution}/>
+        </div>
+    );
+};
 
 export default App;
