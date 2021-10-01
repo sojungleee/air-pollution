@@ -4,7 +4,7 @@ import './App.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 // import js files
-import Dust_map from './pages/DustMap';
+import DustMap from './pages/DustMap';
 import Ranking from './pages/Ranking';
 import Statistics from './pages/Statistics';
 import Distribution from './pages/Distribution'
@@ -29,7 +29,7 @@ import Distribution from './pages/Distribution'
 const App = () => {
     return (
         <div className="App"> 
-            <Route path="/" exact={true} component={Dust_map}/>
+            <Route path="/" exact={true} component={DustMap}/>
             <Route path="/ranking" component={Ranking}/>
             <Route path="/statistics" component={Statistics}/>
             <Route path="/distribute" component={Distribution}/>

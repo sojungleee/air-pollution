@@ -5,13 +5,13 @@ import Panel from "../components/Sidebar/Panel";
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 import { IoReloadCircleOutline } from 'react-icons/io5';
 
-class Dust_map extends Component {
+class DustMap extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             list: []
-        }
+        };
     }
 
     componentDidMount() {
@@ -184,4 +184,4 @@ const Description = styled.div`
     }
 `;
 
-export default Dust_map;
+export default DustMap;
