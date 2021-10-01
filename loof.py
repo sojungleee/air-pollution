@@ -2,7 +2,7 @@ import pymysql
 import time
 
 while(True):
-    sleep(5000)
+    time.sleep(5000)
 # connect to database
     db = pymysql.connect(host='localhost',      user='root', password='raspberry', 
     db = 'raspdb', charset='utf8')
