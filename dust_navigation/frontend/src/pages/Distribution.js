@@ -11,8 +11,8 @@ const Distribution = () => {
         <>
             <Panel title="API 조회"/>
             <h1>Dust Navigation Open API</h1>
-            <div>
-                <p align="left" style={{marginLeft: 33+ 'em'}}>
+            <div style={{display:'inline-block'}}>
+                <p align="left">
                 - geohash : geohash값<br />
                 - latitude : 위도<br />
                 - longitude : 경도<br />
@@ -20,6 +20,7 @@ const Distribution = () => {
                 - airQualitySensor : 대기정보<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- geohash : geohash값<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- device_id : 라즈베리파이 device id<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ozone : 오존 측정값<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- co : 일산화탄소 측정값<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- pm10 : 미세먼지 측정값<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- pm25 : 초미세먼지 측정값<br />

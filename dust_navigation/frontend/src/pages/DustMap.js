@@ -71,9 +71,6 @@ class DustMap extends Component {
             return `${item.graph.name}`
         }));
 
-
-
-
         const buttonStyle = {
             borderWidth: 0,
             alignItems:'center',

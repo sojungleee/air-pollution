@@ -35,6 +35,7 @@ GET /api/locations
 - airQualitySensor : 대기정보
     - geohash : geohash값
     - device_id : 라즈베리파이 device id
+    - ozone : 오존 측정값
     - co : 일산화탄소 측정값
     - pm10 : 미세먼지 측정값
     - pm25 : 초미세먼지 측정값
@@ -103,6 +104,7 @@ GET /api/locations/{geohash}
 - airQualitySensor : 대기정보
     - geohash : geohash값
     - device_id : 라즈베리파이 device id
+    - ozone : 오존 측정값
     - co : 일산화탄소 측정값
     - pm10 : 미세먼지 측정값
     - pm25 : 초미세먼지 측정값
@@ -143,6 +145,7 @@ GET /api/airqualitysensorsall
 - airQualitySensor : 대기정보
     - geohash : geohash값
     - device_id : 라즈베리파이 device id
+    - ozone : 오존 측정값
     - co : 일산화탄소 측정값
     - pm10 : 미세먼지 측정값
     - pm25 : 초미세먼지 측정값
@@ -208,6 +211,7 @@ GET /api/airqualitysensors?
 - airQualitySensor : 대기정보
     - geohash : geohash값
     - device_id : 라즈베리파이 device id
+    - ozone : 오존 측정값
     - co : 일산화탄소 측정값
     - pm10 : 미세먼지 측정값
     - pm25 : 초미세먼지 측정값
