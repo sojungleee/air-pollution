@@ -47,29 +47,23 @@ def getGps():
     if (GPGGA_data_available>0):
         GPGGA_buffer = received_data.split("$GPGGA,",1)[1]  #store data coming after "$GPGGA," string 
         NMEA_buff = (GPGGA_buffer.split(','))               #store comma separated data in buffer
-        print("NEMA_buff",NMEA_buff)
+      
+        '''
         nmea_time = []  
         nmea_latitude = []
         nmea_longitude = []
         nmea_time = NMEA_buff[0]                    #extract time from GPGGA string
         nmea_latitude = NMEA_buff[1]                #extract latitude from GPGGA string
         nmea_longitude = NMEA_buff[3]               #extract longitude from GPGGA string
-    
-        print("NMEA Time: ", nmea_time,'\n')
-        print ("NMEA Latitude:", nmea_latitude,"NMEA Longitude:", nmea_longitude,'\n')
-        #GPS_Info()                                          #get time, latitude, longitude
-        #print("latitude in degrees:", lat_in_degrees," longitude in degree: ", long_in_degrees, '\n')
+        '''
+   
+        GPS_Info()                                          #get time, latitude, longitude
+        print("latitude in degrees:", lat_in_degrees," longitude in degree: ", long_in_degrees, '\n')
         
         
-        #return (lat_in_degrees,long_in_degrees)
+        return (lat_in_degrees,long_in_degrees)
 
-if __name__=="__main__":
-    #'''
-    try:
-        while True:
-            getGps()
-    except KeyboardInterrupt:
-        webbrowser.open(map_link)
+getGps()
     #'''    
             #map_link = 'http://maps.google.com/?q=' + lat_in_degrees + ',' + long_in_degrees    #create link to plot location on Google map
             #print("<<<<<<<<press ctrl+c to plot location on google maps>>>>>>\n")               #press ctrl+c to plot on map and exit 
