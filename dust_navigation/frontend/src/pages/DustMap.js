@@ -17,7 +17,7 @@ class DustMap extends Component {
     componentDidMount() {
         console.log('component did mounted');
         const geo = this.getLocation();
-        const testgeo = 'wydmfyj';
+        const testgeo = 'uzfxzxv';
 
         fetch(`http://localhost:3000/api/locations/test/${encodeURIComponent(testgeo)}`)
             .then(res => res.json())
@@ -53,10 +53,38 @@ class DustMap extends Component {
 
     render() {
         const { list } = this.state;
-        console.log(list);
-        const temp = Object.entries(list);
-        console.log(temp);
+        const keys = Object.keys(list);
+        console.log("key: " + keys);
+        const valueString = JSON.stringify(Object.values(list));
 
+        const splitedString = valueString.split(",");
+
+        function regExp(str){
+            var reg = /[\{\}\[\]\'\"]/gi
+            //특수문자 검증
+            if(reg.test(str)){ //특수문자 제거후 리턴
+                return str.replace(reg, "");
+            } else { //특수문자가 없으므로 본래 문자 리턴
+                return str;
+            }
+        }
+
+        for(let i in splitedString) {
+            splitedString[i] = regExp(splitedString[i]);
+            console.log(splitedString[i]);
+        }
+
+        let geoHash = (splitedString[0]||'').split(":")[1];
+        let lat = (splitedString[1]||'').split(":")[1];
+        let lon = (splitedString[2]||'').split(":")[1];
+        let time = (splitedString[3]||'').substring(13);
+        let device_id = (splitedString[5]||'').split(":")[1];
+        let ozone = (splitedString[6]||'').split(":")[1];
+        let co = (splitedString[7]||'').split(":")[1];
+        let pm10 = (splitedString[8]||'').split(":")[1];
+        let pm25 = (splitedString[9]||'').split(":")[1];
+
+        /*
         const graphs = [
             {
                 graph: {
@@ -69,7 +97,7 @@ class DustMap extends Component {
         console.log(graphs);
         console.log(graphs.map(item => {
             return `${item.graph.name}`
-        }));
+        }));*/
 
         const buttonStyle = {
             borderWidth: 0,
@@ -109,11 +137,12 @@ class DustMap extends Component {
                         <h1>현재 대기 상황</h1>
                         <Description>
                             <p>- 측정 주소&nbsp;:&nbsp;{Object.keys(list)}</p>
-                            <p>- 측정 시각&nbsp;:&nbsp;{(list.receive_time||'').split('T')[0]}
-                                &nbsp;{((list.receive_time||'').split('T')[1]||'').split('.')[0]}</p>
-                            {/*<p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {sensors.pm10}㎍/㎥</p>*/}
-                            {/*<p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {sensors.pm25}㎍/㎥</p>*/}
-                            {/*<p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {sensors.co}ppm</p>*/}
+                            <p>- 측정 시각&nbsp;:&nbsp;{(time||'').split('T')[0]}
+                                &nbsp;{((time||'').split('T')[1]||'').split('.')[0]}</p>
+                            {<p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {pm10}㎍/㎥</p>}
+                            {<p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {pm25}㎍/㎥</p>}
+                            {<p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {co}ppm</p>}
+                            {<p>- 오존(CO3) 농도&nbsp;:&nbsp; {ozone}ppm</p>}
                         </Description>
                     </div>
                     <Reload>
