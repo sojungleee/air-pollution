@@ -8,7 +8,7 @@ const Distribution = () => {
         axios.get('http://localhost:3000/api/locations').then(response => { setData(response.data)});
     };
     return (
-        <>xd
+        <>
             <Panel title="API 조회"/>
             <h1>Dust Navigation Open API</h1>
             <div style={{display:'inline-block'}}>
