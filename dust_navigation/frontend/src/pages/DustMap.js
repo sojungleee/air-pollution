@@ -95,6 +95,7 @@ class DustMap extends Component {
                 return str;
             }
         }
+// git 되게 해주라
 
         for(let i in splitedString) {
             splitedString[i] = regExp(splitedString[i]);
