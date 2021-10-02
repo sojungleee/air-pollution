@@ -52,9 +52,10 @@ const Panel = (props) => {
   );
 };
 
+// 	#483D8B 다크슬레이트블루 
 const Nav = styled.div`
-  background: #a0d911;
-  height: 8vh;
+  background: #483D8B;
+  height: 6vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +71,7 @@ const NavIcon = styled(Link)`
 `;
 
 const SidebarNav = styled.nav`
-  background: #a0d911;
+  background: #483D8B;
   width: 200px;
   height: 100vh;
   display: flex;
@@ -87,7 +88,7 @@ const SidebarNav = styled.nav`
 
 const Title = styled.div`
   font-size: x-large;
-  margin-left: 30px;
+  margin-left: 20px;
   color: white;
   font-family: "nanum";
   font-weight: bold;

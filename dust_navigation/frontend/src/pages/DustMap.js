@@ -134,15 +134,17 @@ class DustMap extends Component {
 
                 <DescriptionContainer>
                     <div>
-                        <h1>현재 대기 상황</h1>
+                        <br />
+                        <h1 style={{fontWeight:'bold'}}>현위치 대기 상황</h1>
                         <Description>
-                            <p>- 측정 주소&nbsp;:&nbsp;{Object.keys(list)}</p>
-                            <p>- 측정 시각&nbsp;:&nbsp;{(time||'').split('T')[0]}
+                            {/*값 색깔 바꾸고 싶은데 일단 보류*/}
+                            <p>[측정 주소]<br />{Object.keys(list)}</p>
+                            <p>[측정 시각]<br />{(time||'').split('T')[0]}
                                 &nbsp;{((time||'').split('T')[1]||'').split('.')[0]}</p>
-                            {<p>- 미세먼지(PM<sub>10</sub>) 농도&nbsp;:&nbsp; {pm10}㎍/㎥</p>}
-                            {<p>- 초미세먼지(PM<sub>2.5</sub>) 농도&nbsp;:&nbsp; {pm25}㎍/㎥</p>}
-                            {<p>- 일산화탄소(CO) 농도&nbsp;:&nbsp; {co}ppm</p>}
-                            {<p>- 오존(CO3) 농도&nbsp;:&nbsp; {ozone}ppm</p>}
+                            {<p>[미세먼지(PM<sub>10</sub>) 농도] {pm10}㎍/㎥</p>}
+                            {<p>[초미세먼지(PM<sub>2.5</sub>) 농도]<br /> {pm25}㎍/㎥</p>}
+                            {<p>[일산화탄소(CO) 농도]<br /> {co}ppm</p>}
+                            {<p>[오존(CO3) 농도]<br /> {ozone}ppm</p>}
                         </Description>
                     </div>
                     <Reload>
@@ -168,7 +170,7 @@ const MainContainer = styled.div`
 const MapContainer = styled.div`
     // background-color: lightgray; 
     width: 70%;
-    height: 92vh;
+    height: 94vh;
     float: left;
 
     @media screen and (max-width: 500px) {
@@ -180,8 +182,9 @@ const MapContainer = styled.div`
 
 const DescriptionContainer = styled.div`
     width: 30%;
-    height: 92vh;
+    height: 94vh;
     float: right;
+    background-color: #F5F5F5;
 
     @media screen and (max-width: 500px) {
         flex-direction: column;

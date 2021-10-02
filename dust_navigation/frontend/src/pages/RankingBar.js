@@ -112,13 +112,12 @@ class RankingBar extends Component {
                         <h3>{list.geohash}</h3> {/* 주소 받아와야 함 */}
                         {/*{testArr.map((arr, id) =>*/}
                         {/*    <h3>{arr.city_do}</h3>)*/}
-                        {/*}*/}
                         <DustList>
 
                             <li>미세먼지(PM<sub>10</sub>): {list.pm10}㎍/㎥</li>
                             <li>초미세먼지(PM<sub>2.5</sub>): {list.pm25}㎍/㎥</li>
                             <li>일산화탄소(CO): {list.co}ppm</li>
-                            {/*<li>오존: {list.ozone}</li>*/}
+                            <li>오존: {list.ozone}ppm</li>
                         </DustList>
                     </div>
                 </DustInfo>
@@ -137,7 +136,7 @@ class RankingBar extends Component {
 const Bar = styled.div`
     margin: auto;
     width: 88vw;
-    height: 15vh;
+    height: 25vh;
     font-weight: bold;
     margin-top: 15px;
     margin-bottom: 15px;

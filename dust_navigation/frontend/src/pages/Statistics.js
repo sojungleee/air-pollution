@@ -48,8 +48,9 @@ const Statistics = () => {
       <MainContainer>
           <Panel title="통계 정보"/>
           <div>
-              <MaterialTable
-                  title={"테이블 제목 뭐로 할까요?"}
+              <MaterialTable 
+                  style={{zIndex: 5}}
+                  title={"기본값은 시간순 정렬, 항목 한 번 클릭은 해당 항목 내림차순 정렬, 두 번 클릭은 오름차순 정렬"}
                   columns={columns}
                   data={data}
                   options={{
