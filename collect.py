@@ -37,8 +37,8 @@ def collect_air_quality(air_data: defaultdict):
 # gps 센서 
 def collect_gps(gps_data: defaultdict):
     #lat, lon = gps.getGps()
-    lat = 127.04151
-    lon = 37.60292
+    lat = 37.60292
+    lon = 127.04151
     gps_data["lat"] = lat
     gps_data["lon"] = lon
     gps_data["geohash"] = pgh.encode(lat, lon, 7)
