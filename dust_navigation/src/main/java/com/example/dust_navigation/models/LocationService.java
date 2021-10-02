@@ -28,7 +28,7 @@ public class LocationService {
         for(Location i : lists) {
             double lat = i.getLatitude();
             double lon = i.getLongitude();
-            String resultString = reverseGeocoding.search(lon, lat); //반대로 입력 필요
+            String resultString = reverseGeocoding.search(lat, lon); //반대로 입력 필요
             AddressDto addressDto = reverseGeocoding.fromJSONtoAddress(resultString);
 
             String loadAddr = addressDto.getCity_do() + " " + addressDto.getGu_gun() + " " + addressDto.getRoadName();
@@ -57,7 +57,7 @@ public class LocationService {
 
         double lat = location.getLatitude();
         double lon = location.getLongitude();
-        String resultString = reverseGeocoding.search(lon, lat); //반대로 입력 필요
+        String resultString = reverseGeocoding.search(lat, lon); //반대로 입력 필요
         AddressDto addressDto = reverseGeocoding.fromJSONtoAddress(resultString);
 
         String loadAddr = addressDto.getCity_do() + " " + addressDto.getGu_gun() + " " + addressDto.getRoadName();
@@ -66,5 +66,4 @@ public class LocationService {
 
         return resultHash;
     }
-
 }
