@@ -4,14 +4,19 @@ import '../../src/App.css';
 import Panel from "../components/Sidebar/Panel";
 import { NaverMap, Marker, RenderAfterNavermapsLoaded } from 'react-naver-maps';
 import { IoReloadCircleOutline } from 'react-icons/io5';
+import { FaWindowMinimize } from 'react-icons/fa';
 
 class DustMap extends Component {
 
     constructor(props) {
         super(props);
+        this.success = this.success.bind(this);
         this.state = {
-            list: []
+            list: [],
+            lati: 0,
+            long: 0
         };
+
     }
 
     componentDidMount() {
@@ -28,27 +33,49 @@ class DustMap extends Component {
     }
 
     getLocation() {
-        let lat, long;
-        let ngeohash = require('ngeohash');
-        let geohash = ""
+        //let lat, lng;
+        //let ngeohash = require('ngeohash');
+        //let geohash = "";
+        // if (navigator.geolocation) { // GPS를 지원하면
+        //     navigator.geolocation.getCurrentPosition(function(position) {
+        //         let lat = position.coords.latitude;
+        //         let lng = position.coords.longitude;
+        //         let geohash = ngeohash.encode(lat,lng).substring(0,7);
+        //         // alert('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
+        //         console.log('위도 : ' + lat + ' 경도 : ' + lng + ' Geohash : ' + geohash);
+        //     }
+        //     , function(error) {
+        //         console.error(error);
+        //     }, {
+        //         enableHighAccuracy: false,
+        //         maximumAge: 0,
+        //         timeout: Infinity
+        //     }
+        //     );
+        // } 
+        // else {
+        //     alert('GPS를 지원하지 않습니다');
+        //     return geohash;
+        // }
         if (navigator.geolocation) { // GPS를 지원하면
-            navigator.geolocation.getCurrentPosition(function(position) {
-                lat = position.coords.latitude;
-                long = position.coords.longitude;
-                geohash = ngeohash.encode(lat,long).substring(0,7);
-                // alert('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
-                console.log('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
-            }, function(error) {
-                console.error(error);
-            }, {
-                enableHighAccuracy: false,
-                maximumAge: 0,
-                timeout: Infinity
-            });
-        } else {
-            alert('GPS를 지원하지 않습니다');
-            return geohash;
+            navigator.geolocation.getCurrentPosition(this.success);
+            console.log(this.success);
         }
+    }
+    success = (position) => {
+        //const{lati} = this.setState({lati: 1});
+        let ngeohash = require('ngeohash');
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        let geohash = ngeohash.encode(lat,lng).substring(0,7);
+        // alert('위도 : ' + lat + ' 경도 : ' + long + ' Geohash : ' + geohash);
+        console.log('위도 : ' + lat + ' 경도 : ' + lng + ' Geohash : ' + geohash);
+        this.setState({
+            lati: lat,
+            long: lng
+        });
+        console.log(this.state);
+        return lat;
     }
 
     render() {
@@ -84,26 +111,11 @@ class DustMap extends Component {
         let pm10 = (splitedString[8]||'').split(":")[1];
         let pm25 = (splitedString[9]||'').split(":")[1];
 
-        /*
-        const graphs = [
-            {
-                graph: {
-                    name: "Praveen Kumar",
-                    age: 27,
-                    space: "YouTube"
-                }
-            },
-        ];
-        console.log(graphs);
-        console.log(graphs.map(item => {
-            return `${item.graph.name}`
-        }));*/
-
         const buttonStyle = {
             borderWidth: 0,
             alignItems:'center',
             justifyContent:'center',
-            backgroundColor:'#fff',
+            backgroundColor:'#F5F5F5',
         }
 
         return (
@@ -118,15 +130,17 @@ class DustMap extends Component {
                         <NaverMap
                             id="react-naver-maps-introduction"
                             style={{ width: '100%', height: '100%' }}
-                            center={{ lat: 37.497175, lng: 127.027926 }}
+                            center={{ lat: 37.6029, lng: 127.042 }}
+                            // center={{ lat: this.state.lati, lng: this.state.long }}
+                            zoom={17}
                         >
                             <Marker
                                 key={1}
-                                position={{ lat: 37.551229, lng: 126.988205 }}
+                                // position={{ lat: this.state.lati, lng: this.state.long }}
+                                position={{ lat: 37.6029, lng: 127.042 }}
                                 animation={2}
                                 onClick={() => {alert('여기는 N서울타워입니다.');}}
                             />
-
                         </NaverMap>
 
                     </RenderAfterNavermapsLoaded>
@@ -147,9 +161,9 @@ class DustMap extends Component {
                             {<p>[오존(CO3) 농도]<br /> {ozone}ppm</p>}
                         </Description>
                     </div>
-                    <Reload>
-                        <button style={buttonStyle} onClick={this.getLocation}><IoReloadCircleOutline size='60'/></button>
-                    </Reload>
+                    {/* <Reload>
+                        <button style={buttonStyle} onClick={this.success}><IoReloadCircleOutline size='60'/></button>
+                    </Reload> */}
                 </DescriptionContainer>
             </MainContainer>
         );
