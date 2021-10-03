@@ -7,7 +7,37 @@ const Distribution = () => {
     const onClick = () => {
         axios.get('http://localhost:3000/api/locations').then(response => { setData(response.data)});
     };
-    return (
+    const saveJson = () => {
+        fetch('http://localhost:3000/api/locations', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.blob())
+            .then((blob) => {
+                // Create blob link to download
+                const url = window.URL.createObjectURL(
+                    new Blob([blob]),
+                );
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute(
+                    'download',
+                    `API.json`,
+                );
+
+                // Append to html link element page
+                document.body.appendChild(link);
+
+                // Start download
+                link.click();
+
+                // Clean up and remove the link
+                link.parentNode.removeChild(link);
+            })};
+
+        return (
         <>
             <Panel title="API 조회"/>
             <h1>Dust Navigation Open API</h1>
@@ -29,6 +59,7 @@ const Distribution = () => {
             <br />
             <div>
                 <button onClick={ onClick }>수집 지역 대기 정보 API 불러오기</button>
+                <button onClick={ saveJson }>수집 지역 대기 정보 API 다운로드</button>
             </div>
             <br />
             {data && <textarea rows={20} cols={60} value={JSON.stringify(data, null, 5)} readOnly={true}/>}
