@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Panel from "../../src/components/Sidebar/Panel";
 
 const Distribution = () => {
@@ -39,13 +40,13 @@ const Distribution = () => {
 
         return (
         <>
-            <Panel title="API 조회"/>
-            <h1>Dust Navigation Open API</h1>
-            <h2>모든 지역 대기 정보 API</h2>
-            <div className="apiUrl">
+            <Panel title="API 조회 - Dust Map Open API"/>
+            <br />
+            <h1>모든 지역 대기 정보 API</h1>
+            <div style={{backgroundColor : '#E6E6FA'}}>
                 GET /api/locations
-            </div>
-            <h3>응답item</h3>
+            </div><br />
+            <h5>&#12296;응답item&#12297;</h5>
             <div style={{display:'inline-block'}}>
                 <p align="left">
                 - geohash : geohash값<br />
@@ -63,17 +64,19 @@ const Distribution = () => {
             </div>
             <br />
             <div>
-                <button onClick={ onClick }>수집 지역 대기 정보 API 불러오기</button>
-                <button onClick={ saveJson }>수집 지역 대기 정보 API 다운로드</button>
+                <button onClick={ onClick }>API 불러오기</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={ saveJson }>API 다운로드</button>
             </div>
             <br />
             {data && <textarea rows={20} cols={60} value={JSON.stringify(data, null, 5)} readOnly={true}/>}
+            <hr /><br />
 
-            <h2>선택 지역 대기 정보 API</h2>
-            <div className="apiUrl">
+            <h1>선택 지역 대기 정보 API</h1>
+            <div style={{backgroundColor : '#E6E6FA'}}>
                 GET /api/locations/&#123;geohash&#125;
-            </div>
-            <h3>응답item</h3>
+            </div><br />
+            <h5>&#12296;응답item&#12297;</h5>
             <div style={{display:'inline-block'}}>
                 <p align="left">
                     - geohash : geohash값<br />
@@ -91,18 +94,20 @@ const Distribution = () => {
             </div>
             <br />
             <div>
-                <button onClick={ onClick }>수집 지역 대기 정보 API 불러오기</button>
-                <button onClick={ saveJson }>수집 지역 대기 정보 API 다운로드</button>
+                <button onClick={ onClick }>API 불러오기</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={ saveJson }>API 다운로드</button>
             </div>
             <br />
             {data && <textarea rows={20} cols={60} value={JSON.stringify(data, null, 5)} readOnly={true}/>}
+            <hr /><br />
 
-            <h2>모든 대기 정보 API</h2><br />
-            위도, 경도, 응답시간 미포함. 대기정보만 불러옴
-            <div className="apiUrl">
+            <h1>모든 대기 정보 API</h1>
+            <p>위도, 경도, 응답시간 미포함. 대기정보만 불러옴</p>
+            <div style={{backgroundColor : '#E6E6FA'}}>
                 GET /api/airqualitysensorsall
-            </div>
-            <h3>응답item</h3>
+            </div><br />
+            <h5>&#12296;응답item&#12297;</h5>
             <div style={{display:'inline-block'}}>
                 <p align="left">
                     - airQualitySensor : 대기정보<br />
@@ -116,15 +121,17 @@ const Distribution = () => {
             </div>
             <br />
             <div>
-                <button onClick={ onClick }>수집 지역 대기 정보 API 불러오기</button>
-                <button onClick={ saveJson }>수집 지역 대기 정보 API 다운로드</button>
+                <button onClick={ onClick }>API 불러오기</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={ saveJson }>API 다운로드</button>
             </div>
             <br />
             {data && <textarea rows={20} cols={60} value={JSON.stringify(data, null, 5)} readOnly={true}/>}
+            <hr /><br />
 
-            <h2>대기정보 정렬-필터링 API</h2><br />
-            대기정보를 정렬하고 필터링 함
-            <div className="apiUrl" >
+            <h1>대기정보 정렬-필터링 API</h1>
+            <p>대기정보를 정렬하고 필터링 함</p>
+            <div style={{backgroundColor : '#E6E6FA'}}>
                 GET /api/airqualitysensors?<br />
                 sort = &#123;sort&#125;<br />
                 &item = &#123;item&#125;<br />
@@ -145,8 +152,8 @@ const Distribution = () => {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- default는 6<br />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- geohash값 앞에서부터 &#123;precision&#125;자리까지 같은 지역의 대기정보를 보여줌<br />
                 </p>
-            </div>
-            <h3>응답item</h3>
+            </div><br />
+            <h5>&#12296;응답item&#12297;</h5>
             <div style={{display:'inline-block'}}>
                 <p align="left">
                     - airQualitySensor : 대기정보<br />
@@ -160,18 +167,20 @@ const Distribution = () => {
             </div>
             <br />
             <div>
-                <button onClick={ onClick }>수집 지역 대기 정보 API 불러오기</button>
-                <button onClick={ saveJson }>수집 지역 대기 정보 API 다운로드</button>
+                <button onClick={ onClick }>API 불러오기</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={ saveJson }>API 다운로드</button>
             </div>
             <br />
             {data && <textarea rows={20} cols={60} value={JSON.stringify(data, null, 5)} readOnly={true}/>}
+            <hr /><br />
 
-            <h2>리버스 지오코딩 API</h2><br />
-            원하는 장소의 도로명 주소를 리턴함
-            <div className="apiUrl">
+            <h1>리버스 지오코딩 API</h1>
+            <p>원하는 장소의 도로명 주소를 리턴함</p>
+            <div style={{backgroundColor : '#E6E6FA'}}>
                 GET /api/locations/search?lat=&#123;lat&#125;&lon=&#123;lon&#125;
-            </div>
-            <h3>응답item</h3>
+            </div><br />
+            <h5>&#12296;응답item&#12297;</h5>
             <div style={{display:'inline-block'}}>
                 <p align="left">
                     - city_do : 주소에서 시/도에 해당하는 명칭<br />
@@ -181,8 +190,9 @@ const Distribution = () => {
             </div>
             <br />
             <div>
-                <button onClick={ onClick }>수집 지역 대기 정보 API 불러오기</button>
-                <button onClick={ saveJson }>수집 지역 대기 정보 API 다운로드</button>
+                <button onClick={ onClick }>API 불러오기</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={ saveJson }>API 다운로드</button>
             </div>
             <br />
             {data && <textarea rows={20} cols={60} value={JSON.stringify(data, null, 5)} readOnly={true}/>}
