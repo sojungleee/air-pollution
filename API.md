@@ -1,4 +1,4 @@
-# Dust Navigation Open API
+# Dust map Open API
 
 ## 목차
 
