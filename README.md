@@ -1,6 +1,21 @@
 # Eco Rroad
 실시간 정밀 대기 지도 및 Open API 제공 IOT 프로젝트
 
+## Index
+
+- [Feature](#feature)
+- [Web page Screenshot](#web-page-screenshot)
+- [HW](#hw)
+- [설계](#설계)
+  * [API](#api)
+  * [ERD](#erd)
+  * [서비스 구성도](#서비스-구성도)
+  * [서비스 흐름도](#서비스-흐름도)
+  * [기능 흐름도](#기능-흐름도)
+  * [하드웨어 및 센서 구성도](#하드웨어-및-센서-구성도)
+  * [웹 Prototype 제작](#웹-prototype-제작)
+- [About us](#about-us)
+
 ## Feature
 
 - GPS센서와 각종 대기 센서로 수집한 정보를 라즈베리파이, AWS(RDS)를 거쳐 REST API로 웹에 제공
@@ -39,10 +54,10 @@
 ### 기능 흐름도
 <img src="https://user-images.githubusercontent.com/67352902/144236278-8e584c5a-66c2-48be-af34-11ff507d1f70.png" vertical-align="middle" height="500" />
 
-### 하드웨어/센서 구성도
+### 하드웨어 및 센서 구성도
 <img src="https://user-images.githubusercontent.com/67352902/144236540-6f1c69a9-1314-4775-ba3c-1b4a1f1e35f7.png" vertical-align="middle" height="500" />
 
-### 웹 Prototype 제작
+### Prototype
 - 카카오 오븐을 이용한 프로토 타입 제작 : [🔗](https://ovenapp.io/view/LGhBB9GDisMnOU3D5bXHVU273RrKQfjD/)
 
 ## About us
