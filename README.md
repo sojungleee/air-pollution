@@ -2,10 +2,20 @@
 
 ## 설계
 
-### DB Table
+### ERD
+![image](https://user-images.githubusercontent.com/67352902/144236407-f4fc464a-00f4-4eb3-bd35-a07d26290597.png)
 
-![db_구조](/uploads/e4629fc56ce9d714b8528a417154436f/db_구조.png)
+### 서비스 구성도
+![image](https://user-images.githubusercontent.com/67352902/144236165-242b83a1-51bd-4850-92ae-b4ca95971996.png)
 
+### 서비스 흐름도
+![image](https://user-images.githubusercontent.com/67352902/144236195-e392e811-2f15-4c84-93b7-e51b1f400c02.png)
+
+### 기능 흐름도
+![image](https://user-images.githubusercontent.com/67352902/144236278-8e584c5a-66c2-48be-af34-11ff507d1f70.png)
+
+### 하드웨어/센서 구성동
+![image](https://user-images.githubusercontent.com/67352902/144236540-6f1c69a9-1314-4775-ba3c-1b4a1f1e35f7.png)
 
 ### Prototype
 - 카카오 오븐을 이용한 프로토 타입 제작 : [🔗](https://ovenapp.io/view/LGhBB9GDisMnOU3D5bXHVU273RrKQfjD/)
