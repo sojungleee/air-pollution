@@ -1,5 +1,34 @@
 # 실시간 정밀 대기 지도 및 클린 네비게이션
 
+## 기능
+
+- GPS센서와 각종 대기 센서로 수집한 정보를 라즈베리파이, AWS(RDS)를 거쳐 REST API로 웹에 제공
+- 이때 지역 기준은 **Geohash**로 구분
+- 디바이스에 부착된 LCD에 수집되고 있는 대기 정보를 나타냄. 웹 뿐만 아니라 이동수단(버스, 자전거)에 부착된 디바이스에서도 측정된 대기정보 확인 가능
+- 카카오 맵 API를 이용해 사용자의 위치 혹은 사용자가 알고자 하는 곳의 좌표와 제공된 Geohash에 대한 정보를 바탕으로 각 지역별 대기 상태 추이 확인 가능
+
+> Geohash란, Geocoding System의 일종으로 공간을 사각형으로 분할해 Geograhpic Location 정보를 문자와 숫자로 이루어진 짧은 string 형태로 변환시킨 데이터. 동보다 작은 단위의 지역 정보 표현에 용이
+
+## 스크린샷
+### 정밀 대기 지도 페이지
+![image](https://user-images.githubusercontent.com/67352902/144237677-c630ff89-6540-466c-b4f0-cea2121ace0d.png)
+
+### 랭킹 정보 페이지
+![image](https://user-images.githubusercontent.com/67352902/144237714-da7bf44f-9e89-4199-a9ff-3f4af1fa16d9.png)
+
+### 통계 정보 페이지
+![image](https://user-images.githubusercontent.com/67352902/144237739-70bd30d8-d5e3-4853-8754-755ea33f0c92.png)
+
+### OPEN API 제공 페이지
+![image](https://user-images.githubusercontent.com/67352902/144237800-bdea8f78-8e97-4aac-be7c-09bc453785ae.png)
+
+## HW 
+### RaspberryPi 센서 구성이 완성된 모습
+![image](https://user-images.githubusercontent.com/67352902/144238208-0396abe1-4579-454b-b996-06d7f10c4f73.png)
+
+### LCD에 표시되는 대기정보
+![image](https://user-images.githubusercontent.com/67352902/144238319-78cd538f-fd4b-4907-be62-1e75ee67314d.png)
+
 ## 설계
 
 ### ERD
@@ -14,57 +43,30 @@
 ### 기능 흐름도
 ![image](https://user-images.githubusercontent.com/67352902/144236278-8e584c5a-66c2-48be-af34-11ff507d1f70.png)
 
-### 하드웨어/센서 구성동
+### 하드웨어/센서 구성도
 ![image](https://user-images.githubusercontent.com/67352902/144236540-6f1c69a9-1314-4775-ba3c-1b4a1f1e35f7.png)
 
-### Prototype
+### 웹 Prototype 제작
 - 카카오 오븐을 이용한 프로토 타입 제작 : [🔗](https://ovenapp.io/view/LGhBB9GDisMnOU3D5bXHVU273RrKQfjD/)
 
+## About us
 
-## Commit Message Style
+- <a href="https://github.com/CalciferK">
+    <img src="https://avatars.githubusercontent.com/u/66564091?v=4" vertical-align="middle" height="30" /> 김세인
+</a>
 
-#### 타입
+- <a href="https://github.com/lee-so-jung">
+    <img src="https://avatars.githubusercontent.com/u/84393930?v=4" vertical-align="middle" height="30" /> Sojung Lee
+</a>
 
-| 태그이름 | 설명                                                  |
-| -------- | ----------------------------------------------------- |
-| Feat     | 새로운 기능을 추가할 경우                             |
-| Fix      | 버그를 고친 경우                                      |
-| Design   | CSS 등 사용자 UI 디자인 변경                          |
-| Style    | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 |
-| Refactor | 프로덕션 코드 리팩토링                                |
-| Comment  | 필요한 주석 추가 및 변경                              |
-| Docs     | 문서를 수정한 경우                                    |
-| Rename   | 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우    |
-| Remove   | 파일을 삭제하는 작업만 수행한 경우                    |
+- <a href="https://github.com/jinju9553">
+    <img src="https://avatars.githubusercontent.com/u/69393506?v=4" vertical-align="middle" height="30" /> jinju9553
+</a>
 
+- <a href="https://github.com/yuseon-Lim">
+    <img src="https://avatars.githubusercontent.com/u/67352902?v=4" vertical-align="middle" height="30" /> Yuseon Lim
+</a>
 
-
-#### 이슈
-
-- Board 에서 드래그 해서 닫아도 됨 [여기](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues) 참고
-- `commit -m` 으로 닫는 경우 **이슈 키워드**
-  - Close, Closes, Closed, Closing, close, closes, closed, closing
-  - Fix, Fixes, Fixed, Fixing, fix, fixes, fixed, fixing
-  - Resolve, Resolves, Resolved, Resolving, resolve, resolves, resolved, resolving
-  - Implement, Implements, Implemented, Implementing, implement, implements, implemented, implementing
-
-
-
-#### 메세지
-
-- 영어로 작성하는 경우
-  - 첫 글자는 대문자
-  - "Fix", "Add", "Change"의 명령어로 시작
-- 한글로 작성하는 경우
-  - "고침", "추가", "변경"의 명령어로 시작
-
-```html
-Feat: 추가 get data api 함수 - [이슈키워드] #이슈번호
-```
-
-## 확장 프로그램
-- 자체 제작 API에 도메인을 부여하지 않아 생기는 오류 해결을 위한 크롬 확장 프로그램 설치 권장. 
-(Error Message : No 'Access-Control-Allow-Origin' header is present on the requested resource.)
-- [🔗](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf)
-- 설치 후 해당 프로그램을 on하고 프로젝트를 실행하면 에러가 해결됩니다.
-- Distrubution.js 의 코드를 수정하여 굳이 설치하지 않아도 됩니다. (죄송)
+- <a href="https://github.com/im-shung">
+    <img src="https://avatars.githubusercontent.com/u/67851738?v=4" vertical-align="middle" height="30" /> Im shung
+</a>
