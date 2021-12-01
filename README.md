@@ -3,6 +3,7 @@
 
 ## Index
 
+- [Build with](#build-with)
 - [Feature](#feature)
 - [Web page Screenshot](#web-page-screenshot)
 - [HW](#hw)
@@ -13,8 +14,14 @@
   * [서비스 흐름도](#서비스-흐름도)
   * [기능 흐름도](#기능-흐름도)
   * [하드웨어 및 센서 구성도](#하드웨어-및-센서-구성도)
-  * [웹 Prototype 제작](#웹-prototype-제작)
+  * [Prototype](#prototype)
 - [About us](#about-us)
+
+## Build with
+- SpringBoot, React.js
+- Java, Javascript, Python
+- MariaDB, AWS(RDS)
+- RaspberryPi
 
 ## Feature
 
