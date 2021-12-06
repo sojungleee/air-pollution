@@ -81,7 +81,7 @@
     <img src="https://avatars.githubusercontent.com/u/69393506?v=4" vertical-align="middle" height="30" /> jinju9553
 </a>
 
-- <a href="https://github.com/yuseon-Lim">
+- <a href="https://github.com/devyuseon">
     <img src="https://avatars.githubusercontent.com/u/67352902?v=4" vertical-align="middle" height="30" /> Yuseon Lim
 </a>
 
