@@ -69,7 +69,7 @@
 
 ## About us
 
-- <a href="https://github.com/CalciferK">
+- <a href="https://github.com/kimtota">
     <img src="https://avatars.githubusercontent.com/u/66564091?v=4" vertical-align="middle" height="30" /> Kim Sein
 </a>
 
