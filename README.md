@@ -70,7 +70,7 @@
 ## About us
 
 - <a href="https://github.com/CalciferK">
-    <img src="https://avatars.githubusercontent.com/u/66564091?v=4" vertical-align="middle" height="30" /> 김세인
+    <img src="https://avatars.githubusercontent.com/u/66564091?v=4" vertical-align="middle" height="30" /> Kim Sein
 </a>
 
 - <a href="https://github.com/lee-so-jung">
